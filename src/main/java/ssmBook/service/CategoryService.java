@@ -1,7 +1,9 @@
 package ssmBook.service;
 
 
-import ssmBook.pojo.Category;
+import org.springframework.beans.factory.annotation.Autowired;
+import ssmBook.dao.CategoryDao;
+import ssmBook.pojo.category;
 
 import java.util.List;
 
@@ -12,18 +14,20 @@ import java.util.List;
  */
 public class CategoryService {
 
+    @Autowired
+    private CategoryDao categoryDao;
     /**
      * 获取分类列表
      */
-    public List<Category> getCategoryList()
+    public List<category> getCategoryList()
     {
-        return null;
+        return categoryDao.selectListAll();
     }
 
     /**
      * 通过ID查询分类
      */
-    public Category getCategory()
+    public category getCategory()
     {
         return null;
     }

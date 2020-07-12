@@ -4,10 +4,11 @@ package ssmBook.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import ssmBook.dao.IndentDao;
 import ssmBook.dao.ItemDao;
-import ssmBook.pojo.Indent;
-import ssmBook.pojo.Item;
+import ssmBook.pojo.indent;
+import ssmBook.pojo.item;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 订单相关service
@@ -28,7 +29,7 @@ public class IndentService {
     /**
      * 获取订单列表
      */
-    public List<Indent> getIndentList()
+    public List<indent> getIndentList()
     {
         return null;
     }
@@ -60,7 +61,7 @@ public class IndentService {
     /**
      * 获取某用户全部订单
      */
-    public List<Indent> getIndentByUser()
+    public List<indent> getIndentByUser()
     {
         return null;
     }
@@ -69,7 +70,7 @@ public class IndentService {
      * 创建订单项
      *
      */
-    public Item itemCreate()
+    public item itemCreate()
     {
         return null;
     }
@@ -77,7 +78,7 @@ public class IndentService {
     /**
      * 向订单内添加数据
      */
-    public Indent ItemAdd()
+    public indent ItemAdd()
     {
         return null;
     }
@@ -85,7 +86,7 @@ public class IndentService {
     /**
      * 从订单中减少项目
      */
-    public Indent ItemLess()
+    public indent ItemLess()
     {
         return null;
     }
@@ -93,8 +94,16 @@ public class IndentService {
     /**
      * 从订单中删除项目
      */
-    public Indent ItemDelect()
+    public indent ItemDelect()
     {
         return null;
+    }
+
+    /**
+     * 判断订单中是否存在这一商品
+     */
+    public boolean checkBook(int bookId,int iId)
+    {
+        return Objects.nonNull(itemDao.selectItemInIndent(bookId,iId));
     }
 }

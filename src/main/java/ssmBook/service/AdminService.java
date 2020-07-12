@@ -5,6 +5,7 @@ import ssmBook.dao.AdminDao;
 import ssmBook.pojo.*;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  *后台管理员服务
@@ -24,13 +25,20 @@ public class AdminService {
      */
     public boolean checkUser(String username,String password)
     {
-        return true;
+        return Objects.nonNull(adminDao.selectByUsernameAndPassword(username, password));
     }
 
     /**
+     * 判断用户名是否存在（注册时）
+     */
+    public boolean isExist(String username)
+    {
+        return Objects.nonNull(adminDao.selectByName(username));
+    }
+    /**
      * 已经处理订单页面的显示
      */
-    public List<Item> getAlreadyItemList()
+    public List<item> getAlreadyItemList()
     {
         return null;
     }
@@ -38,7 +46,7 @@ public class AdminService {
     /**
      * 未处理订单页面的显示
      */
-    public List<Item> getUnreadyItemList()
+    public List<item> getUnreadyItemList()
     {
         return null;
     }
@@ -64,7 +72,7 @@ public class AdminService {
     /**
      * 获取用户列表
      */
-    public List<User> getUser()
+    public List<user> getUser()
     {
         return null;
     }
@@ -89,7 +97,7 @@ public class AdminService {
      *  获取图书列表
      *  只需获取全部，controller那边会处理数据
      */
-    public List<Book> getBookList()
+    public List<book> getBookList()
     {
         return null;
     }
@@ -113,7 +121,7 @@ public class AdminService {
     /**
      * 获取分类列表
      */
-    public List<Category> getCategoryList()
+    public List<category> getCategoryList()
     {
         return null;
     }
@@ -129,16 +137,50 @@ public class AdminService {
     /**
      * 获取管理员列表
      */
-    public List<Admin> getAdminList()
+    public List<admin> getAdminList(int page,int size)
     {
-        return null;
+        return adminDao.selectAll((page-1)*size,size);
+
     }
 
     /**
      * 添加管理员
      */
-    public boolean adminAdd()
+    public boolean adminAdd(admin admin)
     {
+        adminDao.adminInsert(admin);
         return true;
+    }
+
+    /**
+     * 获取管理员的总数
+     * @return
+     */
+    public long getTotal() {
+        return adminDao.selectTotal();
+    }
+
+    /**
+     * 通过id查询管理员
+     */
+    public admin selectAdminById(int adminId)
+    {
+        return adminDao.selectById(adminId);
+    }
+
+    /**
+     * 更新管理员信息
+     */
+    public boolean updateAdmin(admin admin)
+    {
+        return adminDao.adminUpdate(admin);
+    }
+
+    /**
+     * 管理员删除
+     */
+    public boolean deleteAdmin(int adminId)
+    {
+        return adminDao.delectAdmin(adminId);
     }
 }
