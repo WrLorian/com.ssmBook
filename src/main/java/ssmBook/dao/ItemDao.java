@@ -2,6 +2,7 @@ package ssmBook.dao;
 
 
 import org.apache.ibatis.annotations.*;
+import ssmBook.pojo.admin;
 import ssmBook.pojo.item;
 
 import java.util.List;
@@ -11,6 +12,13 @@ import java.util.List;
  * @GimmciK 2020.7.8
  */
 public interface ItemDao {
+
+    /**
+     * 判断该订单中是否存在该书籍
+     */
+    @Select("select * from item where bookId=#{bookId} and iId=#{iId}")
+    public item selectItemInIndent(@Param("bookId")int bookId,@Param("iId")int iId);
+
 
     /**
      * 增加订单项目（添加购物车）
