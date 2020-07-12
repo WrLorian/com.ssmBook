@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>用户登录</title>
+</head>
+<body>
+
+<div id="wrap">
+
+<jsp:include page="header.jsp"/>
+
+<div class="center_content">
+
+	<div class="left_content">
+
+		<div class="feat_prod_box_details">
+		
+			<div class="contact_form">
+				<div style="color:#FD060A" class="form_subtitle">用户登录</div>
+				<span style="color:red;"></span>
+				<form action="../login" method="post">
+					<div class="form_row">
+						<label class="contact"><strong><font style="color:red;">
+							*</font>用户:</strong>
+							</label>
+						<input type="text" name="username" class="contact_input" required="required"/>
+					</div>
+					<div class="form_row">
+						<label class="contact"><strong><font style="color:red;">*</font>密码:</strong></label>
+						<input type="password" name="password" class="contact_input" required="required"/>
+					</div>
+					<div class="form_row"></div>
+					<div class="form_row">
+						<input type="submit" class="register" value="登录" style="margin-right:10px"/>
+						
+						<a href = baidu.com>没有账户? 点击注册</a>
+					</div>
+				</form>
+        	</div>
+        
+		</div>
+		
+		<div class="clear"></div>
+	
+	</div>
+   
+   	<jsp:include page="right.jsp"/>
+   
+	<div class="clear"></div>
+	
+</div>
+
+<jsp:include page="footer.jsp"/>
+
+</div>
+
+</body>
+</html>
