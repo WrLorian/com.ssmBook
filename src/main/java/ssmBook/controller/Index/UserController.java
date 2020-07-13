@@ -46,18 +46,10 @@ public class UserController {
     @Autowired
     private IndentDao indentDao;
 
-    /**
-     *原先项目中的该变量设置为自动填装@Autowired在service层中自动实现
-     *考虑到貌似大家都对spring不太熟悉，则也可通过构造函数的方式实现^^
-     *如果会写相应的service层，则也可使用自动填装，将new BookService()删去即可。
-     *
-     *
-     * 该变量的作用为读取后台的书本数据。
-     */
 
 
     /**
-     * 注册用户
+     * 跳转到注册用户
      */
     @RequestMapping("/reg")
     public String reg()
@@ -84,7 +76,7 @@ public class UserController {
         }
         else
         {
-            userService.add(user);
+            userService.userAdd(user);
             request.setAttribute("msg","注册成功，请登录！");
             return "/index/login.jsp";
         }
@@ -139,10 +131,10 @@ public class UserController {
         Object username = request.getSession().getAttribute("username");
         if(!username.toString().isEmpty()&&username!=null)
         {
-            List<indent> indentList = indentService.getIndentByUser(userService.get(username.toString()).getUserId());//获取用户所有订单
-            if (indentList!=null && !indentList.isEmpty()) {
-                List<item> itemList=itemDao.selectListByIndentId( indentList.get(0).getiId());
-                request.setAttribute("item", itemList);//感觉怪怪的
+            List<indent> indentList = indentService.getIndentByUser(userService.getByUsername(username.toString()).getUserId());//获取用户所有订单
+            if (indentList!=null && !indentList.isEmpty())
+            {
+                request.setAttribute("indent",indentList.get(0));
             }
         }
         return "/index/cart.jsp";
@@ -153,17 +145,20 @@ public class UserController {
      * 添加进购物车
      */
     @RequestMapping("/buy")
+    @ResponseBody
     public String buy(HttpServletRequest request, int bookId)
     {
-        Object username = request.getSession().getAttribute("username");
-        indent indent1 = (indent) request.getSession().getAttribute(indentKey);
-        if(indent1==null)
+//        Object username = request.getSession().getAttribute("username");
+        indent indent = (indent) request.getSession().getAttribute(indentKey);
+        if(indent==null)
         {
-            request.getSession().setAttribute(indentKey, indentService.create(bookService.get(bookId),userService.get(username.toString())));//创建订单
+//            不从这里拿用户名
+//            request.getSession().setAttribute(indentKey, indentService.create(bookService.get(bookId),userService.get(username.toString())));//创建订单
+            request.getSession().setAttribute(indentKey,indentService.indentCreat(bookService.getBookById(bookId)));
         }
         else
         {
-            request.getSession().setAttribute(indentKey, indentService.itemAdd(indent1, bookService.get(bookId)));//向已有订单里加项目
+            request.getSession().setAttribute(indentKey, indentService.ItemAdd(indent, bookService.getBookById(bookId)));//向已有订单里加项目
         }
         return "ok";
     }
@@ -176,7 +171,7 @@ public class UserController {
     {
         indent indent = (indent) request.getSession().getAttribute(indentKey);
         if (indent != null) {
-            request.getSession().setAttribute(indentKey, indentService.itemLess(indent, bookService.get(bookId)));
+            request.getSession().setAttribute(indentKey, indentService.ItemLess(indent, bookService.getBookById(bookId)));
         }
         return "ok";
     }
@@ -189,7 +184,7 @@ public class UserController {
     {
         indent indent2 = (indent) request.getSession().getAttribute(indentKey);
         if (indent2 != null) {
-            request.getSession().setAttribute(indentKey, indentService.itemDelete(indent2, bookService.get(bookId)));
+            request.getSession().setAttribute(indentKey, indentService.deleteItem(indent2, bookService.getBookById(bookId)));
         }
         return "ok";
     }
@@ -207,7 +202,7 @@ public class UserController {
             return "/index/login.jsp";
         }
             indent indentSession = (indent) request.getSession().getAttribute(indentKey);
-            user user = userService.get(username.toString());
+            user user = userService.getByUsername(username.toString());
             indent.setState(indentSession.STATUS_WAIT);
             indent.setTime(new Date());
             indentSession.setUserId(user.getUserId());
@@ -238,7 +233,7 @@ public class UserController {
         }
         else
         {
-            request.setAttribute("indentList",indentService.getIndentByUser(userService.get(username.toString()).getUserId()));
+            request.setAttribute("indentList",indentService.getIndentByUser(userService.getByUsername(username.toString()).getUserId()));
             return "/index/order.jsp";
         }
     }

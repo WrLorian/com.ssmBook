@@ -36,9 +36,9 @@ public class IndexController {
     @RequestMapping("/index")
     public String index(HttpServletRequest request) {
         request.setAttribute("newList", bookService.getListIsNews(1, 2));//新品
-        request.setAttribute("newList", bookService.getTotalIsBoutique(1, 2));//精品
+        request.setAttribute("specialList", bookService.getListIsSpecial(1, 2));//精品
         request.setAttribute("flag", 1);
-        return "/index/index.jsp";
+        return "/index/index";
     }
 
     /**
@@ -47,7 +47,7 @@ public class IndexController {
     @RequestMapping("/about")
     public String about(HttpServletRequest request) {
         request.setAttribute("flag", 2);
-        return "/index/about.jsp";
+        return "/index/about";
     }
 
     /**
@@ -56,10 +56,10 @@ public class IndexController {
     @RequestMapping("/special")
     public String special(HttpServletRequest request,
                           @RequestParam(required = false, defaultValue = "1") int page) {
-        request.setAttribute("specialList", bookService.getTotalIsBoutique(page, 3));
-        request.setAttribute("pageTool", PageUtil.getPageTool(request, bookService.getTotalIsBoutique(), page, 3));//精品推荐总数
+        request.setAttribute("specialList", bookService.getListIsSpecial(page, 2));
+        request.setAttribute("pageTool", PageUtil.getPageTool(request, bookService.getTotalIsSpecial(), page, 3));//精品推荐总数
         request.setAttribute("flag", 3);
-        return "/index/special.jsp";
+        return "/index/special";
     }
 
     /**
@@ -72,7 +72,7 @@ public class IndexController {
         request.setAttribute("newsList", bookService.getListIsNews(page, 3));
         request.setAttribute("pageTool", PageUtil.getPageTool(request, bookService.getTotalIsNews(), page, 3));//获取上新总数
         request.setAttribute("flag", 4);
-        return "/index/new.jsp";
+        return "/index/new";
     }
 
     /**
@@ -80,7 +80,7 @@ public class IndexController {
      */
     @RequestMapping("/detail")
     public String detail(HttpServletRequest request, int bookId) {
-        request.setAttribute("book", bookService.get(bookId));
+        request.setAttribute("book", bookService.getBookById(bookId));
         return "/index/detail.jsp";
     }
 
@@ -92,7 +92,7 @@ public class IndexController {
                          @RequestParam(required = false, defaultValue = "") String searchName,
                          @RequestParam(required = false, defaultValue = "1") int page) {
         if (searchName != null && !searchName.trim().isEmpty()) {
-            request.setAttribute("bookList", bookService.getList(searchName, page, 12));
+            request.setAttribute("bookList", bookService.getListByBookName(searchName, page, 12));
             request.setAttribute("pageTool", PageUtil.getPageTool(request, bookService.getTotal(searchName), page, 12));//一页12项
         }
         return "/index/search.jsp";
