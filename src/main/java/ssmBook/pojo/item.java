@@ -1,6 +1,8 @@
 package ssmBook.pojo;
 
 
+import java.util.List;
+
 /**
  * 订单项目实体类
  * 记录订单详细信息
@@ -13,6 +15,10 @@ public class item {
     private String bName;
     private Integer bNum;
     private Integer iId;
+    private book book;
+    private List<item> itemList;
+
+    private float total;
 
     public Integer getItemId() {
         return itemId;
@@ -61,4 +67,21 @@ public class item {
     public void setiId(Integer iId) {
         this.iId = iId;
     }
+
+    public book getBook() {
+        return book;
+    }
+
+    public void setBook(book book) {
+        this.book = book;
+    }
+
+    public float getTotal() {
+        return total;
+    }
+
+    public void setTotal(float total) {
+        this.total = (float)Math.round(total*100)/100;
+    }
+
 }

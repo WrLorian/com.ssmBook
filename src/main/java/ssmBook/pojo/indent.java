@@ -21,12 +21,15 @@ public class indent {
     private Integer iId;
     private float total;
     private Integer amount;
-    private byte state;
+    private int state;
     private Integer userId;
     private String userName;
     private String loc;
     private String tel;
     private Date time;
+
+    private user user;
+    private List<item> itemList;
 
     public float getTotal() {
         return total;
@@ -52,11 +55,11 @@ public class indent {
         this.iId = iId;
     }
 
-    public byte getState() {
+    public int getState() {
         return state;
     }
 
-    public void setState(byte state) {
+    public void setState(int state) {
         this.state = state;
     }
 
@@ -98,5 +101,20 @@ public class indent {
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    public List<item> getItemList() {
+        return itemList;
+    }
+
+    public void setItemList(List<item> itemList) {
+        this.itemList = itemList;
+    }
+
+    public user getUser() {
+        return user;
+    }
+    public void setUser(user user) {
+        this.user = user;
     }
 }
