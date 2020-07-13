@@ -38,10 +38,16 @@ public interface UserDao {
     public user select(int userId);
 
     /**
-     * 查询一共有多少个用户
+     * 查询所有用户
      */
     @Select("select * from user order by userId desc limit #{begin}, #{size}")
     public List<user> selectList(@Param("begin")int begin, @Param("size")int size);
+
+    /**
+     * 查询用户总数
+     */
+    @Select("select count(*) from user")
+    public long selectTotal();
 
     /**
      * 通过名称搜索用户

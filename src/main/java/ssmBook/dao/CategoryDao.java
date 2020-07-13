@@ -35,7 +35,7 @@ public interface CategoryDao {
      * 通过ID查询分类（？？这个方法有用吗）
      */
     @Select("select * from category where cId=#{cId}")
-    public category select(int cId);
+    public category selectById(int cId);
 
     /**
      * 查询分类总数
