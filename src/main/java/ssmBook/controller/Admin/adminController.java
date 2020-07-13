@@ -51,6 +51,7 @@ public class adminController {
         request.getSession().removeAttribute("admin");
         return "admin/login";
     }
+
     /**
      * 管理员列表
      * @return

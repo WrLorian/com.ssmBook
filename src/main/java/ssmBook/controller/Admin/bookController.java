@@ -56,7 +56,7 @@ public class bookController {
     @RequestMapping("/bookAd")
     public String bookAd(HttpServletRequest request)
     {
-        request.setAttribute("categoryList",categoryService.getCategoryList());
+        request.setAttribute("categoryList",categoryService.getCategoryListAll());
         return "admin/book-add";
     }
 
@@ -76,7 +76,7 @@ public class bookController {
     @RequestMapping("/bookUp")
     public String bookUpdate(HttpServletRequest request,int bookId)
     {
-        request.setAttribute("categoryList",categoryService.getCategoryList());
+        request.setAttribute("categoryList",categoryService.getCategoryListAll());
         request.setAttribute("book",bookService.getBookById(bookId));
         return "/admin/book-update";
     }

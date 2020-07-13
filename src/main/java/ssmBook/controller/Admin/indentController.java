@@ -3,8 +3,13 @@ package ssmBook.controller.Admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import ssmBook.dao.IndentDao;
 import ssmBook.pojo.admin;
+import ssmBook.pojo.indent;
 import ssmBook.service.IndentService;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * 后台管理页面Controller
@@ -12,6 +17,7 @@ import ssmBook.service.IndentService;
  */
 public class indentController {
 
+    private static final int size = 10;
     /**
      *原先项目中的该变量设置为自动填装@Autowired在service层中自动实现
      *考虑到貌似大家都对spring不太熟悉，则也可通过构造函数的方式实现^^
@@ -23,22 +29,18 @@ public class indentController {
 
 
     /**
-     * 查看所有未订单列表
+     * 查看所有订单列表
      */
-    @RequestMapping("/alreadyIndentList")
-    public String alreadyIndentList()
+    @RequestMapping("/indentList")
+    public String indentList(byte status, HttpServletRequest request,
+                             @RequestParam(required = false,defaultValue = "1")int page)
     {
-        return "0";
+        request.setAttribute("page",page);
+        request.setAttribute("status",status);
+        request.setAttribute("indentList",indentService.getIndentList(status,page,size));
+        return "/admin/indent-list";
     }
 
-    /**
-     * 查看所有已处理订单列表
-     */
-    @RequestMapping("/unreadyIndentList")
-    public String unreadyIndentList()
-    {
-        return "0";
-    }
 
     /**
      * 查看订单详情
@@ -53,17 +55,31 @@ public class indentController {
      * 标明订单处理
      */
     @RequestMapping("/dealIndent")
-    public String dealIndent()
+    public String dealIndent(int id,byte status,int page)
     {
-        return "0";
+        indentService.indentReady(id);
+        return "redirect:indentList?status="+status+"&page="+page;
+
     }
     /**
      * 删除订单
      */
     @RequestMapping("/delectIndent")
-    public String delectIndent()
+    public String delectIndent(int id,byte status,int page)
     {
-        return "0";
+        indentService.ItemDelect(id);
+        return "redirect:indentList?status="+status+"&page="+page;
     }
+
+    /**
+     * 查看订单项详情
+     */
+    @RequestMapping("/itemList")
+    public String itemList(int id,HttpServletRequest request)
+    {
+        request.setAttribute("itemList",indentService.getItemListById(id));
+        return "/admin/item-list";
+    }
+
 
 }
