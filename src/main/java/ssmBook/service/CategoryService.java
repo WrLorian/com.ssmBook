@@ -2,6 +2,7 @@ package ssmBook.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ssmBook.dao.CategoryDao;
 import ssmBook.pojo.category;
 
@@ -12,6 +13,7 @@ import java.util.List;
  * 类目的增删改查
  * 类目的列表获取
  */
+@Service
 public class CategoryService {
 
     @Autowired

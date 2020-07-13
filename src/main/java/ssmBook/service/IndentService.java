@@ -2,11 +2,14 @@ package ssmBook.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ssmBook.dao.IndentDao;
 import ssmBook.dao.ItemDao;
+import ssmBook.pojo.book;
 import ssmBook.pojo.indent;
 import ssmBook.pojo.item;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,6 +17,7 @@ import java.util.Objects;
  * 订单相关service
  *
  */
+@Service
 public class IndentService {
 
     @Autowired
@@ -49,7 +53,7 @@ public class IndentService {
                 item.setTotal(item.getbPrice() * item.getbNum());
             }
             indent.setItemList(itemList);
-            indent.setUser(userService.get(indent.getUserId()));
+            indent.setUser(userService.getById(indent.getUserId()));
         }
         return indent;
     }
@@ -71,53 +75,100 @@ public class IndentService {
         return indentDao.update(indent);
     }
 
-    /**
-     * 删除订单
-     */
-    public boolean indentDelect()
-    {
-        return true;
-    }
-
-    /**
-     * 添加订单
-     */
-    public boolean indentAdd()
-    {
-        return true;
-    }
 
     /**
      * 获取某用户全部订单
      */
-    public List<indent> getIndentByUser()
+    public List<indent> getIndentByUser(int userid)
     {
-        return null;
+        return pack(indentDao.selectListByUserid(userid));
     }
 
+    /**
+     * 创建订单
+     */
+    public indent indentCreat(book book)
+    {
+        List<item> itemList=new ArrayList<>();
+        itemList.add(itemCreate(book));
+        indent indent =new indent();
+        indent.setItemList(itemList);
+        indent.setTotal(book.getPrice());
+        indent.setAmount(1);
+        return indent;
+    }
     /**
      * 创建订单项
      *
      */
-    public item itemCreate()
+    public item itemCreate(book book)
     {
-        return null;
+        item item =new item();
+        item.setBook(book);
+        item.setBookId(book.getBookId());
+        item.setbPrice(book.getPrice());
+        item.setbNum(1);
+        item.setTotal(item.getbPrice()*item.getbNum());
+        return item;
     }
 
     /**
-     * 向订单内添加数据
+     * 向订单内添加订单项目
      */
-    public indent ItemAdd()
+    public indent ItemAdd(indent indent,book book)
     {
-        return null;
+        List<item> itemList=indent.getItemList();
+        itemList=itemList==null?new ArrayList<item>():itemList;//三元运算符，如果有订单项目就继承，没有就新建
+
+        boolean noThisBook=true;
+        for (item item:itemList)
+        {
+            if(item.getBook().getBookId()==book.getBookId())
+            {
+                item.setbPrice(book.getPrice());
+                item.setbNum(item.getbNum()+1);
+                item.setTotal(item.getbPrice()*item.getbNum());
+                noThisBook=false;
+            }
+        }
+        if(noThisBook)
+        {
+            itemList.add(itemCreate(book));
+        }
+        indent.setTotal(indent.getTotal()+book.getPrice());
+        indent.setAmount(indent.getAmount()+1);
+        return indent;
     }
 
     /**
      * 从订单中减少项目
      */
-    public indent ItemLess()
+    public indent ItemLess(indent indent,book book)
     {
-        return null;
+        List<item> itemList=indent.getItemList();
+        itemList=itemList==null?new ArrayList<item>():itemList;
+        boolean noneThis=true;
+        for (item item:itemList)
+        {
+            if(item.getBook().getBookId()==book.getBookId())
+            {
+                if(item.getbNum()-1<=0)
+                {
+                    return deleteItem(indent,book);
+                }
+                item.setbPrice(book.getPrice());
+                item.setbNum(item.getbNum()-1);
+                item.setTotal(item.getbPrice()*item.getbNum());
+                noneThis=false;
+            }
+        }
+        if(noneThis)
+        {
+            return indent;
+        }
+        indent.setTotal(indent.getTotal()-book.getPrice());
+        indent.setAmount(indent.getAmount()-1);
+        return indent;
     }
 
     /**
@@ -129,12 +180,38 @@ public class IndentService {
     }
 
     /**
-     * 判断订单中是否存在这一商品
+     * 从订单中删除项目
      */
-    public boolean checkBook(int bookId,int iId)
-    {
-        return Objects.nonNull(itemDao.selectItemInIndent(bookId,iId));
+    public indent deleteItem(indent indent, book book) {
+        List<item> itemList = indent.getItemList();
+        itemList = itemList==null ? new ArrayList<item>() : itemList;
+        // 如果购物车已有此项目, 数量清零
+        boolean noneThis = true;
+        int itemAmount = 0;
+        List<item> resultList = new ArrayList<item>();
+        for (item item : itemList) {
+            if (item.getBook().getBookId() == book.getBookId())
+            {
+                itemAmount = item.getbNum();
+                noneThis = false;
+                continue;
+            }
+            resultList.add(item);
+        }
+        // 如果已经没有项目, 返回null
+        if (resultList.isEmpty()) {
+            return null;
+        }
+        indent.setItemList(resultList);
+        // 如果当前购物车没有项目, 直接返回
+        if (noneThis) {
+            return indent;
+        }
+        indent.setTotal(indent.getTotal() - book.getPrice() * itemAmount);
+        indent.setAmount(indent.getAmount() - itemAmount);
+        return indent;
     }
+
 
     /**
      * 订单项列表
