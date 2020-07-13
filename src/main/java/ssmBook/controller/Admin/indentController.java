@@ -67,7 +67,7 @@ public class indentController {
     @RequestMapping("/delectIndent")
     public String delectIndent(int id,byte status,int page)
     {
-        indentService.ItemDelect(id);
+        indentService.ItemDelete(id);
         return "redirect:indentList?status="+status+"&page="+page;
     }
 
