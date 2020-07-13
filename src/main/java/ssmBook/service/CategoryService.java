@@ -17,11 +17,27 @@ public class CategoryService {
     @Autowired
     private CategoryDao categoryDao;
     /**
-     * 获取分类列表
+     * 获取分类列表（需要分页）
      */
-    public List<category> getCategoryList()
+    public List<category> getCategoryList(int page,int size)
+    {
+        return categoryDao.selectList((page-1)*size, size);
+    }
+
+    /**
+     * 获取分类列表（需要分页）
+     */
+    public List<category> getCategoryListAll()
     {
         return categoryDao.selectListAll();
+    }
+
+    /**
+     * 获取分类总数
+     */
+    public long getTotal()
+    {
+        return categoryDao.selectTotal();
     }
 
     /**
@@ -35,25 +51,33 @@ public class CategoryService {
     /**
      * 添加分类
      */
-    public boolean categoryAdd()
+    public boolean categoryAdd(category category)
     {
-        return true;
+        return categoryDao.insert(category);
+    }
+
+    /**
+     * 通过ID查询分类
+     */
+    public category getCategoryById(int id)
+    {
+        return categoryDao.selectById(id);
     }
 
     /**
      * 更新分类
      */
-    public boolean categoryUpdate()
+    public boolean categoryUpdate(category category)
     {
-        return true;
+        return categoryDao.update(category);
     }
 
     /**
      * 删除分类
      */
-    public boolean categoryDelect()
+    public boolean categoryDelete(int id)
     {
-        return true;
+        return categoryDao.delete(id);
     }
 
 }

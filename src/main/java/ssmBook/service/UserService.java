@@ -17,33 +17,46 @@ public class UserService {
     @Autowired
     private UserDao userDao;
 
-    public boolean checkUser(String username, String password){
-        return userDao.selectByUsernameAndPassword(username, password) != null;
+    /**
+     * 通过id获取
+     * @param userid
+     * @return
+     */
+    public user getById(int userId){
+        return userDao.select(userId);
     }
 
-    public boolean isExist(String username)
-    {
-        return userDao.selectByUsername(username)!=null;
+    /**
+     * 用户列表
+     */
+    public List<user> getList(int page, int size) {
+        return userDao.selectList((page-1)*size, size);
     }
 
-    public boolean add(user user)
-    {
-        user.setUserName(user.getUserName());
-        user.setuPassWord(user.getuPassWord());
-        user.setuTel(user.getuTel());
-        user.setuLoc(user.getuLoc());
-        user.setuSex(user.getuSex());
-        user.setuAge(user.getuAge());
+    /**
+     * 用户总数
+    */
+    public long getTotal() {
+        return userDao.selectTotal();
+    }
+
+    /**
+     * 判断用户是否存在
+     */
+    public boolean isExist(String username) {
+        return userDao.selectByUsername(username) != null;
+    }
+
+    /**
+     * 添加
+     */
+    public boolean userAdd(user user) {
         return userDao.insert(user);
     }
 
-    public user get(int userid)
-    {
-        return userDao.select(userid);
-    }
-
-    public user get(String username)
-    {
-        return userDao.selectByUsername(username);
+    /**
+     */
+    public boolean update(user user) {
+        return userDao.update(user);
     }
 }
