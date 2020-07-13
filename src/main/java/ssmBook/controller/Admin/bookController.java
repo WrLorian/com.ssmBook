@@ -1,6 +1,7 @@
 package ssmBook.controller.Admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ssmBook.pojo.book;
@@ -10,7 +11,7 @@ import ssmBook.util.PageUtil;
 
 import javax.servlet.http.HttpServletRequest;
 
-
+@Controller
 public class bookController {
 
     private static final int size = 10;

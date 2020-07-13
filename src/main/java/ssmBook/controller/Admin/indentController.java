@@ -2,6 +2,7 @@ package ssmBook.controller.Admin;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ssmBook.dao.IndentDao;
@@ -15,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
  * 后台管理页面Controller
  *
  */
+@Controller
 public class indentController {
 
     private static final int size = 10;

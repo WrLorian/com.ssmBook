@@ -1,6 +1,7 @@
 package ssmBook.controller.Admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ssmBook.pojo.user;
@@ -9,6 +10,7 @@ import ssmBook.util.PageUtil;
 
 import javax.servlet.http.HttpServletRequest;
 
+@Controller
 public class userController {
 
     private static final int size = 10;
@@ -28,7 +30,7 @@ public class userController {
     public String userList(HttpServletRequest request,
                            @RequestParam(required = false,defaultValue = "1")int page)
     {
-        request.setAttribute("userList",userService.getTotal());
+        request.setAttribute("userList",userService.getList(page,size));
         request.setAttribute("pageTool", PageUtil.getPageToolAdmin(request,userService.getTotal(),page,size));
         return "/admin/user-list";
     }

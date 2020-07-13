@@ -1,6 +1,7 @@
 package ssmBook.controller.Admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import ssmBook.pojo.admin;
@@ -10,6 +11,7 @@ import ssmBook.util.PageUtil;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
 
+@Controller
 public class adminController {
 
     private static final int size = 10;
@@ -23,9 +25,6 @@ public class adminController {
     private AdminService adminService;
 
 
-    /**
-     * 判断用户名是否存在
-     */
 
     /**
      * 管理员登录
@@ -39,7 +38,8 @@ public class adminController {
             return "admin/main";
         }
         request.setAttribute("msg","用户密码错误");
-        return "admin/login";
+        System.out.println("密码错误");
+        return "admin/login.jsp";
     }
 
     /**
@@ -49,7 +49,7 @@ public class adminController {
     public String logout(HttpServletRequest request)
     {
         request.getSession().removeAttribute("admin");
-        return "admin/login";
+        return "redirect:admin/login";
     }
 
     /**
