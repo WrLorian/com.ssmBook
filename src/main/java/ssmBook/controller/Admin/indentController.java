@@ -42,14 +42,6 @@ public class indentController {
     }
 
 
-    /**
-     * 查看订单详情
-     */
-    @RequestMapping("/indentConfig")
-    public String indentConfig()
-    {
-        return "0";
-    }
 
     /**
      * 标明订单处理
@@ -67,7 +59,7 @@ public class indentController {
     @RequestMapping("/delectIndent")
     public String delectIndent(int id,byte status,int page)
     {
-        indentService.ItemDelect(id);
+        indentService.ItemDelete(id);
         return "redirect:indentList?status="+status+"&page="+page;
     }
 

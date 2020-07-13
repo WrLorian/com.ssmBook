@@ -28,7 +28,7 @@ public class userController {
     public String userList(HttpServletRequest request,
                            @RequestParam(required = false,defaultValue = "1")int page)
     {
-        request.setAttribute("userList",userService.getTotal());
+        request.setAttribute("userList",userService.getList(page, size));
         request.setAttribute("pageTool", PageUtil.getPageToolAdmin(request,userService.getTotal(),page,size));
         return "/admin/user-list";
     }
