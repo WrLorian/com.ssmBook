@@ -1,8 +1,25 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="ssmBook.service.BookService" %>
+<%@ page import="ssmBook.pojo.book" %>
+<%
+    BookService service=new BookService();
+    book book=service.getBookById((Integer) request.getAttribute("id"));
+    request.setAttribute("id",book.getBookId());
+    request.setAttribute("name",book.getBookName());
+    request.setAttribute("img",book.getImg());
+    request.setAttribute("price",book.getPrice());
+    request.setAttribute("count",book.getCount());
+    request.setAttribute("brief",book.getBrief());
+    request.setAttribute("author",book.getAuthor());
+    request.setAttribute("press",book.getPress());
+    request.setAttribute("time",book.getTime());
+    request.setAttribute("grade",book.getGrade());
+    request.setAttribute("cid",book.getcId());
+%>
 <html>
 <head>
-    <title>使用用户名查询结果</title>
+    <title>书籍修改</title>
     <script type="text/javascript">
         function altRows(id){
             if(document.getElementsByTagName){
@@ -114,33 +131,47 @@
         </div>
         <div class="column" style="text-align: center;background-color: lightblue">
             <ul class="nav navbar-nav">
-                <li><a href="indent-list.jsp">订单管理</a></li>
-                <li><a href="admin-list.jsp">管理员信息管理</a></li>
-                <li><a href="user-list.jsp">客户管理</a></li>
-                <li><a href="book-list.jsp">商品管理</a></li>
-                <li><a href="category-list.jsp">类别管理</a></li>
-                <li><a href="../modifyPassword.jsp">修改密码</a></li>
-                <li><a href="/loggout">退出</a></li>
+                <li><a href="indentList">订单管理</a></li>
+                <li><a href="adminList">管理员管理</a></li>
+                <li><a href="userList">客户管理</a></li>
+                <li><a href="bookList">商品管理</a></li>
+                <li><a href="categoryList">类别管理</a></li>
+                <li><a href="../modifyPassword.jsp">修改密码</a></li><!--??-->
+                <li><a href="logout">退出</a></li>
             </ul>
         </div>
         <div class="column1">
-            <a href="admin-list.jsp" style="text-decoration:none;color: black;background-color: lightblue">返回</a>
-            <table class="altrowstable" id="alternatecolor" width="800px">
-                <tr>
-                    <th>账号</th><th>用户名</th><th>密码</th><th>操作</th>
+            <form method="post" action="/bookUpdate"><%--后续补充--%>
+                <table align="center">
+                    <tr>
+                        <td>图书编号</td><td><input type="text" name="bookId" value="${id}"></td>
+                    </tr>
+                    <tr>
+                        <td>图书名称</td><td><input type="text" name="bookName" value="${name}"></td>
+                    </tr><tr>
+                    <td>图书图片</td><td><input type="text" name="img" placeholder="请输入图片路径" value="${img}"></td>
+                </tr><tr>
+                    <td>价格</td><td><input type="text" name="price" value="${price}"></td>
+                </tr><tr>
+                    <td>库存数量</td><td><input type="text" name="number" value="${count}"></td>
+                </tr><tr>
+                    <td>简介</td><td><input type="text" name="brief" value="${brief}"></td>
+                </tr><tr>
+                    <td>作者</td><td><input type="text" name="author" value="${author}"></td>
+                </tr><tr>
+                    <td>出版社</td><td><input type="text" name="press" value="${press}"></td>
+                </tr><tr>
+                    <td>出版时间</td><td><input type="text" name="time" value="${time}"></td>
+                </tr><tr>
+                    <td>评分</td><td><input type="text" name="grade" value="${grade}"></td>
+                </tr><tr>
+                    <td>分类</td><td><input type="text" name="categoryid" placeholder="请输入分类编号" value="${cid}"></td>
+                </tr><tr>
+                    <td><input type="submit" name="cancel" value="取消"></td><td><input type="submit" name="add" value="提交"></td>
                 </tr>
-                <tr align="center">
-                    <c:forEach  items="${requestScope.admin}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
-                    <td>${u.adminid}嗷嗷</td>
-                    <td>${u.aname}嗷嗷</td>
-                    <td>${u.apassword}</td>
-                    <td>
-                        <a href="adminModify?id=${u.adminid}">修改</a>
-                        <a href="adminDelete?id=${u.adminid}">删除</a>
-                    </td><!--返回id给后端，不一样的修改-->
-                    </c:forEach>
-                </tr>
-            </table>
+                </table>
+            </form>
+            <div class="alert alert-success" role="alert">${msg}</div>
         </div>    
     </div></div>
 </div>

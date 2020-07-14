@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Yokyi
-  Date: 2020/7/11
-  Time: 19:58
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
@@ -19,7 +12,7 @@
         height: 30px;
     }
 </style>
-<form method="post" action=""><%--后续补充--%>
+<form method="post" action="/bookAdd"><%--后续补充--%>
     <table align="center">
         <tr>
             <td>图书编号</td><td><input type="text" name="bookId"></td>
@@ -43,7 +36,7 @@
     </tr><tr>
         <td>评分</td><td><input type="text" name="grade"></td>
     </tr><tr>
-        <td>分类</td><td><input type="text" name="categoryid" placeholder="请输入分类编号"></td>
+        <td>分类</td><td><input type="text" name="cId" placeholder="请输入分类编号"></td>
     </tr><tr>
         <td><input type="submit" name="cancel" value="取消"></td><td><input type="submit" name="add" value="提交"></td>
     </tr>

@@ -13,16 +13,16 @@
     </tr>
     <tr align="center">
         <c:forEach  items="${userList}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
-        <td>${u.userid}嗷嗷</td>
-        <td>${u.uname}嗷嗷</td>
-        <td>${u.upassword}</td>
-        <td>${u.usex}嗷嗷</td>
-        <td>${u.uage}嗷嗷</td>
-        <td>${u.utel}</td>
-        <td>${u.uloc}嗷嗷</td>
+        <td>${u.userId}嗷嗷</td>
+        <td>${u.userName}嗷嗷</td>
+        <td>${u.uPassWord}</td>
+        <td>${u.uSex}嗷嗷</td>
+        <td>${u.uAge}嗷嗷</td>
+        <td>${u.uTel}</td>
+        <td>${u.uLoc}嗷嗷</td>
         <td>
-            <a href="userModify?id=${u.userid}">修改</a></td><!--返回id给后端，不一样的修改-->
-            <a href="userDelete?id=${u.userid}">删除</a></td><!--返回id给后端，不一样的修改-->
+            <a href="/userUpdate?id=${u.userId}">修改</a></td><!--返回id给后端，不一样的修改-->
+            <a href="/deleteUser?id=${u.userId}">删除</a></td><!--返回id给后端，不一样的修改-->
         </td>
         </c:forEach>
     </tr>

@@ -1,14 +1,7 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Wangyh 有问题找我
-  Date: 2020/7/9
-  Time: 9:44
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>管理员登录</title>
+    <title>管理员注册</title>
     <style>
         input[type=button], input[type=submit], input[type=reset] {
             background-color: #4CAF50;
@@ -57,16 +50,15 @@
             <h2 style="font-family:'幼圆'" align="center">后台管理系统</h2>
         </div>
         <br>
-        <form action="login" method="post">
+        <form action="/adminRegister" method="post"><!--后续修改-->
             <table  align="center" width="300px" height="200px">
-                <tr><td width="150px" align="center">用户</td>
-                    <td><input type="text" name="adminid" placeholder="请输入注册账号"></td>
+                <tr><td width="150px" align="center">用户名</td>
+                    <td><input type="text" name="adminName" placeholder="登录时使用" ></td>
                 </tr>
                 <tr><td width="150px" align="center">密码</td>
-                    <td><input type="password" name="password"></td>
+                    <td><input type="password" name="passWord"></td>
                 </tr>
-                <tr><td align="center"><input type="checkbox" name="cookie" ></td><td height="30px">记住我</td></tr>
-                <tr><td align="right"><input type="submit" value="注册" name="zc"></td><td><input type="submit" value="登录" name="denglu"></td></tr>
+                <tr><td align="right"><input type="submit" value="取消" name="cancel"></td><td><input type="submit" value="确认" name="confirm"></td></tr>
             </table>
         </form>
     </div>

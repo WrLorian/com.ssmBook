@@ -11,7 +11,7 @@
         height: 30px;
     }
 </style>
-<form method="post" action=""><%--后续补充--%>
+<form method="post" action="/userAdd"><%--后续补充--%>
     <table align="center">
         <tr>
             <td>账号</td><td><input type="text" name="userId"></td>
@@ -19,16 +19,16 @@
         <tr>
             <td>用户名</td><td><input type="text" name="userName"></td>
         </tr><tr>
-        <td>密码</td><td><input type="password" name="password"></td>
+        <td>密码</td><td><input type="password" name="uPassWord"></td>
     </tr><tr>
-        <td>性别</td><td><input type="text" name="sex"></td>
+        <td>性别</td><td><input type="text" name="uSex"></td>
     </tr><tr>
-        <td>年龄</td><td><input type="text" name="age"></td>
+        <td>年龄</td><td><input type="text" name="uAge"></td>
         </tr>
         <tr>
-            <td>联系电话</td><td><input type="text" name="phone"></td>
+            <td>联系电话</td><td><input type="text" name="uTel"></td>
         </tr><tr>
-        <td>地址</td><td><input type="text" name="address"></td>
+        <td>地址</td><td><input type="text" name="uLoc"></td>
     </tr><tr align="center">
         <td><input type="submit" name="cancel" value="取消"></td><td><input type="submit" name="add" value="提交"></td>
     </tr>

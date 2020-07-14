@@ -1,20 +1,15 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Yokyi
+  Date: 2020/7/11
+  Time: 20:31
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="ssmBook.service.IndentService" %>
-<%@ page import="ssmBook.pojo.indent" %>
-<%@ page import="java.util.List" %>
-<%
-    IndentService service=new IndentService();
-    indent result=service.getItemListById((Integer) request.getAttribute("id"));
-    request.setAttribute("id",result.getUserId());
-    request.setAttribute("name",result.getUserName());
-    request.setAttribute("time",result.getTime());
-    request.setAttribute("address",result.getLoc());
-    request.setAttribute("phone",result.getTel());
-%>
 <html>
 <head>
-    <title>订单修改</title>
+    <title>使用图书名称查询结果</title>
     <script type="text/javascript">
         function altRows(id){
             if(document.getElementsByTagName){
@@ -126,34 +121,42 @@
         </div>
         <div class="column" style="text-align: center;background-color: lightblue">
             <ul class="nav navbar-nav">
-                <li><a href="indent-list.jsp">订单管理</a></li>
-                <li><a href="admin-list.jsp">管理员信息管理</a></li>
-                <li><a href="user-list.jsp">客户管理</a></li>
-                <li><a href="book-list.jsp">商品管理</a></li>
-                <li><a href="category-list.jsp">类别管理</a></li>
-                <li><a href="../modifyPassword.jsp">修改密码</a></li>
-                <li><a href="login.jsp">退出</a></li>
+                <li><a href="indentList">订单管理</a></li>
+                <li><a href="adminList">管理员管理</a></li>
+                <li><a href="userList">客户管理</a></li>
+                <li><a href="bookList">商品管理</a></li>
+                <li><a href="categoryList">类别管理</a></li>
+                <li><a href="../modifyPassword.jsp">修改密码</a></li><!--??-->
+                <li><a href="logout">退出</a></li>
             </ul>
         </div>
         <div class="column1">
-            <form method="post" action=""><%--后续补充--%>
-                <table align="center">
-                    <tr><%--从业务角度分析其他值应为默认值--%>
-                        <td>下单时间</td><td><input type="date" name="date" value="${time}"></td>
-                    </tr><tr>
-                    <td>用户账号</td><td><input type="text" name="userId" value="${id}"></td>
-                </tr><tr>
-                    <td>收货人姓名</td><td><input type="text" name="name" value="${name}"></td>
-                </tr><tr>
-                    <td>收货地址</td><td><input type="text" name="address" value="${address}"></td>
-                </tr><tr>
-                    <td>收货人联系方式</td><td><input type="text" name="tel" value="${phone}"></td>
-                </tr><tr>
-                    <td><input type="submit" name="cancel" value="取消"></td><td><input type="submit" name="add" value="提交"></td>
+            <a href="book-list.jsp" style="text-decoration:none;color: black;background-color: lightblue">返回</a>
+            <table class="altrowstable" id="alternatecolor" width="800px">
+                <tr>
+                    <th>图书编号</th><th>图书名称</th><th>图书图片</th><th>价格</th><th>库存数量</th><th>简介</th><th>作者</th><th>出版社</th><th>出版时间</th>
+                    <th>评分</th><th>分类编号</th><th>操作</th>
                 </tr>
-                </table>
-            </form>
-            <div class="alert alert-success" role="alert">${msg}</div>
+                <tr>
+                    <c:forEach  items="${requestScope.book}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
+                    <td>${u.bookid}嗷嗷</td>
+                    <td>${u.bookname}嗷嗷</td>
+                    <td>${u.img}</td>
+                    <td>${u.price}嗷嗷</td>
+                    <td>${u.count}嗷嗷</td>
+                    <td>${u.brief}</td>
+                    <td>${u.author}嗷嗷</td>
+                    <td>${u.press}嗷嗷</td>
+                    <td>${u.time}</td>
+                    <td>${u.grade}嗷嗷</td>
+                    <td>${u.categoryid}嗷嗷</td>
+                    <a href="bookModify?id=${u.bookid}">修改</a></td><!--返回id给后端，不一样的修改-->
+                    <a href="bookDelete?id=${u.bookid}">删除</a></td><!--返回id给后端，不一样的修改-->
+                    <a href="bookRecommend?id=${u.bookid}">设为推荐图书</a></td><!--返回id给后端，不一样的修改-->
+                    <a href="bookNew?id=${u.bookid}">设为最新图书</a></td><!--返回id给后端，个人觉得可以按时间排序更方便-->
+                    </c:forEach>
+                </tr>
+            </table>
         </div>    
     </div></div>
 </div>

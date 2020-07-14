@@ -1,15 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
   User: Yokyi
-  Date: 2020/7/10
-  Time: 20:46
+  Date: 2020/7/12
+  Time: 13:19
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>通过订单id查找</title>
+    <title>订单详情管理</title>
     <script type="text/javascript">
         function altRows(id){
             if(document.getElementsByTagName){
@@ -29,6 +29,27 @@
 
         window.onload=function(){
             altRows('alternatecolor');
+        }
+
+        function divShow(){
+            document.getElementById("btnshow").style.display="block";
+            document.getElementById("btnhref").innerHTML ="关闭";
+            document.getElementById("btnhref").href ="javascript:divhidden()";
+        }
+        function divhidden(){
+            document.getElementById("btnshow").style.display="none";
+            document.getElementById("btnhref").innerHTML ="查看所有项目";
+            document.getElementById("btnhref").href ="javascript:divShow()";
+        }
+        function divShow2(){
+            document.getElementById("btnshow2").style.display="block";
+            document.getElementById("btnhref2").innerHTML ="关闭";
+            document.getElementById("btnhref2").href ="javascript:divhidden2()";
+        }
+        function divhidden2(){
+            document.getElementById("btnshow2").style.display="none";
+            document.getElementById("btnhref2").innerHTML ="增加商品";
+            document.getElementById("btnhref2").href ="javascript:divShow2()";
         }
     </script>
     <style type="text/css">
@@ -121,44 +142,36 @@
         </div>
         <div class="column" style="text-align: center;background-color: lightblue">
             <ul class="nav navbar-nav">
-                <li><a href="indent-list.jsp">订单管理</a></li>
-                <li><a href="admin-list.jsp">管理员信息管理</a></li>
-                <li><a href="user-list.jsp">客户管理</a></li>
-                <li><a href="book-list.jsp">商品管理</a></li>
-                <li><a href="category-list.jsp">类别管理</a></li>
-                <li><a href="../modifyPassword.jsp">修改密码</a></li>
-                <li><a href="login.jsp">退出</a></li>
+                <li><a href="indentList">订单管理</a></li>
+                <li><a href="adminList">管理员管理</a></li>
+                <li><a href="userList">客户管理</a></li>
+                <li><a href="bookList">商品管理</a></li>
+                <li><a href="categoryList">类别管理</a></li>
+                <li><a href="../modifyPassword.jsp">修改密码</a></li><!--??-->
+                <li><a href="logout">退出</a></li>
             </ul>
         </div>
         <div class="column1">
-            <a href="indent-list.jsp" style="text-decoration:none;color: black;background-color: lightblue">返回</a>
-            <table class="altrowstable" id="alternatecolor" width="800px">
-                <tr>
-                    <th>订单编号</th><th>下单时间</th><th>用户账号</th><th>收货人姓名</th><th>收货地址</th><th>收货人联系方式</th><th>订单状态</th><th>操作</th>
-                </tr>
+            <table align="center">
                 <tr align="center">
-                    <c:forEach  items="${requestScope.indent}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
-                    <td>${u.iid}嗷嗷</td>
-                    <td>${u.utime}嗷嗷</td>
-                    <td>${u.userid}</td>
-                    <td>${u.uname }</td>
-                    <td>${u.uloc }</td>
-                    <td>${u.utel }</td>
-                    <td>${u.ustate }</td>
-                    <td><a href="itemList?id=${u.iid}">详情</a>&nbsp;
-                        <a href="indentDispose?id=${u.iid}">处理</a>&nbsp;
-                        <a href="indentModify?id=${u.iid}">修改</a>
-                        <a href="indentDelete?id=${u.iid}">删除</a></td><!--返回id给后端-->
-                    </c:forEach>
+                    <td>
+                        <form method="post" action="url"><!-- 在订单详情页可以查看该订单下的项目详情-->
+                            <input type="input" name="searchByItemId" placeholder="按详情编号查询"><a href="search?userid=${request.getParameter("searchByItemId")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
+                        </form>
+                    </td>
                 </tr>
             </table>
+            <a href="javascript:divShow();" id="btnhref" style="text-decoration:none;color: black;background-color: lightblue">查看所有项目</a>
+            <a href="javascript:divShow2();" id="btnhref2"style="text-decoration:none;color: black;background-color: lightblue">增加商品</a>
+                <div id="btnshow" style="display: none;">
+             <c:import url="../allItemList.jsp"></c:import>
+        </div>
+                <div id="btnshow2" style="display: none;">
+             <c:import url="../item-add.jsp"></c:import>
+        </div>
         </div>    
     </div></div>
 
 </div>
-
-
 </body>
 </html>
-
-

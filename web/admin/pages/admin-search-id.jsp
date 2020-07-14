@@ -1,15 +1,8 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Yokyi
-  Date: 2020/7/12
-  Time: 13:19
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>订单详情管理</title>
+    <title>使用id查询结果</title>
     <script type="text/javascript">
         function altRows(id){
             if(document.getElementsByTagName){
@@ -29,27 +22,6 @@
 
         window.onload=function(){
             altRows('alternatecolor');
-        }
-
-        function divShow(){
-            document.getElementById("btnshow").style.display="block";
-            document.getElementById("btnhref").innerHTML ="关闭";
-            document.getElementById("btnhref").href ="javascript:divhidden()";
-        }
-        function divhidden(){
-            document.getElementById("btnshow").style.display="none";
-            document.getElementById("btnhref").innerHTML ="查看所有项目";
-            document.getElementById("btnhref").href ="javascript:divShow()";
-        }
-        function divShow2(){
-            document.getElementById("btnshow2").style.display="block";
-            document.getElementById("btnhref2").innerHTML ="关闭";
-            document.getElementById("btnhref2").href ="javascript:divhidden2()";
-        }
-        function divhidden2(){
-            document.getElementById("btnshow2").style.display="none";
-            document.getElementById("btnhref2").innerHTML ="增加商品";
-            document.getElementById("btnhref2").href ="javascript:divShow2()";
         }
     </script>
     <style type="text/css">
@@ -142,36 +114,35 @@
         </div>
         <div class="column" style="text-align: center;background-color: lightblue">
             <ul class="nav navbar-nav">
-                <li><a href="indent-list.jsp">订单管理</a></li>
-                <li><a href="admin-list.jsp">管理员信息管理</a></li>
-                <li><a href="user-list.jsp">客户管理</a></li>
-                <li><a href="book-list.jsp">商品管理</a></li>
-                <li><a href="category-list.jsp">类别管理</a></li>
-                <li><a href="../modifyPassword.jsp">修改密码</a></li>
-                <li><a href="login.jsp">退出</a></li>
+                <li><a href="indentList">订单管理</a></li>
+                <li><a href="adminList">管理员管理</a></li>
+                <li><a href="userList">客户管理</a></li>
+                <li><a href="bookList">商品管理</a></li>
+                <li><a href="categoryList">类别管理</a></li>
+                <li><a href="../modifyPassword.jsp">修改密码</a></li><!--??-->
+                <li><a href="logout">退出</a></li>
             </ul>
         </div>
         <div class="column1">
-            <table align="center">
-                <tr align="center">
+       <a href="category-list.jsp" style="text-decoration:none;color: black;background-color: lightblue">返回</a>
+            <table class="altrowstable" id="alternatecolor" width="800px">
+                <tr>
+                    <th>编号</th><th>分类名</th><th>操作</th>
+                </tr>
+                <tr>
+                    <c:forEach  items="${requestScope.admin}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
+                    <td>${u.id}嗷嗷</td>
+                    <td>${u.name}嗷嗷</td>
                     <td>
-                        <form method="post" action="url"><!-- 在订单详情页可以查看该订单下的项目详情-->
-                            <input type="input" name="searchByItemId" placeholder="按详情编号查询"><a href="search?userid=${request.getParameter("searchByItemId")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
-                        </form>
+                        <a href="categoryModify?id=${u.id}">修改</a></td><!--返回id给后端，不一样的修改-->
+                    <a href="categoryDelete?id=${u.id}">删除</a></td><!--返回id给后端，不一样的修改-->
                     </td>
+                    </c:forEach>
                 </tr>
             </table>
-            <a href="javascript:divShow();" id="btnhref" style="text-decoration:none;color: black;background-color: lightblue">查看所有项目</a>
-            <a href="javascript:divShow2();" id="btnhref2"style="text-decoration:none;color: black;background-color: lightblue">增加商品</a>
-                <div id="btnshow" style="display: none;">
-             <c:import url="../allItemList.jsp"></c:import>
-        </div>
-                <div id="btnshow2" style="display: none;">
-             <c:import url="../item-add.jsp"></c:import>
-        </div>
         </div>    
     </div></div>
-
 </div>
 </body>
 </html>
+

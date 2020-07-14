@@ -18,7 +18,7 @@
         height: 30px;
     }
 </style>
-<form method="post" action=""><%--后续补充--%>
+<form method="post" action="/categoryAdd"><%--后续补充--%>
     <table align="center">
         <tr>
             <td>编号</td><td><input type="text" name="id"></td>

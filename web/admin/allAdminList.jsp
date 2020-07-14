@@ -6,12 +6,12 @@
     </tr>
     <tr align="center">
         <c:forEach  items="${adminList}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
-        <td>${u.adminid}嗷嗷</td>
-        <td>${u.aname}嗷嗷</td>
-        <td>${u.apassword}</td>
+        <td>${u.adminId}</td>
+        <td>${u.adminName}</td>
+        <td>${u.passWord}</td>
         <td>
-            <a href="adminModify?id=${u.iid}">修改</a><!--返回id给后端，不一样的修改-->
-            <a href="adminDelete?id=${u.iid}">删除</a><!--返回id给后端，不一样的修改-->
+            <a href="adminModify?id=${u.adminId}">修改</a>
+            <a href="adminDelete?id=${u.adminId}">删除</a>
         </td>
         </c:forEach>
     </tr>

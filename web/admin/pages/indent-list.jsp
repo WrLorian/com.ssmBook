@@ -1,15 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Yokyi
-  Date: 2020/7/11
-  Time: 14:58
+  User: Wangyh 有问题找我
+  Date: 2020/7/9
+  Time: 9:44
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>商品管理</title>
+    <title>订单管理</title>
     <script type="text/javascript">
         function altRows(id){
             if(document.getElementsByTagName){
@@ -30,6 +30,7 @@
         window.onload=function(){
             altRows('alternatecolor');
         }
+
         function divShow(){
             document.getElementById("btnshow").style.display="block";
             document.getElementById("btnhref").innerHTML ="关闭";
@@ -37,7 +38,7 @@
         }
         function divhidden(){
             document.getElementById("btnshow").style.display="none";
-            document.getElementById("btnhref").innerHTML ="添加图书";
+            document.getElementById("btnhref").innerHTML ="未处理订单";
             document.getElementById("btnhref").href ="javascript:divShow()";
         }
         function divShow1(){
@@ -47,7 +48,7 @@
         }
         function divhidden1(){
             document.getElementById("btnshow1").style.display="none";
-            document.getElementById("btnhref1").innerHTML ="查看所有图书信息";
+            document.getElementById("btnhref1").innerHTML ="已处理订单";
             document.getElementById("btnhref1").href ="javascript:divShow1()";
         }
         function divShow2(){
@@ -57,18 +58,8 @@
         }
         function divhidden2(){
             document.getElementById("btnshow2").style.display="none";
-            document.getElementById("btnhref2").innerHTML ="查看推荐图书";
+            document.getElementById("btnhref2").innerHTML ="增加订单";
             document.getElementById("btnhref2").href ="javascript:divShow2()";
-        }
-        function divShow3(){
-            document.getElementById("btnshow3").style.display="block";
-            document.getElementById("btnhref3").innerHTML ="关闭";
-            document.getElementById("btnhref3").href ="javascript:divhidden3()";
-        }
-        function divhidden3(){
-            document.getElementById("btnshow3").style.display="none";
-            document.getElementById("btnhref3").innerHTML ="查看最新图书";
-            document.getElementById("btnhref3").href ="javascript:divShow3()";
         }
     </script>
     <style type="text/css">
@@ -157,49 +148,52 @@
 <div class="father" style="text-align: center">
     <div class="son">
         <div class="header" style="background-color: #5bc0de">
-            <h2 style="font-family:'幼圆'" align="center">后台管理系统</h2>
-        </div>
+        <h2 style="font-family:'幼圆'" align="center">后台管理系统</h2>
+    </div>
         <div class="column" style="text-align: center;background-color: lightblue">
-            <ul class="nav navbar-nav">
-                <li><a href="indent-list.jsp">订单管理</a></li>
-                <li><a href="admin-list.jsp">管理员信息管理</a></li>
-                <li><a href="user-list.jsp">客户管理</a></li>
-                <li><a href="book-list.jsp">商品管理</a></li>
-                <li><a href="category-list.jsp">类别管理</a></li>
-                <li><a href="../modifyPassword.jsp">修改密码</a></li>
-                <li><a href="login.jsp">退出</a></li>
-            </ul>
-        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="indentList">订单管理</a></li>
+            <li><a href="adminList">管理员管理</a></li>
+            <li><a href="userList">客户管理</a></li>
+            <li><a href="bookList">商品管理</a></li>
+            <li><a href="categoryList">类别管理</a></li>
+            <li><a href="../modifyPassword.jsp">修改密码</a></li><!--??-->
+            <li><a href="logout">退出</a></li>
+        </ul>
+    </div>
         <div class="column1">
             <table align="center">
-                <tr align="center"><td><form method="post" action="url"><!--传值-->
-                    <input type="input" name="searchByBookname" placeholder="按图书名称查询">&nbsp;<a href="search?bookname=${request.getParameter("searchByBookname")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
-                </form></td>
-                    <td> <form method="post" action="url">
-                        <input type="input" name="searchByBookId" placeholder="按图书编号查询">&nbsp;<a href="search?bookid=${request.getParameter("searchByBookId")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
-                    </form></td>
+                <tr align="center">
+                    <td>
+                        <form method="post" action="url">
+                            <input type="input" name="searchById" placeholder="按订单编号查询"><a href="search?id=${request.getParameter("searchById")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
+
+                        </form>
+                    </td>
+                    <td>
+                        <form method="post" action="url">
+                            <input type="input" name="searchByUserId" placeholder="按用户账号查询"><a href="search?userid=${request.getParameter("searchByUserId")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
+                        </form>
+                    </td>
                 </tr>
             </table>
-            <a href="javascript:divShow();" id="btnhref" style="text-decoration:none;color: black;background-color: lightblue">添加图书</a>
-            <a href="javascript:divShow1();" id="btnhref1" style="text-decoration:none;color: black;background-color: lightblue">查看所有图书信息</a>
-            <a href="javascript:divShow2();" id="btnhref2" style="text-decoration:none;color: black;background-color: lightblue">查看推荐图书</a>
-            <a href="javascript:divShow3();" id="btnhref3" style="text-decoration:none;color: black;background-color: lightblue">查看最新图书</a>
-                <div id="btnshow" style=" display: none;">
-             <c:import url="../book-add.jsp"></c:import>
+            <a href="javascript:divShow();" id="btnhref" style="text-decoration:none;color: black;background-color: lightblue">未处理订单</a>
+            <a href="javascript:divShow1();" id="btnhref1" style="text-decoration:none;color: black;background-color: lightblue">已处理订单</a>
+            <a href="javascript:divShow2();" id="btnhref2"style="text-decoration:none;color: black;background-color: lightblue">增加订单</a>
+                    <div id="btnshow" style="display: none;">
+             <c:import url="../uncheck-indent.jsp"></c:import>
         </div>
                 <div id="btnshow1" style="display: none;">
-             <c:import url="../allBookList.jsp"></c:import>
+             <c:import url="../check-indent.jsp"></c:import>
         </div>
                 <div id="btnshow2" style="display: none;">
-             <c:import url="../book-recommend.jsp"></c:import>
-        </div>
-                <div id="btnshow3" style="display: none;">
-             <c:import url="../book-new.jsp"></c:import>
+             <c:import url="../indent-add.jsp"></c:import>
         </div>
         </div>    
-    </div></div>
+        </div></div>
+
 </div>
+
+
 </body>
 </html>
-
-

@@ -1,19 +1,15 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Yokyi
+  Date: 2020/7/11
+  Time: 21:03
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="ssmBook.service.IndentService" %>
-<%@ page import="ssmBook.pojo.indent" %>
-<%
-    IndentService service=new IndentService();
-    indent result=service.getIndentById((Integer) request.getAttribute("id"));
-    request.setAttribute("id",result.getUserId());
-    request.setAttribute("name",result.getUserName());
-    request.setAttribute("time",result.getTime());
-    request.setAttribute("address",result.getLoc());
-    request.setAttribute("phone",result.getTel());
-%>
 <html>
 <head>
-    <title>订单修改</title>
+    <title>分类管理</title>
     <script type="text/javascript">
         function altRows(id){
             if(document.getElementsByTagName){
@@ -33,6 +29,36 @@
 
         window.onload=function(){
             altRows('alternatecolor');
+        }
+        function divShow(){
+            document.getElementById("btnshow").style.display="block";
+            document.getElementById("btnhref").innerHTML ="关闭";
+            document.getElementById("btnhref").href ="javascript:divhidden()";
+        }
+        function divhidden(){
+            document.getElementById("btnshow").style.display="none";
+            document.getElementById("btnhref").innerHTML ="添加分类";
+            document.getElementById("btnhref").href ="javascript:divShow()";
+        }
+        function divShow1(){
+            document.getElementById("btnshow1").style.display="block";
+            document.getElementById("btnhref1").innerHTML ="关闭";
+            document.getElementById("btnhref1").href ="javascript:divhidden1()";
+        }
+        function divhidden1(){
+            document.getElementById("btnshow1").style.display="none";
+            document.getElementById("btnhref1").innerHTML ="查看所有分类";
+            document.getElementById("btnhref1").href ="javascript:divShow1()";
+        }
+        function divShow2(){
+            document.getElementById("btnshow2").style.display="block";
+            document.getElementById("btnhref2").innerHTML ="关闭";
+            document.getElementById("btnhref2").href ="javascript:divhidden2()";
+        }
+        function divhidden2(){
+            document.getElementById("btnshow2").style.display="none";
+            document.getElementById("btnhref2").innerHTML ="增加订单";
+            document.getElementById("btnhref2").href ="javascript:divShow2()";
         }
     </script>
     <style type="text/css">
@@ -125,37 +151,33 @@
         </div>
         <div class="column" style="text-align: center;background-color: lightblue">
             <ul class="nav navbar-nav">
-                <li><a href="indent-list.jsp">订单管理</a></li>
-                <li><a href="admin-list.jsp">管理员信息管理</a></li>
-                <li><a href="user-list.jsp">客户管理</a></li>
-                <li><a href="book-list.jsp">商品管理</a></li>
-                <li><a href="category-list.jsp">类别管理</a></li>
-                <li><a href="../modifyPassword.jsp">修改密码</a></li>
-                <li><a href="login.jsp">退出</a></li>
+                <li><a href="indentList">订单管理</a></li>
+                <li><a href="adminList">管理员管理</a></li>
+                <li><a href="userList">客户管理</a></li>
+                <li><a href="bookList">商品管理</a></li>
+                <li><a href="categoryList">类别管理</a></li>
+                <li><a href="../modifyPassword.jsp">修改密码</a></li><!--??-->
+                <li><a href="logout">退出</a></li>
             </ul>
         </div>
         <div class="column1">
-            <form method="post" action=""><%--后续补充--%>
-                <table align="center">
-                    <tr><%--从业务角度分析其他值应为默认值--%>
-                        <td>下单时间</td><td><input type="date" name="date" value="${time}"></td>
-                    </tr><tr>
-                    <td>用户账号</td><td><input type="text" name="userId" value="${id}"></td>
-                </tr><tr>
-                    <td>收货人姓名</td><td><input type="text" name="name" value="${name}"></td>
-                </tr><tr>
-                    <td>收货地址</td><td><input type="text" name="address" value="${address}"></td>
-                </tr><tr>
-                    <td>收货人联系方式</td><td><input type="text" name="tel" value="${phone}"></td>
-                </tr><tr>
-                    <td><input type="submit" name="cancel" value="取消"></td><td><input type="submit" name="add" value="提交"></td>
+            <table align="center">
+                <tr align="center">
+                    <td> <form method="post" action="url">
+                        <input type="input" name="searchById" placeholder="按分类编号查询">&nbsp;<a href="search?id=${request.getParameter("searchById")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
+                    </form></td>
                 </tr>
-                </table>
-            </form>
-            <div class="alert alert-success" role="alert">${msg}</div>
+            </table>
+            <a href="javascript:divShow();" id="btnhref" style="text-decoration:none;color: black;background-color: lightblue">添加分类</a>
+            <a href="javascript:divShow1();" id="btnhref1" style="text-decoration:none;color: black;background-color: lightblue">查看所有分类</a>
+                <div id="btnshow" style=" display: none;">
+             <c:import url="../category-add.jsp"></c:import>
+        </div>
+                <div id="btnshow1" style="display: none;">
+             <c:import url="../allAdminList.jsp"></c:import>
+        </div>
         </div>    
     </div></div>
 </div>
 </body>
 </html>
-

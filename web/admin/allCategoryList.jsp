@@ -13,13 +13,12 @@
     </tr>
     <tr align="center">
         <c:forEach  items="${categoryList}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
-        <td>${u.id}嗷嗷</td>
-        <td>${u.name}嗷嗷</td>
+        <td>${u.cId}嗷嗷</td>
+        <td>${u.cName}嗷嗷</td>
         <td>
-            <a href="categoryModify?id=${u.id}">修改</a></td><!--返回id给后端，不一样的修改-->
-            <a href="categoryDelete?id=${u.id}">删除</a></td><!--返回id给后端，不一样的修改-->
+            <a href="categoryModify?id=${u.cId}">修改</a></td><!--返回id给后端，不一样的修改-->
+            <a href="categoryDelete?id=${u.cId}">删除</a></td><!--返回id给后端，不一样的修改-->
         </td>
-
         </c:forEach>
     </tr>
 </table>

@@ -11,15 +11,15 @@
         height: 30px;
     }
 </style>
-<form method="post" action="adminAdd"><%--后续补充--%>
+<form method="post" action="/adminAdd"><%--后续补充--%>
     <table align="center">
         <tr>
-            <td>账号</td><td><input type="text" name="userId"></td>
+            <td>账号</td><td><input type="text" name="adminId"></td>
         </tr>
         <tr>
-            <td>用户名</td><td><input type="text" name="userName"></td>
+            <td>用户名</td><td><input type="text" name="adminName"></td>
         </tr><tr>
-        <td>密码</td><td><input type="password" name="password"></td>
+        <td>密码</td><td><input type="password" name="passWord"></td>
     </tr><tr>
         <td><input type="submit" name="cancel" value="取消"></td><td><input type="submit" name="add" value="提交"></td>
     </tr>

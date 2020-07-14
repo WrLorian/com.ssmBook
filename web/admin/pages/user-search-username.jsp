@@ -1,21 +1,15 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: Yokyi
+  Date: 2020/7/11
+  Time: 14:04
+  To change this template use File | Settings | File Templates.
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="ssmBook.service.UserService" %>
-<%@ page import="ssmBook.pojo.user" %>
-<%
-    UserService service=new UserService();
-    user result=service.getById((Integer) request.getAttribute("id"));
-    request.setAttribute("id",result.getUserId());
-    request.setAttribute("name",result.getUserName());
-    request.setAttribute("psd",result.getuPassWord());
-    request.setAttribute("sex",result.getuSex());
-    request.setAttribute("age",result.getuAge());
-    request.setAttribute("tel",result.getuTel());
-    request.setAttribute("loc",result.getuLoc());
-%>
 <html>
 <head>
-    <title>书籍修改</title>
+    <title>客户查询用户名查询结果</title>
     <script type="text/javascript">
         function altRows(id){
             if(document.getElementsByTagName){
@@ -127,43 +121,40 @@
         </div>
         <div class="column" style="text-align: center;background-color: lightblue">
             <ul class="nav navbar-nav">
-                <li><a href="indent-list.jsp">订单管理</a></li>
-                <li><a href="admin-list.jsp">管理员信息管理</a></li>
-                <li><a href="user-list.jsp">客户管理</a></li>
-                <li><a href="book-list.jsp">商品管理</a></li>
-                <li><a href="category-list.jsp">类别管理</a></li>
-                <li><a href="../modifyPassword.jsp">修改密码</a></li>
-                <li><a href="login.jsp">退出</a></li>
+                <li><a href="indentList">订单管理</a></li>
+                <li><a href="adminList">管理员管理</a></li>
+                <li><a href="userList">客户管理</a></li>
+                <li><a href="bookList">商品管理</a></li>
+                <li><a href="categoryList">类别管理</a></li>
+                <li><a href="../modifyPassword.jsp">修改密码</a></li><!--??-->
+                <li><a href="logout">退出</a></li>
             </ul>
         </div>
         <div class="column1">
-            <form method="post" action=""><%--后续补充--%>
-                <table align="center">
-                    <tr>
-                        <td>账号</td><td><input type="text" name="userId" value="${id}"></td>
-                    </tr>
-                    <tr>
-                        <td>用户名</td><td><input type="text" name="userName" value="${name}"></td>
-                    </tr><tr>
-                    <td>密码</td><td><input type="password" name="password" value="${psd}"></td>
-                </tr><tr>
-                    <td>性别</td><td><input type="text" name="sex" value="${sex}"></td>
-                </tr><tr>
-                    <td>年龄</td><td><input type="text" name="age" value="${age}"></td>
+            <a href="user-list.jsp" style="text-decoration:none;color: black;background-color: lightblue">返回</a>
+            <table class="altrowstable" id="alternatecolor" width="800px">
+                <tr>
+                    <th>账号</th><th>用户名</th><th>密码</th><th>性别</th><th>年龄</th><th>联系电话</th><th>地址</th><th>操作</th>
                 </tr>
-                    <tr>
-                        <td>联系电话</td><td><input type="text" name="phone" value="${tel}"></td>
-                    </tr><tr>
-                    <td>地址</td><td><input type="text" name="address" value="${loc}"></td>
-                </tr><tr align="center">
-                    <td><input type="submit" name="cancel" value="取消"></td><td><input type="submit" name="add" value="提交"></td>
+                <tr>
+                    <c:forEach  items="${requestScope.user}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
+                    <td>${u.userid}嗷嗷</td>
+                    <td>${u.uname}嗷嗷</td>
+                    <td>${u.upassword}</td>
+                    <td>${u.usex}嗷嗷</td>
+                    <td>${u.uage}嗷嗷</td>
+                    <td>${u.utel}</td>
+                    <td>${u.uloc}嗷嗷</td>
+                    <td>
+                        <a href="userModify?id=${u.userid}">修改</a></td><!--返回id给后端，不一样的修改-->
+                    <a href="userDelete?id=${u.userid}">删除</a></td><!--返回id给后端，不一样的修改-->
+                    </td>
+                    </c:forEach>
                 </tr>
-                </table>
-            </form>
-
-            <div class="alert alert-success" role="alert">${msg}</div>
+            </table>
         </div>    
     </div></div>
 </div>
 </body>
 </html>
+

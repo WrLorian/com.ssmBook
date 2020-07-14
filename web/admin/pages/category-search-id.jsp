@@ -2,14 +2,14 @@
   Created by IntelliJ IDEA.
   User: Yokyi
   Date: 2020/7/11
-  Time: 14:55
+  Time: 21:12
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>客户查询用户id查询结果</title>
+    <title>使用id查询结果</title>
     <script type="text/javascript">
         function altRows(id){
             if(document.getElementsByTagName){
@@ -30,7 +30,6 @@
         window.onload=function(){
             altRows('alternatecolor');
         }
-
     </script>
     <style type="text/css">
         table.altrowstable {
@@ -122,34 +121,30 @@
         </div>
         <div class="column" style="text-align: center;background-color: lightblue">
             <ul class="nav navbar-nav">
-                <li><a href="indent-list.jsp">订单管理</a></li>
-                <li><a href="admin-list.jsp">管理员信息管理</a></li>
-                <li><a href="user-list.jsp">客户管理</a></li>
-                <li><a href="book-list.jsp">商品管理</a></li>
-                <li><a href="category-list.jsp">类别管理</a></li>
-                <li><a href="../modifyPassword.jsp">修改密码</a></li>
-                <li><a href="login.jsp">退出</a></li>
+                <li><a href="indentList">订单管理</a></li>
+                <li><a href="adminList">管理员管理</a></li>
+                <li><a href="userList">客户管理</a></li>
+                <li><a href="bookList">商品管理</a></li>
+                <li><a href="categoryList">类别管理</a></li>
+                <li><a href="../modifyPassword.jsp">修改密码</a></li><!--??-->
+                <li><a href="logout">退出</a></li>
             </ul>
         </div>
         <div class="column1">
-            <a href="user-list.jsp" style="text-decoration:none;color: black;background-color: lightblue">返回</a>
+            <a href="admin-list.jsp" style="text-decoration:none;color: black;background-color: lightblue">返回</a>
             <table class="altrowstable" id="alternatecolor" width="800px">
                 <tr>
-                    <th>账号</th><th>用户名</th><th>密码</th><th>性别</th><th>年龄</th><th>联系电话</th><th>地址</th><th>操作</th>
+                    <th>账号</th><th>用户名</th><th>密码</th><th>操作</th>
                 </tr>
-                <tr>
-                    <c:forEach  items="${requestScope.user}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
-                    <td>${u.userid}嗷嗷</td>
-                    <td>${u.uname}嗷嗷</td>
-                    <td>${u.upassword}</td>
-                    <td>${u.usex}嗷嗷</td>
-                    <td>${u.uage}嗷嗷</td>
-                    <td>${u.utel}</td>
-                    <td>${u.uloc}嗷嗷</td>
+                <tr align="center">
+                    <c:forEach  items="${requestScope.admin}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
+                    <td>${u.adminid}嗷嗷</td>
+                    <td>${u.aname}嗷嗷</td>
+                    <td>${u.apassword}</td>
                     <td>
-                        <a href="userModify?id=${u.userid}">修改</a></td><!--返回id给后端，不一样的修改-->
-                    <a href="userDelete?id=${u.userid}">删除</a></td><!--返回id给后端，不一样的修改-->
-                    </td>
+                        <a href="adminModify?id=${u.adminid}">修改</a>
+                        <a href="adminDelete?id=${u.adminid}">删除</a>
+                    </td><!--返回id给后端，不一样的修改-->
                     </c:forEach>
                 </tr>
             </table>
@@ -158,5 +153,4 @@
 </div>
 </body>
 </html>
-
 

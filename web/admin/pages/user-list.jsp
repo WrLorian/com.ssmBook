@@ -1,15 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Wangyh 有问题找我
-  Date: 2020/7/9
-  Time: 9:44
+  User: Yokyi
+  Date: 2020/7/11
+  Time: 13:34
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>订单管理</title>
+    <title>客户管理</title>
     <script type="text/javascript">
         function altRows(id){
             if(document.getElementsByTagName){
@@ -38,7 +38,7 @@
         }
         function divhidden(){
             document.getElementById("btnshow").style.display="none";
-            document.getElementById("btnhref").innerHTML ="未处理订单";
+            document.getElementById("btnhref").innerHTML ="添加客户";
             document.getElementById("btnhref").href ="javascript:divShow()";
         }
         function divShow1(){
@@ -48,7 +48,7 @@
         }
         function divhidden1(){
             document.getElementById("btnshow1").style.display="none";
-            document.getElementById("btnhref1").innerHTML ="已处理订单";
+            document.getElementById("btnhref1").innerHTML ="查看所有客户信息";
             document.getElementById("btnhref1").href ="javascript:divShow1()";
         }
         function divShow2(){
@@ -148,52 +148,40 @@
 <div class="father" style="text-align: center">
     <div class="son">
         <div class="header" style="background-color: #5bc0de">
-        <h2 style="font-family:'幼圆'" align="center">后台管理系统</h2>
-    </div>
+            <h2 style="font-family:'幼圆'" align="center">后台管理系统</h2>
+        </div>
         <div class="column" style="text-align: center;background-color: lightblue">
-        <ul class="nav navbar-nav">
-            <li><a href="indent-list.jsp">订单管理</a></li>
-            <li><a href="admin-list.jsp">管理员信息管理</a></li>
-            <li><a href="user-list.jsp">客户管理</a></li>
-            <li><a href="book-list.jsp">商品管理</a></li>
-            <li><a href="category-list.jsp">类别管理</a></li>
-            <li><a href="../modifyPassword.jsp">修改密码</a></li>
-            <li><a href="login.jsp">退出</a></li>
-        </ul>
-    </div>
+            <ul class="nav navbar-nav">
+                <li><a href="indentList">订单管理</a></li>
+                <li><a href="adminList">管理员管理</a></li>
+                <li><a href="userList">客户管理</a></li>
+                <li><a href="bookList">商品管理</a></li>
+                <li><a href="categoryList">类别管理</a></li>
+                <li><a href="../modifyPassword.jsp">修改密码</a></li><!--??-->
+                <li><a href="logout">退出</a></li>
+            </ul>
+        </div>
         <div class="column1">
             <table align="center">
-                <tr align="center">
-                    <td>
-                        <form method="post" action="url">
-                            <input type="input" name="searchById" placeholder="按订单编号查询"><a href="search?id=${request.getParameter("searchById")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
-
-                        </form>
-                    </td>
-                    <td>
-                        <form method="post" action="url">
-                            <input type="input" name="searchByUserId" placeholder="按用户账号查询"><a href="search?userid=${request.getParameter("searchByUserId")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
-                        </form>
-                    </td>
+                <tr align="center"><td><form method="post" action="url"><!--传值-->
+                    <input type="input" name="searchByUsername" placeholder="按用户名查询">&nbsp;<a href="search?username=${request.getParameter("searchByUsername")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
+                </form></td>
+                    <td> <form method="post" action="url">
+                        <input type="input" name="searchByUserId" placeholder="按账号查询">&nbsp;<a href="search?userid=${request.getParameter("searchByUserId")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
+                    </form></td>
                 </tr>
             </table>
-            <a href="javascript:divShow();" id="btnhref" style="text-decoration:none;color: black;background-color: lightblue">未处理订单</a>
-            <a href="javascript:divShow1();" id="btnhref1" style="text-decoration:none;color: black;background-color: lightblue">已处理订单</a>
-            <a href="javascript:divShow2();" id="btnhref2"style="text-decoration:none;color: black;background-color: lightblue">增加订单</a>
-                    <div id="btnshow" style="display: none;">
-             <c:import url="../uncheck-indent.jsp"></c:import>
+            <a href="javascript:divShow();" id="btnhref" style="text-decoration:none;color: black;background-color: lightblue">添加客户</a>
+            <a href="javascript:divShow1();" id="btnhref1" style="text-decoration:none;color: black;background-color: lightblue">查看所有客户信息</a>
+                <div id="btnshow" style=" display: none;">
+             <c:import url="../user-add.jsp"></c:import>
         </div>
                 <div id="btnshow1" style="display: none;">
-             <c:import url="../check-indent.jsp"></c:import>
-        </div>
-                <div id="btnshow2" style="display: none;">
-             <c:import url="../indent-add.jsp"></c:import>
+             <c:import url="../allAdminList.jsp"></c:import>
         </div>
         </div>    
-        </div></div>
-
+    </div></div>
 </div>
-
-
 </body>
 </html>
+
