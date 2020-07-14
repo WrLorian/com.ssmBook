@@ -1,15 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
   User: Yokyi
-  Date: 2020/7/12
-  Time: 13:38
+  Date: 2020/7/11
+  Time: 21:12
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>订单详情编号查找结果</title>
+    <title>使用id查询结果</title>
     <script type="text/javascript">
         function altRows(id){
             if(document.getElementsByTagName){
@@ -110,8 +110,8 @@
             color: white;
         }
     </style>
-    <link rel="stylesheet" href="css/bootstrap.css"/>
-    <link rel="stylesheet" href="css/mylayout.css"/>
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <link rel="stylesheet" href="../css/mylayout.css"/>
 </head>
 <body>
 <div class="father" style="text-align: center">
@@ -126,30 +126,31 @@
                 <li><a href="user-list.jsp">客户管理</a></li>
                 <li><a href="book-list.jsp">商品管理</a></li>
                 <li><a href="category-list.jsp">类别管理</a></li>
-                <li><a href="modifyPassword.jsp">修改密码</a></li>
+                <li><a href="../modifyPassword.jsp">修改密码</a></li>
                 <li><a href="login.jsp">退出</a></li>
             </ul>
         </div>
         <div class="column1">
+            <a href="admin-list.jsp" style="text-decoration:none;color: black;background-color: lightblue">返回</a>
             <table class="altrowstable" id="alternatecolor" width="800px">
                 <tr>
-                    <th>图书编号</th><th>图书名称</th><th>图书单价</th><th>图书数量</th><th>合计</th><th>操作</th>
+                    <th>账号</th><th>用户名</th><th>密码</th><th>操作</th>
                 </tr>
-                <tr>
-                    <c:forEach  items="${requestScope.indent}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
-                    <td>${u.bookId}嗷嗷</td>
-                    <td>${u.bookName}嗷嗷</td>
-                    <td>${u.bookPrice}</td>
-                    <td>${u.bookNum }</td>
-                    <td>${(u.bookPrice)*(u.bookNum) }</td>
-                    <td><a href="itemModify?id=${u.iid}">修改</a>&nbsp;
-                        <a href="itemDelete?id=${u.iid}">删除</a></td><!--返回id给后端-->
+                <tr align="center">
+                    <c:forEach  items="${requestScope.admin}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
+                    <td>${u.adminid}嗷嗷</td>
+                    <td>${u.aname}嗷嗷</td>
+                    <td>${u.apassword}</td>
+                    <td>
+                        <a href="adminModify?id=${u.adminid}">修改</a>
+                        <a href="adminDelete?id=${u.adminid}">删除</a>
+                    </td><!--返回id给后端，不一样的修改-->
                     </c:forEach>
                 </tr>
             </table>
-  </div>
-
-</div>
+        </div>    
+    </div></div>
 </div>
 </body>
 </html>
+

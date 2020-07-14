@@ -12,7 +12,7 @@
         <th>账号</th><th>用户名</th><th>密码</th><th>性别</th><th>年龄</th><th>联系电话</th><th>地址</th><th>操作</th>
     </tr>
     <tr align="center">
-        <c:forEach  items="${requestScope.user}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
+        <c:forEach  items="${userList}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
         <td>${u.userid}嗷嗷</td>
         <td>${u.uname}嗷嗷</td>
         <td>${u.upassword}</td>

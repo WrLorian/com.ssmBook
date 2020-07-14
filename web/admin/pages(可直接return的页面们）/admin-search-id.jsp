@@ -1,15 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Wangyh
-  Date: 2020/7/9
-  Time: 22:53
+  User: Yokyi
+  Date: 2020/7/10
+  Time: 20:00
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>管理员管理</title>
+    <title>使用id查询结果</title>
     <script type="text/javascript">
         function altRows(id){
             if(document.getElementsByTagName){
@@ -29,37 +29,6 @@
 
         window.onload=function(){
             altRows('alternatecolor');
-        }
-
-        function divShow(){
-            document.getElementById("btnshow").style.display="block";
-            document.getElementById("btnhref").innerHTML ="关闭";
-            document.getElementById("btnhref").href ="javascript:divhidden()";
-        }
-        function divhidden(){
-            document.getElementById("btnshow").style.display="none";
-            document.getElementById("btnhref").innerHTML ="添加管理员";
-            document.getElementById("btnhref").href ="javascript:divShow()";
-        }
-        function divShow1(){
-            document.getElementById("btnshow1").style.display="block";
-            document.getElementById("btnhref1").innerHTML ="关闭";
-            document.getElementById("btnhref1").href ="javascript:divhidden1()";
-        }
-        function divhidden1(){
-            document.getElementById("btnshow1").style.display="none";
-            document.getElementById("btnhref1").innerHTML ="查看所有管理员";
-            document.getElementById("btnhref1").href ="javascript:divShow1()";
-        }
-        function divShow2(){
-            document.getElementById("btnshow2").style.display="block";
-            document.getElementById("btnhref2").innerHTML ="关闭";
-            document.getElementById("btnhref2").href ="javascript:divhidden2()";
-        }
-        function divhidden2(){
-            document.getElementById("btnshow2").style.display="none";
-            document.getElementById("btnhref2").innerHTML ="增加订单";
-            document.getElementById("btnhref2").href ="javascript:divShow2()";
         }
     </script>
     <style type="text/css">
@@ -141,8 +110,8 @@
             color: white;
         }
     </style>
-    <link rel="stylesheet" href="css/bootstrap.css"/>
-    <link rel="stylesheet" href="css/mylayout.css"/>
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <link rel="stylesheet" href="../css/mylayout.css"/>
 </head>
 <body>
 <div class="father" style="text-align: center">
@@ -157,28 +126,27 @@
                 <li><a href="user-list.jsp">客户管理</a></li>
                 <li><a href="book-list.jsp">商品管理</a></li>
                 <li><a href="category-list.jsp">类别管理</a></li>
-                <li><a href="modifyPassword.jsp">修改密码</a></li>
-                <li><a href="login.jsp">退出</a></li>
+                <li><a href="../modifyPassword.jsp">修改密码</a></li>
+                <li><a href="/loggout">退出</a></li>
             </ul>
         </div>
         <div class="column1">
-            <table align="center">
-                <tr align="center"><td><form method="post" action="url"><!--传值-->
-                    <input type="input" name="searchByUsername" placeholder="按用户名查询">&nbsp;<a href="search?username=${request.getParameter("searchByUsername")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
-                </form></td>
-                    <td> <form method="post" action="url">
-                        <input type="input" name="searchByUserId" placeholder="按账号查询">&nbsp;<a href="search?userid=${request.getParameter("searchByUserId")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
-                    </form></td>
+       <a href="category-list.jsp" style="text-decoration:none;color: black;background-color: lightblue">返回</a>
+            <table class="altrowstable" id="alternatecolor" width="800px">
+                <tr>
+                    <th>编号</th><th>分类名</th><th>操作</th>
+                </tr>
+                <tr>
+                    <c:forEach  items="${requestScope.admin}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
+                    <td>${u.id}嗷嗷</td>
+                    <td>${u.name}嗷嗷</td>
+                    <td>
+                        <a href="categoryModify?id=${u.id}">修改</a></td><!--返回id给后端，不一样的修改-->
+                    <a href="categoryDelete?id=${u.id}">删除</a></td><!--返回id给后端，不一样的修改-->
+                    </td>
+                    </c:forEach>
                 </tr>
             </table>
-            <a href="javascript:divShow();" id="btnhref" style="text-decoration:none;color: black;background-color: lightblue">添加管理员</a>
-            <a href="javascript:divShow1();" id="btnhref1" style="text-decoration:none;color: black;background-color: lightblue">查看所有管理员</a>
-                <div id="btnshow" style=" display: none;">
-             <c:import url="admin-add.jsp"></c:import>
-        </div>
-                <div id="btnshow1" style="display: none;">
-             <c:import url="allAdminList.jsp"></c:import>
-        </div>
         </div>    
     </div></div>
 </div>

@@ -12,7 +12,7 @@
         <th>编号</th><th>分类名</th><th>操作</th>
     </tr>
     <tr align="center">
-        <c:forEach  items="${requestScope.admin}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
+        <c:forEach  items="${categoryList}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
         <td>${u.id}嗷嗷</td>
         <td>${u.name}嗷嗷</td>
         <td>

@@ -12,7 +12,7 @@
             <th>订单编号</th><th>下单时间</th><th>用户账号</th><th>收货人姓名</th><th>收货地址</th><th>收货人联系方式</th><th>订单状态</th><th>操作</th>
         </tr>
         <tr>
-            <c:forEach  items="${requestScope.indent}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
+            <c:forEach  items="${indentCheckedList}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
             <td>${u.iid}嗷嗷</td>
             <td>${u.utime}嗷嗷</td>
             <td>${u.userid}</td>

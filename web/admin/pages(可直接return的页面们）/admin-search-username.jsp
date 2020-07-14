@@ -1,15 +1,8 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Yokyi
-  Date: 2020/7/10
-  Time: 20:46
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>通过订单id查找</title>
+    <title>使用用户名查询结果</title>
     <script type="text/javascript">
         function altRows(id){
             if(document.getElementsByTagName){
@@ -110,8 +103,8 @@
             color: white;
         }
     </style>
-    <link rel="stylesheet" href="css/bootstrap.css"/>
-    <link rel="stylesheet" href="css/mylayout.css"/>
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <link rel="stylesheet" href="../css/mylayout.css"/>
 </head>
 <body>
 <div class="father" style="text-align: center">
@@ -126,39 +119,31 @@
                 <li><a href="user-list.jsp">客户管理</a></li>
                 <li><a href="book-list.jsp">商品管理</a></li>
                 <li><a href="category-list.jsp">类别管理</a></li>
-                <li><a href="modifyPassword.jsp">修改密码</a></li>
-                <li><a href="login.jsp">退出</a></li>
+                <li><a href="../modifyPassword.jsp">修改密码</a></li>
+                <li><a href="/loggout">退出</a></li>
             </ul>
         </div>
         <div class="column1">
-        <a href="indent-list.jsp" style="text-decoration:none;color: black;background-color: lightblue">返回</a>
+            <a href="admin-list.jsp" style="text-decoration:none;color: black;background-color: lightblue">返回</a>
             <table class="altrowstable" id="alternatecolor" width="800px">
                 <tr>
-                    <th>订单编号</th><th>下单时间</th><th>用户账号</th><th>收货人姓名</th><th>收货地址</th><th>收货人联系方式</th><th>订单状态</th><th>操作</th>
+                    <th>账号</th><th>用户名</th><th>密码</th><th>操作</th>
                 </tr>
                 <tr align="center">
-                    <c:forEach  items="${requestScope.indent}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
-                    <td>${u.iid}嗷嗷</td>
-                    <td>${u.utime}嗷嗷</td>
-                    <td>${u.userid}</td>
-                    <td>${u.uname }</td>
-                    <td>${u.uloc }</td>
-                    <td>${u.utel }</td>
-                    <td>${u.ustate }</td>
-                    <td><a href="itemList?id=${u.iid}">详情</a>&nbsp;
-                        <a href="indentDispose?id=${u.iid}">处理</a>
-                        <a href="indentModify?id=${u.iid}">修改</a>
-                        <a href="indentDelete?id=${u.iid}">删除</a><!--返回id给后端-->
-                    </td><!--返回id给后端-->
+                    <c:forEach  items="${requestScope.admin}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
+                    <td>${u.adminid}嗷嗷</td>
+                    <td>${u.aname}嗷嗷</td>
+                    <td>${u.apassword}</td>
+                    <td>
+                        <a href="adminModify?id=${u.adminid}">修改</a>
+                        <a href="adminDelete?id=${u.adminid}">删除</a>
+                    </td><!--返回id给后端，不一样的修改-->
                     </c:forEach>
                 </tr>
             </table>
         </div>    
     </div></div>
-
 </div>
-
-
 </body>
 </html>
 

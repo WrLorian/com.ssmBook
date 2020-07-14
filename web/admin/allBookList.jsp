@@ -13,7 +13,7 @@
         <th>评分</th><th>分类编号</th><th>操作</th>
     </tr>
     <tr align="center">
-        <c:forEach  items="${requestScope.book}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
+        <c:forEach  items="${bookList}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
         <td>${u.bookid}嗷嗷</td>
         <td>${u.bookname}嗷嗷</td>
         <td>${u.img}</td>

@@ -47,7 +47,7 @@
 </div>
 <div class="column" style="text-align: center;background-color: lightblue">
     <ul class="nav navbar-nav">
-        <li><a href="indent-list.jsp">订单管理</a></li>
+        <li><a href="pages/indent-list.jsp">订单管理</a></li>
         <li><a href="#">客户管理</a></li>
         <li><a href="#">商品管理</a></li>
         <li><a href="#">类别管理</a></li>

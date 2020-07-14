@@ -141,8 +141,8 @@
             color: white;
         }
     </style>
-    <link rel="stylesheet" href="css/bootstrap.css"/>
-    <link rel="stylesheet" href="css/mylayout.css"/>
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <link rel="stylesheet" href="../css/mylayout.css"/>
 </head>
 <body>
 <div class="father" style="text-align: center">
@@ -157,7 +157,7 @@
             <li><a href="user-list.jsp">客户管理</a></li>
             <li><a href="book-list.jsp">商品管理</a></li>
             <li><a href="category-list.jsp">类别管理</a></li>
-            <li><a href="modifyPassword.jsp">修改密码</a></li>
+            <li><a href="../modifyPassword.jsp">修改密码</a></li>
             <li><a href="login.jsp">退出</a></li>
         </ul>
     </div>
@@ -181,13 +181,13 @@
             <a href="javascript:divShow1();" id="btnhref1" style="text-decoration:none;color: black;background-color: lightblue">已处理订单</a>
             <a href="javascript:divShow2();" id="btnhref2"style="text-decoration:none;color: black;background-color: lightblue">增加订单</a>
                     <div id="btnshow" style="display: none;">
-             <c:import url="uncheck-indent.jsp"></c:import>
+             <c:import url="../uncheck-indent.jsp"></c:import>
         </div>
                 <div id="btnshow1" style="display: none;">
-             <c:import url="check-indent.jsp"></c:import>
+             <c:import url="../check-indent.jsp"></c:import>
         </div>
                 <div id="btnshow2" style="display: none;">
-             <c:import url="indent-add.jsp"></c:import>
+             <c:import url="../indent-add.jsp"></c:import>
         </div>
         </div>    
         </div></div>

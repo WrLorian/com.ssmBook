@@ -111,8 +111,8 @@
             color: white;
         }
     </style>
-    <link rel="stylesheet" href="css/bootstrap.css"/>
-    <link rel="stylesheet" href="css/mylayout.css"/>
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <link rel="stylesheet" href="../css/mylayout.css"/>
 </head>
 <body>
 <div class="father" style="text-align: center">
@@ -127,7 +127,7 @@
                 <li><a href="user-list.jsp">客户管理</a></li>
                 <li><a href="book-list.jsp">商品管理</a></li>
                 <li><a href="category-list.jsp">类别管理</a></li>
-                <li><a href="modifyPassword.jsp">修改密码</a></li>
+                <li><a href="../modifyPassword.jsp">修改密码</a></li>
                 <li><a href="login.jsp">退出</a></li>
             </ul>
         </div>

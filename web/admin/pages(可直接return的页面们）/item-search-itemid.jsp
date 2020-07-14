@@ -1,15 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
   User: Yokyi
-  Date: 2020/7/11
-  Time: 20:31
+  Date: 2020/7/12
+  Time: 13:38
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>使用图书名称查询结果</title>
+    <title>订单详情编号查找结果</title>
     <script type="text/javascript">
         function altRows(id){
             if(document.getElementsByTagName){
@@ -110,8 +110,8 @@
             color: white;
         }
     </style>
-    <link rel="stylesheet" href="css/bootstrap.css"/>
-    <link rel="stylesheet" href="css/mylayout.css"/>
+    <link rel="stylesheet" href="../css/bootstrap.css"/>
+    <link rel="stylesheet" href="../css/mylayout.css"/>
 </head>
 <body>
 <div class="father" style="text-align: center">
@@ -126,40 +126,30 @@
                 <li><a href="user-list.jsp">客户管理</a></li>
                 <li><a href="book-list.jsp">商品管理</a></li>
                 <li><a href="category-list.jsp">类别管理</a></li>
-                <li><a href="modifyPassword.jsp">修改密码</a></li>
+                <li><a href="../modifyPassword.jsp">修改密码</a></li>
                 <li><a href="login.jsp">退出</a></li>
             </ul>
         </div>
         <div class="column1">
-            <a href="book-list.jsp" style="text-decoration:none;color: black;background-color: lightblue">返回</a>
             <table class="altrowstable" id="alternatecolor" width="800px">
                 <tr>
-                    <th>图书编号</th><th>图书名称</th><th>图书图片</th><th>价格</th><th>库存数量</th><th>简介</th><th>作者</th><th>出版社</th><th>出版时间</th>
-                    <th>评分</th><th>分类编号</th><th>操作</th>
+                    <th>图书编号</th><th>图书名称</th><th>图书单价</th><th>图书数量</th><th>合计</th><th>操作</th>
                 </tr>
                 <tr>
-                    <c:forEach  items="${requestScope.book}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
-                    <td>${u.bookid}嗷嗷</td>
-                    <td>${u.bookname}嗷嗷</td>
-                    <td>${u.img}</td>
-                    <td>${u.price}嗷嗷</td>
-                    <td>${u.count}嗷嗷</td>
-                    <td>${u.brief}</td>
-                    <td>${u.author}嗷嗷</td>
-                    <td>${u.press}嗷嗷</td>
-                    <td>${u.time}</td>
-                    <td>${u.grade}嗷嗷</td>
-                    <td>${u.categoryid}嗷嗷</td>
-                    <a href="bookModify?id=${u.bookid}">修改</a></td><!--返回id给后端，不一样的修改-->
-                    <a href="bookDelete?id=${u.bookid}">删除</a></td><!--返回id给后端，不一样的修改-->
-                    <a href="bookRecommend?id=${u.bookid}">设为推荐图书</a></td><!--返回id给后端，不一样的修改-->
-                    <a href="bookNew?id=${u.bookid}">设为最新图书</a></td><!--返回id给后端，个人觉得可以按时间排序更方便-->
+                    <c:forEach  items="${requestScope.indent}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
+                    <td>${u.bookId}嗷嗷</td>
+                    <td>${u.bookName}嗷嗷</td>
+                    <td>${u.bookPrice}</td>
+                    <td>${u.bookNum }</td>
+                    <td>${(u.bookPrice)*(u.bookNum) }</td>
+                    <td><a href="itemModify?id=${u.iid}">修改</a>&nbsp;
+                        <a href="itemDelete?id=${u.iid}">删除</a></td><!--返回id给后端-->
                     </c:forEach>
                 </tr>
             </table>
-        </div>    
-    </div></div>
+  </div>
+
+</div>
 </div>
 </body>
 </html>
-
