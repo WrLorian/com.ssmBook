@@ -61,8 +61,16 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <version>5.1.9.RELEASE</version>
+            <version>5.2.7.RELEASE</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>5.2.7.RELEASE</version>
+        </dependency>
+
+
 
 <!--        mybatis-spring-->
         <dependency>
@@ -81,7 +89,21 @@
 
 
 
-
     </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>12</source>
+                        <target>12</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 
 </project>
