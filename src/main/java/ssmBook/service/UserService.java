@@ -72,4 +72,12 @@ public class UserService {
     public boolean update(user user) {
         return userDao.update(user);
     }
+
+    /**
+     * 删除用户
+     */
+    public boolean deleteUser(int id)
+    {
+        return userDao.delete(id);
+    }
 }
