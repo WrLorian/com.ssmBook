@@ -20,6 +20,7 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+
     <mvc:annotation-driven/>
 
     <mvc:default-servlet-handler/>
