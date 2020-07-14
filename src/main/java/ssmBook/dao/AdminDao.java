@@ -1,6 +1,9 @@
 package ssmBook.dao;
 
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import ssmBook.pojo.admin;
 
 import java.util.List;
@@ -15,8 +18,8 @@ public interface AdminDao {
      * 查询所有Admin
      * @return
      */
-    @Select("select * from admin order by id desc limit #{begin},#{size}")
-    public List<admin> selectAll(@Param("begin")int begin, @Param("size")int size);
+    @Select("select * from admin")
+    public List<admin> selectAll();
 
     /**
      * 通过ID查询Admin
@@ -38,11 +41,9 @@ public interface AdminDao {
     @Update("update admin set passWord=#{passWord} where adminId=#{adminId}")
     public boolean adminUpdate(admin admin);
 
-    /**
-     * 删除管理员
-     */
-    @Delete("delete from admin where adminId=#{adminId}")
-    public boolean delectAdmin(int adminId);
+
+
+
     /**
      * 通过用户名查询Admin
      */
@@ -54,22 +55,5 @@ public interface AdminDao {
      */
     @Select("select * from admin where adminId = #{adminId}")
     public List<admin> selectList(int adminId);
-
-    /**
-     * 通过名称搜索
-     * 由于此处如果查询出多条记录会抛异常, 所以加上limit防止数据引起的错误
-     * @param username
-     * @return
-     */
-    @Select("select * from admin where username=#{username} and password=#{password} limit 1")
-    public admin selectByUsernameAndPassword(@Param("username")String username, @Param("password")String password);
-
-    /**
-     * 获取管理员的总数
-     * @return
-     */
-    @Select("select count(*) from admin")
-    public long selectTotal();
-
 
 }

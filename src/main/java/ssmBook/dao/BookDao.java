@@ -23,7 +23,7 @@ public interface BookDao {
      *删除图书
      */
     @Delete("delete from book where bookId = #{bookId}")
-    public boolean bookDelete(int bookId);
+    public boolean bookDelect(int bookId);
 
     /**
      * 修改图书
@@ -56,24 +56,13 @@ public interface BookDao {
     @Select("select count(*) from book where cId=#{cId}")
     public long selectTotalByCategoryId(int cid);
 
-
     /**
-     * 查询有星级的图书共有多少本
+     * 查询所有图书，按照time的时间顺序，从新到旧排列
      */
-    @Select("select count(*) from book where grade >0")
-    public long selectTotalIsSpecial();
+    @Select("select * from book ORDER BY time DESC limit #{begin}, #{size}")
+    public List<book> selectBookByTimeDesc(@Param("begin")int begin, @Param("size")int size);
 
-    /**
-     * 查询上新图书（最近半年）
-     */
-    @Select("select * from book where time>")
-    public List<book> selectListIsNew(@Param("begin")int begin, @Param("size")int size);
 
-    /**
-     * 查询上新图书一共有多少本
-     */
-    @Select("select count(*) from book where time>")
-    public long selectTotalIsNews();
     /**
      * 显示所有图书
      */
@@ -92,12 +81,6 @@ public interface BookDao {
      */
     @Select("select * from book where cId=#{cId} order by id desc limit #{begin}, #{size}")
     public List<book> selectListByCategoryId(@Param("cId")int cId, @Param("begin")int begin, @Param("size")int size);
-
-    /**
-     * 查询特卖图书(根据星级从高到底排序)
-     */
-    @Select("select * from book order by grade DESC limit #{begin}, #{size}")
-    public List<book> selectListIsSpecial(int page,int size);
 
 
 

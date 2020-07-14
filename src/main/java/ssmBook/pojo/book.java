@@ -21,7 +21,6 @@ public class book {
     private Date time;
     private Integer grade;
     private Integer cId;
-    private MultipartFile file;
 
     public Integer getBookId() {
         return bookId;
@@ -109,13 +108,5 @@ public class book {
 
     public void setcId(Integer cId) {
         this.cId = cId;
-    }
-
-    public void setFile(MultipartFile file) {
-        this.file = file;
-    }
-
-    public MultipartFile getFile() {
-        return file;
     }
 }

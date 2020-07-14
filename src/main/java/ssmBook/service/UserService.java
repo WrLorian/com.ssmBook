@@ -19,17 +19,11 @@ public class UserService {
 
     /**
      * 通过id获取
+     * @param userid
+     * @return
      */
     public user getById(int userId){
         return userDao.select(userId);
-    }
-
-    /**
-     * 通过username获取
-     */
-    public user getByUsername(String username)
-    {
-        return userDao.selectByUsername(username);
     }
 
     /**
@@ -51,13 +45,6 @@ public class UserService {
      */
     public boolean isExist(String username) {
         return userDao.selectByUsername(username) != null;
-    }
-
-    /**
-     * 验证用户密码
-     */
-    public boolean checkUser(String username, String password){
-        return userDao.selectByUsernameAndPassword(username,password) !=null;
     }
 
     /**

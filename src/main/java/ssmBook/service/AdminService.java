@@ -1,7 +1,6 @@
 package ssmBook.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import ssmBook.dao.AdminDao;
 import ssmBook.pojo.*;
 
@@ -14,7 +13,6 @@ import java.util.Objects;
  * 注意，例如图书的推优、特惠等服务都通过此实现
  *
  */
-@Service
 public class AdminService {
 
     @Autowired
@@ -37,7 +35,39 @@ public class AdminService {
     {
         return Objects.nonNull(adminDao.selectByName(username));
     }
+    /**
+     * 已经处理订单页面的显示
+     */
+    public List<item> getAlreadyItemList()
+    {
+        return null;
+    }
 
+    /**
+     * 未处理订单页面的显示
+     */
+    public List<item> getUnreadyItemList()
+    {
+        return null;
+    }
+
+
+
+    /**
+     * 标记处理
+     */
+    public boolean dealItem()
+    {
+        return true;
+    }
+
+    /**
+     * 订单删除
+     */
+    public boolean itemdelect()
+    {
+        return true;
+    }
 
     /**
      * 获取用户列表
@@ -47,7 +77,62 @@ public class AdminService {
         return null;
     }
 
+    /**
+     *删除用户
+     */
+    public boolean userDelect()
+    {
+        return true;
+    }
 
+    /**
+     * 添加用户
+     */
+    public boolean userAdd()
+    {
+        return true;
+    }
+
+    /**
+     *  获取图书列表
+     *  只需获取全部，controller那边会处理数据
+     */
+    public List<book> getBookList()
+    {
+        return null;
+    }
+
+    /**
+     * 图书删除
+     */
+    public boolean bookdelect()
+    {
+        return true;
+    }
+
+    /**
+     * 添加图书
+     */
+    public boolean bookAdd()
+    {
+        return true;
+    }
+
+    /**
+     * 获取分类列表
+     */
+    public List<category> getCategoryList()
+    {
+        return null;
+    }
+
+    /**
+     * 添加分类
+     */
+    public boolean categoryAdd()
+    {
+        return true;
+    }
 
     /**
      * 获取管理员列表
