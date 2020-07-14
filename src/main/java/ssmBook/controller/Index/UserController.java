@@ -103,6 +103,11 @@ public class UserController {
             request.getSession().setAttribute("username", user.getUserName());
             return "index";
         }
+        else if(user.getUserName().isEmpty()||user.getuPassWord().isEmpty())
+        {
+            request.setAttribute("msg", "用户名或密码为空!");
+            return "index";
+        }
         else
         {
             request.setAttribute("msg", "用户名或密码错误!");
