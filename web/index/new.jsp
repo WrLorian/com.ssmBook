@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>书店首页</title>
+    <title>新书上市</title>
     <style>
         /* 响应式布局 - 屏幕尺寸小于 800px 时，两列布局改为上下布局 */
         @media screen and (max-width: 800px) {
@@ -43,9 +43,10 @@
 </head>
 <body>
 
-<div class="header" style="background-image: url('img/bg3.jpg')">
+<div class="header">
     <h1>书店订购</h1>
 </div>
+
 <div class="topnav">
     <a href="index.jsp">首页</a>
     <a href="recommend.jsp">精品推荐</a>
@@ -61,23 +62,21 @@
 <div class="row">
     <div class="leftcolumn">
         <div class="card">
-                <div class="card">
-                    <h3>精品推荐</h3>
-                    <table>
-                        <tr>
-                            <c:forEach var="book" items="${specialList}">
-                                <td> <a href="detail?bookId=${book.id}"><img src="../${book.cover}" class="thumb_big"/></a></td>
-                                <td>${book.name}人间失格</td>
-                                <td><a href="detail?bookId=${book.id}" style="text-decoration:none;color: black;background-color: lightblue">图书详情</a></td>
-                                    <a href="detail?bookId=${book.id}" style="text-decoration:none;color: black;background-color: lightblue">加入购物车</a></td>
-                                </td>
-                            </c:forEach>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-
+            <h3>新书上市</h3>
+            <table>
+                <tr>
+                    <c:forEach var="book" items="${newList}">
+                        <td> <a href="detail?bookId=${book.id}"><img src="../${book.cover}" class="thumb_big"/></a></td>
+                        <td>${book.name}人间失格</td>
+                        <td><a href="detail?bookId=${book.id}" style="text-decoration:none;color: black;background-color: lightblue">图书详情</a></td>
+                        <td>
+                            <a href="detail?bookId=${book.id}" style="text-decoration:none;color: black;background-color: lightblue">加入购物车</a></td>
+                        </td>
+                    </c:forEach>
+                </tr>
+            </table>
         </div>
+    </div>
     <div class="rightcolumn">
         <div class="card">
             <h2>书店简介</h2>
@@ -94,10 +93,9 @@
         </div>
     </div>
 </div>
-
 <div class="footer">
     <h4>@B书店订购系统</h4>
 </div>
-<img src="img/bg3.jpg">
+
 </body>
 </html>
