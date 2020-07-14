@@ -104,6 +104,34 @@ public class adminController {
         adminService.adminAdd(admin);
         return "redirect:admin/pages/admin-list";
     }
+
+    /**
+     * 跳转管理员注册页面
+     */
+    @RequestMapping("/adminRe")
+    public String adminRe()
+    {
+        return "admin/pages/register";
+    }
+
+    /**
+     * 管理员注册
+     */
+    @RequestMapping("adminRegister")
+    public String adminRegister(HttpServletRequest request,admin admin)
+    {
+        if (admin.getAdminName().isEmpty()) {
+            request.setAttribute("msg", "用户名不能为空!");
+            return "admin/pages/register";
+        }else if (adminService.isExist(admin.getAdminName())) {
+            request.setAttribute("msg", "用户名已存在!");
+            return "admin/pages/register";
+        }else{
+            adminService.adminAdd(admin);
+            request.setAttribute("msg", "注册成功, 请登录!");
+            return "admin/index";
+        }
+    }
     /**
      * 跳转重置管理员密码页面（需获取需要更改的管理员的ID）
      */
