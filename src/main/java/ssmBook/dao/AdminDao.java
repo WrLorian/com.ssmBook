@@ -58,11 +58,9 @@ public interface AdminDao {
     /**
      * 通过名称搜索
      * 由于此处如果查询出多条记录会抛异常, 所以加上limit防止数据引起的错误
-     * @param username
-     * @return
      */
-    @Select("select * from admin where username=#{username} and password=#{password} limit 1")
-    public admin selectByUsernameAndPassword(@Param("username")String username, @Param("password")String password);
+    @Select("select * from admin where adminName=#{adminName} and passWord=#{passWord} limit 1")
+    public admin selectByUsernameAndPassword(@Param("adminName")String adminName, @Param("password")String passWord);
 
     /**
      * 获取管理员的总数
