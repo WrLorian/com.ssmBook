@@ -161,15 +161,8 @@
             </ul>
     </div>
         <div class="column1">
-            <a href="/indentList?check=1" style="text-decoration:none;color: black;background-color: lightblue">未处理订单</a>
-            <a href="/indentList?check=2" id="btnhref1" style="text-decoration:none;color: black;background-color: lightblue">已处理订单</a>
-                    <div id="btnshow" style="display: none;">
-             <c:import url="../uncheck-indent.jsp"></c:import>
-        </div>
-                <div id="btnshow1" style="display: none;">
-             <c:import url="../check-indent.jsp"></c:import>
-        </div>
-        </div>    
+            <a href="/" style="text-decoration:none;color: black;background-color: lightblue">未处理订单</a>
+            <a href="/" style="text-decoration:none;color: black;background-color: lightblue">已处理订单</a>
         </div></div>
 
 </div>
