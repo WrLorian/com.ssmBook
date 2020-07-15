@@ -81,6 +81,8 @@ public class adminController {
         return "admin/pages/admin-list";
     }
 
+
+
     /**
      * 跳转添加管理员页面
      */
@@ -342,11 +344,32 @@ public class adminController {
     public String indentList(HttpServletRequest request,
                              @RequestParam(required = false,defaultValue = "1")int page)
     {
-        request.setAttribute("page",page);
-        request.setAttribute("indentList",indentService.getIndentList(page,size));
         return "/admin/pages/indent-list";
     }
 
+    /**
+     * 查看所有未处理订单列表
+     */
+    @RequestMapping("/unReadlyList")
+    public String unReadlyList(HttpServletRequest request,
+                               @RequestParam(required = false,defaultValue = "1")int page)
+    {
+        request.setAttribute("page",page);
+        request.setAttribute("indentList",indentService.getIndentList(1,page,size));
+        return "/admin/uncheck-indent";
+    }
+
+    /**
+     * 查看所有未处理订单列表
+     */
+    @RequestMapping("/ReadlyList")
+    public String ReadlyList(HttpServletRequest request,
+                               @RequestParam(required = false,defaultValue = "1")int page)
+    {
+        request.setAttribute("page",page);
+        request.setAttribute("indentList",indentService.getIndentList(2,page,size));
+        return "/admin/uncheck-indent";
+    }
 
     /**
      * 查看订单详情
