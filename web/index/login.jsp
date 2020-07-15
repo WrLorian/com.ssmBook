@@ -19,15 +19,15 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="css/indexlayout.css">
+    <link rel="stylesheet" href="../index/css/indexlayout.css">
 </head>
 <body>
 
-<div class="header">
+<div class="header" style="background-image: url('../index/img/bg3.jpg')">
     <h1 style="font-family: 幼圆">书店订购</h1>
 </div>
 <div class="card" style="height: 800px">
-    <form action="/index/userLogin" method="post">
+    <form action="/userLogin" method="post">
         <table  align="center" width="300px" height="200px">
             <tr><td width="150px" align="center">用户</td>
                 <td><input type="text" name="userName" placeholder="请输入注册账号"></td>

@@ -156,21 +156,12 @@
                 <li><a href="userList">客户管理</a></li>
                 <li><a href="bookList">商品管理</a></li>
                 <li><a href="categoryList">类别管理</a></li>
-                <li><a href="../modifyPassword.jsp">修改密码</a></li><!--??-->
                 <li><a href="logout">退出</a></li>
             </ul>
         </div>
         <div class="column1">
-            <table align="center">
-                <tr align="center">
-                    <td> <form method="post" action="url">
-                        <input type="input" name="searchById" placeholder="按分类编号查询">&nbsp;<a href="search?id=${request.getParameter("searchById")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
-                    </form></td>
-                </tr>
-            </table>
             <a href="/categoryAd" id="btnhref" style="text-decoration:none;color: black;background-color: lightblue">添加分类</a>
-            <a href="javascript:divShow1();" id="btnhref1" style="text-decoration:none;color: black;background-color: lightblue">查看所有分类</a>
-                <div id="btnshow1" style="display: none;">
+                <div>
              <table class="altrowstable" id="alternatecolor" width="800px">
             <tr>
                 <th>编号</th><th>分类名</th><th>操作</th>
@@ -180,12 +171,19 @@
                 <td>${u.cId}</td>
                 <td>${u.cName}</td>
                 <td>
-                    <a href="categoryUp?id=${u.cId}">修改</a><!--返回id给后端，不一样的修改-->
-                <a href="categoryDelete?id=${u.cId}">删除</a><!--返回id给后端，不一样的修改-->
+                    <a href="categoryUp?id=${u.cId}">修改</a>
+                <a href="categoryDelete?id=${u.cId}">删除</a>
                 </td>
             </tr>
                 </c:forEach>
-
+            <tr><td colspan="3">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td style="background: #1b6d85">${pageTool}</td>
+                    </tr>
+                </table>
+            </td>
+            </tr>
         </table>
         </div>
         </div>    

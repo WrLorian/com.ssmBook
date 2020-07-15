@@ -129,7 +129,7 @@ public class adminController {
         }else{
             adminService.adminAdd(admin);
             request.setAttribute("msg", "注册成功, 请登录!");
-            return "admin/index";
+            return "redirect:login";
         }
     }
     /**
@@ -196,12 +196,12 @@ public class adminController {
     /**
      * 跳转到图书添加页面
      */
-//    @RequestMapping("/bookAd")
-//    public String bookAd(HttpServletRequest request)
-//    {
-//        request.setAttribute("categoryList",categoryService.getCategoryListAll());
-//        return "admin/book-add";
-//    }
+    @RequestMapping("/bookAd")
+    public String bookAd(HttpServletRequest request)
+    {
+        request.setAttribute("categoryList",categoryService.getCategoryListAll());
+       return "admin/book-add";
+    }
 
     /**
      * 图书添加

@@ -147,20 +147,10 @@
                 <li><a href="userList">客户管理</a></li>
                 <li><a href="bookList">商品管理</a></li>
                 <li><a href="categoryList">类别管理</a></li>
-                <li><a href="../modifyPassword.jsp">修改密码</a></li><!--??-->
                 <li><a href="logout">退出</a></li>
             </ul>
         </div>
         <div class="column1">
-            <table align="center">
-                <tr align="center">
-                    <td>
-                        <form method="post" action="url"><!-- 在订单详情页可以查看该订单下的项目详情-->
-                            <input type="input" name="searchByItemId" placeholder="按详情编号查询"><a href="search?userid=${request.getParameter("searchByItemId")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
-                        </form>
-                    </td>
-                </tr>
-            </table>
             <a href="javascript:divShow();" id="btnhref" style="text-decoration:none;color: black;background-color: lightblue">查看所有项目</a>
             <a href="javascript:divShow2();" id="btnhref2"style="text-decoration:none;color: black;background-color: lightblue">增加商品</a>
                 <div id="btnshow" style="display: none;">

@@ -157,24 +157,13 @@
                 <li><a href="userList">客户管理</a></li>
                 <li><a href="bookList">商品管理</a></li>
                 <li><a href="categoryList">类别管理</a></li>
-                <li><a href="../modifyPassword.jsp">修改密码</a></li><!--??-->
                 <li><a href="logout">退出</a></li>
             </ul>
         </div>
         <div class="column1">
-            <table align="center">
-                <tr align="center"><td><form method="post" action="url"><!--传值-->
-                    <input type="input" name="searchByUsername" placeholder="按用户名查询">&nbsp;<a href="search?username=${request.getParameter("searchByUsername")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
-                </form></td>
-                    <td> <form method="post" action="url">
-                        <input type="input" name="searchByUserId" placeholder="按账号查询">&nbsp;<a href="search?userid=${request.getParameter("searchByUserId")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
-                    </form></td>
-                </tr>
-            </table>
             <a href="/userAd" style="text-decoration:none;color: black;background-color: lightblue">添加客户</a>
-            <a href="javascript:divShow1();" id="btnhref1" style="text-decoration:none;color: black;background-color: lightblue">查看所有客户信息</a>
             <div class="alert alert-success" role="alert" style="color: #3c763d">${msg}</div>
-                <div id="btnshow1" style="display: none;">
+                <div>
             <table class="altrowstable" id="alternatecolor" width="800px">
                 <tr>
                     <th>账号</th><th>用户名</th><th>密码</th><th>性别</th><th>年龄</th><th>联系电话</th><th>地址</th><th>操作</th>
@@ -195,7 +184,14 @@
                     </td>
                 </tr>
                     </c:forEach>
-
+                <tr><td colspan="8">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td style="background: #1b6d85">${pageTool}</td>
+                        </tr>
+                    </table>
+                </td>
+                </tr>
             </table>
         </div>
         </div>    

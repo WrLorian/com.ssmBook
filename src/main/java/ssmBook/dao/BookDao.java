@@ -68,7 +68,7 @@ public interface BookDao {
     /**
      * 查询上新图书（最近半年）
      */
-    @Select("select * from `book` where date_sub(curdate(),interval 181 day)<=date(time) order by id desc limit #{begin}, #{size}")
+    @Select("select * from `book` where date_sub(curdate(),interval 181 day)<=date(time) order by bookId desc limit #{begin}, #{size}")
     public List<book> selectListIsNew(@Param("begin")int begin, @Param("size")int size);
 
     /**
@@ -86,13 +86,13 @@ public interface BookDao {
      * 通过名字查询图书
      * 注意：不止唯一结果
      */
-    @Select("select * from book where bookName like concat('%',#{bookName},'%') order by id desc limit #{begin}, #{size}")
+    @Select("select * from book where bookName like concat('%',#{bookName},'%') order by bookId desc limit #{begin}, #{size}")
     public List<book> selectListLikeName(@Param("bookName")String bookName, @Param("begin")int begin, @Param("size")int size);
 
     /**
      * 通过分类查询图书
      */
-    @Select("select * from book where cId=#{cId} order by id desc limit #{begin}, #{size}")
+    @Select("select * from book where cId=#{cId} order by bookId desc limit #{begin}, #{size}")
     public List<book> selectListByCategoryId(@Param("cId")int cId, @Param("begin")int begin, @Param("size")int size);
 
     /**

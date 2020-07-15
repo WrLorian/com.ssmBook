@@ -161,7 +161,6 @@
                 <li><a href="userList">客户管理</a></li>
                 <li><a href="bookList">商品管理</a></li>
                 <li><a href="categoryList">类别管理</a></li>
-                <li><a href="../modifyPassword.jsp">修改密码</a></li><!--??-->
                 <li><a href="logout">退出</a></li>
             </ul>
         </div>

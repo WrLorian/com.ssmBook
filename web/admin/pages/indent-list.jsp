@@ -151,43 +151,23 @@
         <h2 style="font-family:'幼圆'" align="center">后台管理系统</h2>
     </div>
         <div class="column" style="text-align: center;background-color: lightblue">
-        <ul class="nav navbar-nav">
-            <li><a href="indentList">订单管理</a></li>
-            <li><a href="adminList">管理员管理</a></li>
-            <li><a href="userList">客户管理</a></li>
-            <li><a href="bookList">商品管理</a></li>
-            <li><a href="categoryList">类别管理</a></li>
-            <li><a href="/adminModify">修改密码</a></li><!--??-->
-            <li><a href="logout">退出</a></li>
-        </ul>
+            <ul class="nav navbar-nav">
+                <li><a href="indentList">订单管理</a></li>
+                <li><a href="adminList">管理员管理</a></li>
+                <li><a href="userList">客户管理</a></li>
+                <li><a href="bookList">商品管理</a></li>
+                <li><a href="categoryList">类别管理</a></li>
+                <li><a href="logout">退出</a></li>
+            </ul>
     </div>
         <div class="column1">
-            <table align="center">
-                <tr align="center">
-                    <td>
-                        <form method="post" action="url">
-                            <input type="input" name="searchById" placeholder="按订单编号查询"><a href="search?id=${request.getParameter("searchById")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
-
-                        </form>
-                    </td>
-                    <td>
-                        <form method="post" action="url">
-                            <input type="input" name="searchByUserId" placeholder="按用户账号查询"><a href="search?userid=${request.getParameter("searchByUserId")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
-                        </form>
-                    </td>
-                </tr>
-            </table>
             <a href="/indentList?check=1" style="text-decoration:none;color: black;background-color: lightblue">未处理订单</a>
             <a href="/indentList?check=2" id="btnhref1" style="text-decoration:none;color: black;background-color: lightblue">已处理订单</a>
-            <a href="javascript:divShow2();" id="btnhref2"style="text-decoration:none;color: black;background-color: lightblue">增加订单</a>
                     <div id="btnshow" style="display: none;">
              <c:import url="../uncheck-indent.jsp"></c:import>
         </div>
                 <div id="btnshow1" style="display: none;">
              <c:import url="../check-indent.jsp"></c:import>
-        </div>
-                <div id="btnshow2" style="display: none;">
-             <c:import url="../indent-add.jsp"></c:import>
         </div>
         </div>    
         </div></div>
