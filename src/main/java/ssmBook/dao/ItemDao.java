@@ -53,7 +53,7 @@ public interface ItemDao {
     /**
      * 查询一整张订单内的所有订单项目
      */
-    @Select("select * from items where iId=#{iId}")
+    @Select("select * from item where iId=#{iId}")
     public List<item> selectListByIndentId(@Param("iId")int iId);
 
 }
