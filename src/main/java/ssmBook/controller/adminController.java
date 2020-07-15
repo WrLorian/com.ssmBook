@@ -49,7 +49,9 @@ public class adminController {
             request.setAttribute("id",admin.getAdminId());
             return "admin/pages/indent-list";
         }
-        request.setAttribute("msg","用户密码错误");
+        if(!adminService.checkUser(admin.getAdminName(),admin.getPassWord())&&"登录".equals(request.getParameter("denglu"))){
+            request.setAttribute("msg","用户密码错误");
+        }
         System.out.println("密码错误");
         return "admin/pages/login";
     }
@@ -122,17 +124,21 @@ public class adminController {
     @RequestMapping("adminRegister")
     public String adminRegister(HttpServletRequest request,admin admin)
     {
-        if (admin.getAdminName().isEmpty()) {
-            request.setAttribute("msg", "用户名不能为空!");
-            return "admin/pages/register";
-        }else if (adminService.isExist(admin.getAdminName())) {
-            request.setAttribute("msg", "用户名已存在!");
-            return "admin/pages/register";
-        }else{
-            adminService.adminAdd(admin);
-            request.setAttribute("msg", "注册成功, 请登录!");
-            return "redirect:login";
+        if("确认".equals(request.getParameter("confirm"))) {
+            request.setAttribute("msg", "用户密码错误");
+            if (admin.getAdminName().isEmpty()) {
+                request.setAttribute("msg", "用户名不能为空!");
+                return "admin/pages/register";
+            }else if (adminService.isExist(admin.getAdminName())) {
+                request.setAttribute("msg", "用户名已存在!");
+                return "admin/pages/register";
+            }else{
+                adminService.adminAdd(admin);
+                request.setAttribute("msg", "注册成功, 请登录!");
+                return "redirect:login";
+            }
         }
+        return "admin/pages/register";
     }
     /**
      * 跳转重置管理员密码页面（需获取需要更改的管理员的ID）

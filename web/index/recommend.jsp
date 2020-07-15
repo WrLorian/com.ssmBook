@@ -57,9 +57,7 @@
     <table><form method="post" action="/search">
         <tr><td> <input id="input2" type="text" name="bookName" placeholder="请输入书名"></td><td> <input id="input1" type="submit" name="search" value="搜索"></td></tr>
     </form></table>
-
 </div>
-
 <div class="row">
     <div class="leftcolumn">
         <div class="card">
@@ -68,17 +66,21 @@
                     <c:forEach var="book" items="${specialList}">
                         <tr>
                         <td> <a href="detail?bookId=${book.bookId}"><img src="../${book.img}" class="thumb_big"/></a></td>
-                        <td>${book.bookName}</td>
-                        <td><a href="detail?bookId=${book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">图书详情</a>
-                        <td>
+                            <td><h3>${book.bookName}</h3></td>
+                            <td><h3><a href="detail?bookId=${book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">图书详情</a></h3></td>
+                        <td><h3>
                             <a href="/buy?bookId=${book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">加入购物车</a>
+                        </h3>
                         </td>
                         </tr>
                     </c:forEach>
-                <tr align="right"><td colspan="3" align="right">
-                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr align="right">
+                    <td colspan="4" align="right">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" align="right">
                         <tr>
+                            <td></td>
                             <td>${pageTool}</td>
+                            <td></td>
                         </tr>
                     </table>
                 </td>
@@ -97,7 +99,7 @@
             <h3>图书分类</h3>
             <ul class="list">
                 <c:forEach var="category" items="${categoryList}">
-                    <li><a href="category?cId=${category.cId}">${category.cName}</a></li>
+                    <li><a href="category?cId=${category.cId}" style="text-decoration:none;color: black;">${category.cName}</a></li>
                 </c:forEach>
             </ul>
         </div>
