@@ -222,6 +222,7 @@ public class adminController {
    {
        request.setAttribute("categoryList",categoryService.getCategoryListAll());
         request.setAttribute("book",bookService.getBookById(bookId));
+        System.out.println(bookId);
        return "/admin/pages/book-modify";
     }
 
@@ -273,11 +274,11 @@ public class adminController {
     /**
      * 跳转添加分类页面
      */
-//    @RequestMapping("categoryAd")
-//    public String categoryAd()
-//    {
-//        return "/admin/category-add";
-//    }
+    @RequestMapping("categoryAd")
+    public String categoryAd()
+   {
+       return "/admin/category-add";
+   }
 
     /**
      * 添加分类
@@ -287,7 +288,7 @@ public class adminController {
     public String categoryAdd(category category)
     {
         categoryService.categoryAdd(category);
-        return "redirect:admin/pages/category-list";
+        return "redirect:categoryList";
     }
 
     /**
