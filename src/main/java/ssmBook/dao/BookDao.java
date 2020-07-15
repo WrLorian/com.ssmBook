@@ -36,7 +36,7 @@ public interface BookDao {
      * 根据id查询图书
      */
     @Select("select * from book where bookId=#{bookId}")
-    public book selectById(int id);
+    public book selectById(int bookId);
 
     /**
      * 查询共有多少本图书

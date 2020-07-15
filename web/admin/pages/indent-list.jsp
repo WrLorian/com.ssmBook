@@ -177,8 +177,8 @@
                     </td>
                 </tr>
             </table>
-            <a href="javascript:divShow();" id="btnhref" style="text-decoration:none;color: black;background-color: lightblue">未处理订单</a>
-            <a href="javascript:divShow1();" id="btnhref1" style="text-decoration:none;color: black;background-color: lightblue">已处理订单</a>
+            <a href="/indentList?check=1" style="text-decoration:none;color: black;background-color: lightblue">未处理订单</a>
+            <a href="/indentList?check=2" id="btnhref1" style="text-decoration:none;color: black;background-color: lightblue">已处理订单</a>
             <a href="javascript:divShow2();" id="btnhref2"style="text-decoration:none;color: black;background-color: lightblue">增加订单</a>
                     <div id="btnshow" style="display: none;">
              <c:import url="../uncheck-indent.jsp"></c:import>
