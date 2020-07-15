@@ -30,7 +30,7 @@ import ssmBook.dao.IndentDao;
  */
 
 @Controller
-@RequestMapping("/index")
+
 public class UserController {
 
     private static final String indentKey = "indent";//购物车
@@ -101,7 +101,7 @@ public class UserController {
         if(userService.checkUser(user.getUserName(), user.getuPassWord()))
         {
             request.getSession().setAttribute("username", user.getUserName());
-            return "index/index";
+            return "redirect:index";
         }
         else if(user.getUserName().isEmpty()||user.getuPassWord().isEmpty())
         {
@@ -119,7 +119,7 @@ public class UserController {
      * 用户注销
      *
      */
-    @RequestMapping("/logout")
+    @RequestMapping("/userLogout")
     public String logout(HttpServletRequest request)
     {
         request.getSession().removeAttribute("username");

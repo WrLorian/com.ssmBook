@@ -15,7 +15,7 @@ import ssmBook.util.PageUtil;
  */
 
 @Controller
-//@RequestMapping("/index")
+
 public class IndexController {
 
 
