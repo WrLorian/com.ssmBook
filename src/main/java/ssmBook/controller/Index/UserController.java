@@ -94,7 +94,7 @@ public class UserController {
     /**
      * 用户登录按钮的实现
      */
-    @RequestMapping("/login")
+    @RequestMapping("/userLogin")
     public String login(HttpServletRequest request, user user)
     {
         request.setAttribute("flag",6);
