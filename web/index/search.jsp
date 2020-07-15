@@ -67,14 +67,15 @@
             <table>
                 <tr>
                     <c:forEach var="book" items="${bookList}">
-                        <td> <a href="detail?bookId=${book.id}"><img src="../${book.cover}" class="thumb_big"/></a></td>
-                        <td>${book.name}人间失格</td>
-                        <td><a href="detail?bookId=${book.id}" style="text-decoration:none;color: black;background-color: lightblue">图书详情</a></td>
+                        <td> <a href="detail?bookId=${book.bookId}"><img src="../${book.img}" class="thumb_big"/></a></td>
+                        <td>${book.bookName}人间失格</td>
+                        <td><a href="detail?bookId=${book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">图书详情</a></td>
                         <td>
-                            <a href="detail?bookId=${book.id}" style="text-decoration:none;color: black;background-color: lightblue">加入购物车</a></td>
+                            <a href="detail?bookId=${book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">加入购物车</a></td>
                         </td>
                     </c:forEach>
                 </tr>
+
             </table>
         </div>
     </div>
@@ -89,7 +90,7 @@
             <h3>图书分类</h3>
             <ul class="list">
                 <c:forEach var="category" items="${categoryList}">
-                    <li><a href="category?categoryId=${category.id}">${category.name}</a></li>
+                    <li><a href="category?cId=${category.cId}">${category.cName}</a></li>
                 </c:forEach>
             </ul>
         </div>
