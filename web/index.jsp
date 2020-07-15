@@ -120,7 +120,7 @@
       <h2 style="font-family:'幼圆'" align="center">后台管理系统</h2>
     </div>
     <div class="column1">
-      <a href="/index/userLogin">我是客户</a>
+      <a href="/index/log">我是客户</a>
       <a href="/login">我是管理员</a>
     </div>    
   </div></div>
