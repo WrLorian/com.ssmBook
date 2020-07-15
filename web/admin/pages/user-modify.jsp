@@ -2,6 +2,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="ssmBook.service.UserService" %>
 <%@ page import="ssmBook.pojo.user" %>
+<%
+    UserService service=new UserService();
+    user result=service.getById((Integer) request.getAttribute("id"));
+    request.setAttribute("id",result.getUserId());
+    request.setAttribute("name",result.getUserName());
+    request.setAttribute("psd",result.getuPassWord());
+    request.setAttribute("sex",result.getuSex());
+    request.setAttribute("age",result.getuAge());
+    request.setAttribute("tel",result.getuTel());
+    request.setAttribute("loc",result.getuLoc());
+%>
 <html>
 <head>
     <title>书籍修改</title>
@@ -128,21 +139,21 @@
             <form method="post" action="/userUpdate"><%--后续补充--%>
                 <table align="center">
                     <tr>
-                        <td>账号</td><td><input type="text" name="userId" value="${userMo.userId}"></td>
+                        <td>账号</td><td><input type="text" name="userId"></td>
                     </tr>
                     <tr>
-                        <td>用户名</td><td><input type="text" name="userName" value="${userMo.userName}"></td>
+                        <td>用户名</td><td><input type="text" name="userName"></td>
                     </tr><tr>
-                    <td>密码</td><td><input type="password" name="uPassWord" value="${userMo.uPassWord}"></td>
+                    <td>密码</td><td><input type="password" name="uPassWord"></td>
                 </tr><tr>
-                    <td>性别</td><td><input type="text" name="uSex" value="${userMo.uSex}"></td>
+                    <td>性别</td><td><input type="text" name="uSex"></td>
                 </tr><tr>
-                    <td>年龄</td><td><input type="text" name="uAge" value="${userMo.uAge}"></td>
+                    <td>年龄</td><td><input type="text" name="uAge"></td>
                 </tr>
                     <tr>
-                        <td>联系电话</td><td><input type="text" name="uTel" value="${userMo.uTel}"></td>
+                        <td>联系电话</td><td><input type="text" name="uTel"></td>
                     </tr><tr>
-                    <td>地址</td><td><input type="text" name="uLoc" value="${userMo.uLoc}"></td>
+                    <td>地址</td><td><input type="text" name="uLoc"></td>
                 </tr><tr align="center">
                     <td><input type="submit" name="cancel" value="取消"></td><td><input type="submit" name="add" value="提交"></td>
                 </tr>

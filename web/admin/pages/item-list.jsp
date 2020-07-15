@@ -160,7 +160,8 @@
              <c:import url="../item-add.jsp"></c:import>
         </div>
         </div>    
-    </div></div>
+    </div>
+</div>
 
 </div>
 </body>

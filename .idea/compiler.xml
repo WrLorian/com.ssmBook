@@ -9,5 +9,6 @@
         <module name="com.ssmBook" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="8" />
   </component>
 </project>

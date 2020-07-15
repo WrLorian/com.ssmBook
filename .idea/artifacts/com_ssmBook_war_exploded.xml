@@ -7,6 +7,28 @@
         <element id="directory" name="classes">
           <element id="module-output" name="com.ssmBook" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="jstl-1.2" />
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis:3.5.5" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.19" />
+          <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.6.1" />
+          <element id="library" level="project" name="Maven: log4j:log4j:1.2.17" />
+          <element id="library" level="project" name="Maven: com.mchange:c3p0:0.9.5.2" />
+          <element id="library" level="project" name="Maven: com.mchange:mchange-commons-java:0.2.11" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context-support:5.2.7.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-context:5.2.7.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-core:5.2.7.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.2.7.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-webmvc:5.2.7.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-aop:5.2.7.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.2.7.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-web:5.2.7.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-jdbc:5.2.7.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-tx:5.2.7.RELEASE" />
+          <element id="library" level="project" name="Maven: org.springframework:spring-beans:5.2.7.RELEASE" />
+          <element id="library" level="project" name="Maven: org.mybatis:mybatis-spring:2.0.5" />
+          <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.5" />
+        </element>
       </element>
     </root>
   </artifact>
