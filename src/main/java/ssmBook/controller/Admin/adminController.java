@@ -333,12 +333,11 @@ public class adminController {
      * OK
      */
     @RequestMapping("/indentList")
-    public String indentList(byte state, HttpServletRequest request,
+    public String indentList(HttpServletRequest request,
                              @RequestParam(required = false,defaultValue = "1")int page)
     {
         request.setAttribute("page",page);
-        request.setAttribute("status",state);
-        request.setAttribute("indentList",indentService.getIndentList(state,page,size));
+        request.setAttribute("indentList",indentService.getIndentList(page,size));
         return "/admin/pages/indent-list";
     }
 
