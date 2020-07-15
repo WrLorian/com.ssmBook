@@ -88,7 +88,7 @@
             <h3>图书分类</h3>
             <ul class="list">
                 <c:forEach var="category" items="${categoryList}">
-                    <li><a href="category?cId=${category.cId}">${category.cName}</a></li>
+                    <li><a href="category?cId=${category.cId}" style="text-decoration:none;color: black;">${category.cName}</a></li>
                 </c:forEach>
             </ul>
         </div>

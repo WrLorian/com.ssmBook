@@ -35,7 +35,6 @@
             <tr><td width="150px" align="center"  placeholder="请输入注册密码">密码</td>
                 <td><input type="password" name="uPassWord"></td>
             </tr>
-            <tr><td align="center"><input type="checkbox" name="cookie" ></td><td height="30px">记住我</td></tr>
             <tr><td align="right"><a href="/index/reg" >没有账号?注册</a></td><td><input type="submit" value="登录" name="log"></td></tr>
         </table>
     </form>

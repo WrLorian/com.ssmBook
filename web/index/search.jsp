@@ -64,18 +64,34 @@
     <div class="leftcolumn">
         <div class="card">
             <h3>查询结果</h3>
-            <table>
-                <tr>
+            <table width="1000px">
                     <c:forEach var="book" items="${bookList}">
+                        <tr>
                         <td> <a href="detail?bookId=${book.bookId}"><img src="../${book.img}" class="thumb_big"/></a></td>
-                        <td>${book.bookName}人间失格</td>
-                        <td><a href="detail?bookId=${book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">图书详情</a></td>
-                        <td>
-                            <a href="detail?bookId=${book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">加入购物车</a></td>
+                        <td><h3>
+                                ${book.bookName}
+                        </h3>
                         </td>
+                        <td width="200px">
+                            <h3>
+                                <a href="detail?bookId=${book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">图书详情</a>
+                            </h3>
+                            </td>
+                        <td>
+                            <h3>
+                                <a href="detail?bookId=${book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">加入购物车</a></td>
+                            </h3>
+                        </td>
+                        </tr>
                     </c:forEach>
+                <tr align="right"><td colspan="3" align="right">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td>${pageTool}</td>
+                        </tr>
+                    </table>
+                </td>
                 </tr>
-
             </table>
         </div>
     </div>
@@ -90,7 +106,7 @@
             <h3>图书分类</h3>
             <ul class="list">
                 <c:forEach var="category" items="${categoryList}">
-                    <li><a href="category?cId=${category.cId}">${category.cName}</a></li>
+                    <li><a href="category?cId=${category.cId}" style="text-decoration:none;color: black;">${category.cName}</a></li>
                 </c:forEach>
             </ul>
         </div>

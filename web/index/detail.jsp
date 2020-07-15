@@ -54,7 +54,7 @@
     <a href="/order">我的订单</a>
     <a href="userLogout">登出</a>
     <table><form method="post" action="/search">
-        <tr><td> <input id="input2" type="text" name="bookName" placeholder="请输入书名"></td><td> <input id="input1" type="submit" name="search" value="搜索"></td></tr>
+        <tr><td> <input id="input2" type="text" name="bookName" placeholder="请输入分类"></td><td> <input id="input1" type="submit" name="search" value="搜索"></td></tr>
     </form></table>
 
 </div>
@@ -63,13 +63,13 @@
     <div class="leftcolumn">
         <div class="card">
             <h3>图书详情</h3>
-            <table>
+            <table width="1000px">
                     <c:forEach var="u" items="${detailList}">
                         <tr>
                         <td> <a href="detail?bookId=${u.bookId}"><img src="../${u.img}" class="thumb_big"/></a></td>
-                        <td>${u.bookName}</td>
-                        <td>${u.brief}</td>
-                        <td>
+                            <td><h3>${u.bookName}</h3></td>
+                        <td width="400px">${u.brief}</td>
+                        <td align="center">
                             <a href="cart?bookId=${u.bookId}" style="text-decoration:none;color: black;background-color: lightblue">加入购物车</a></td>
                         </td>
                         </tr>
@@ -91,7 +91,7 @@
             <h3>图书分类</h3>
             <ul class="list">
                 <c:forEach var="category" items="${categoryList}">
-                    <li><a href="category?cId=${category.cId}">${category.cName}</a></li>
+                    <li><a href="category?cId=${category.cId}" style="text-decoration:none;color: black;">${category.cName}</a></li>
                 </c:forEach>
             </ul>
         </div>
