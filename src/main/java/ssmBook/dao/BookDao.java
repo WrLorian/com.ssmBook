@@ -38,7 +38,10 @@ public interface BookDao {
      * 根据id查询图书
      */
     @Select("select * from book where bookId=#{bookId}")
-    public book selectById(int bookId);
+    public book selectById(@Param("bookId") int bookId);
+
+    @Select("select * from book where bookId=#{bookId}")
+    public List<book> selectListById(@Param("bookId") int bookId);
 
     /**
      * 查询共有多少本图书

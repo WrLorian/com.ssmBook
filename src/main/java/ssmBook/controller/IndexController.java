@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import ssmBook.service.BookService;
 
 import javax.servlet.http.HttpServletRequest;
+
+import ssmBook.service.CategoryService;
 import ssmBook.util.PageUtil;
 
 /**
@@ -30,6 +32,8 @@ public class IndexController {
 
     @Autowired
     private BookService bookService;
+    @Autowired
+    private CategoryService categoryService;
 
     /**
      * 书店首页
@@ -38,6 +42,7 @@ public class IndexController {
     public String index(HttpServletRequest request) {
         //request.setAttribute("newList", bookService.getListIsNews(1, 2));//新品
         request.setAttribute("specialList", bookService.getListIsSpecial(1, 2));//精品
+        request.getSession().setAttribute("categoryList",categoryService.getCategoryListAll());
         request.setAttribute("flag", 1);
         return "index/index";
     }
@@ -74,7 +79,7 @@ public class IndexController {
      */
     @RequestMapping("/detail")
     public String detail(HttpServletRequest request, int bookId) {
-        request.setAttribute("book", bookService.getBookById(bookId));
+        request.setAttribute("detailList", bookService.getBookListById(bookId));
         return "index/detail";
     }
 
@@ -96,10 +101,10 @@ public class IndexController {
      * @return
      */
     @RequestMapping("/category")
-    public String category(HttpServletRequest request, int categoryId,
+    public String category(HttpServletRequest request, int cId,
                            @RequestParam(required=false, defaultValue="1")int page){
-        request.setAttribute("bookList", bookService.getListByCategoryId(categoryId, page, 12));
-        request.setAttribute("pageTool", PageUtil.getPageTool(request, bookService.getTotalByCategoryId(categoryId), page, 12));
+        request.setAttribute("bookList", bookService.getListByCategoryId(cId, page, 12));
+        request.setAttribute("pageTool", PageUtil.getPageTool(request, bookService.getTotalByCategoryId(cId), page, 12));
         return "index/search";
     }
 
