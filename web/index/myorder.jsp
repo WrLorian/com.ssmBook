@@ -52,7 +52,7 @@
     <a href="/news">新书上市</a>
     <a href="/cart">购物车</a>
     <a href="/order">我的订单</a>
-    <a href="/logout">登出</a>
+    <a href="userLogout">登出</a>
     <table><form method="post" action="/index/search">
         <tr><td> <input id="input2" type="text" name="bookName" placeholder="请输入书名"></td><td> <input id="input1" type="submit" name="search" value="搜索"></td></tr>
     </form></table>

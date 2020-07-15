@@ -52,7 +52,7 @@
     <a href="/news">新书上市</a>
     <a href="/cart">购物车</a>
     <a href="/order">我的订单</a>
-    <a href="/logout">登出</a>
+    <a href="userLogout">登出</a>
     <table><form method="post" action="/search">
         <tr><td> <input id="input2" type="text" name="bookName" placeholder="请输入书名"></td><td> <input id="input1" type="submit" name="search" value="搜索"></td></tr>
     </form></table>
@@ -71,7 +71,7 @@
                                 <td>${book.bookName}</td>
                                 <td><a href="detail?bookId=${book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">图书详情</a>
                                 <td>
-                                    <a href="cart?bookId=${book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">加入购物车</a>
+                                    <a href="/buy?bookId=${book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">加入购物车</a>
                                 </td>
                             </tr>
                         </c:forEach>
@@ -99,7 +99,7 @@
             <h3>图书分类</h3>
             <ul class="list">
                 <c:forEach var="category" items="${categoryList}">
-                    <li><a href="category?categoryId=${category.id}">${category.name}</a></li>
+                    <li><a href="category?cId=${category.cId}">${category.name}</a></li>
                 </c:forEach>
             </ul>
         </div>

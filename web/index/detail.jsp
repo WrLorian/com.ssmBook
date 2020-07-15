@@ -52,7 +52,7 @@
     <a href="/news">新书上市</a>
     <a href="/cart">购物车</a>
     <a href="/order">我的订单</a>
-    <a href="/logout">登出</a>
+    <a href="userLogout">登出</a>
     <table><form method="post" action="/search">
         <tr><td> <input id="input2" type="text" name="bookName" placeholder="请输入书名"></td><td> <input id="input1" type="submit" name="search" value="搜索"></td></tr>
     </form></table>
@@ -62,18 +62,19 @@
 <div class="row">
     <div class="leftcolumn">
         <div class="card">
-            <h3>精品推荐</h3>
+            <h3>图书详情</h3>
             <table>
-                <tr>
-                    <c:forEach var="book" items="${specialList}">
-                        <td> <a href="detail?bookId=${book.id}"><img src="../${book.cover}" class="thumb_big"/></a></td>
-                        <td>${book.bookName}人间失格</td>
-                        <td>${book.brief}</td>
+                    <c:forEach var="u" items="${detailList}">
+                        <tr>
+                        <td> <a href="detail?bookId=${u.bookId}"><img src="../${u.img}" class="thumb_big"/></a></td>
+                        <td>${u.bookName}</td>
+                        <td>${u.brief}</td>
                         <td>
-                            <a href="cart?bookId=${book.id}" style="text-decoration:none;color: black;background-color: lightblue">加入购物车</a></td>
+                            <a href="cart?bookId=${u.bookId}" style="text-decoration:none;color: black;background-color: lightblue">加入购物车</a></td>
                         </td>
+                        </tr>
                     </c:forEach>
-                </tr>
+
             </table>
         </div>
     </div>
