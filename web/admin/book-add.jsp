@@ -15,16 +15,13 @@
 <form method="post" action="/bookAdd"><%--后续补充--%>
     <table align="center">
         <tr>
-            <td>图书编号</td><td><input type="text" name="bookId"></td>
-        </tr>
-        <tr>
             <td>图书名称</td><td><input type="text" name="bookName"></td>
         </tr><tr>
         <td>图书图片</td><td><input type="text" name="img" placeholder="请输入图片路径"></td>
     </tr><tr>
         <td>价格</td><td><input type="text" name="price"></td>
     </tr><tr>
-        <td>库存数量</td><td><input type="text" name="number"></td>
+        <td>库存数量</td><td><input type="text" name="count"></td>
     </tr><tr>
         <td>简介</td><td><input type="text" name="brief"></td>
     </tr><tr>

@@ -2,12 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="ssmBook.service.CategoryService" %>
 <%@ page import="ssmBook.pojo.category" %>
-<%
-    CategoryService service=new CategoryService();
-    category result=service.getCategoryById((Integer) request.getAttribute("id"));
-    request.setAttribute("id",result.getcId());
-    request.setAttribute("name",result.getcId());
-%>
 <html>
 <head>
     <title>书籍修改</title>
@@ -135,10 +129,10 @@
             <form method="post" action="/categoryUpdate"><%--后续补充--%>
                 <table align="center">
                     <tr>
-                        <td>编号</td><td><input type="text" name="bookId" value="${id}"></td>
+                        <td>编号</td><td><input type="text" name="cId" value="${category.cId}"></td>
                     </tr>
                     <tr>
-                        <td>分类名称</td><td><input type="text" name="bookName" value="${name}"></td>
+                        <td>分类名称</td><td><input type="text" name="cName" value="${category.cName}"></td>
                     </tr><tr>
                     <td><input type="submit" name="cancel" value="取消"></td><td><input type="submit" name="add" value="提交"></td>
                 </tr>

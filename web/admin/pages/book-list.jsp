@@ -182,19 +182,11 @@
             </table>
             <a href="javascript:divShow();" id="btnhref" style="text-decoration:none;color: black;background-color: lightblue">添加图书</a>
             <a href="javascript:divShow1();" id="btnhref1" style="text-decoration:none;color: black;background-color: lightblue">查看所有图书信息</a>
-            <a href="javascript:divShow2();" id="btnhref2" style="text-decoration:none;color: black;background-color: lightblue">查看推荐图书</a>
-            <a href="javascript:divShow3();" id="btnhref3" style="text-decoration:none;color: black;background-color: lightblue">查看最新图书</a>
                 <div id="btnshow" style=" display: none;">
              <c:import url="../book-add.jsp"></c:import>
         </div>
                 <div id="btnshow1" style="display: none;">
              <c:import url="../allBookList.jsp"></c:import>
-        </div>
-                <div id="btnshow2" style="display: none;">
-             <c:import url="../book-recommend.jsp"></c:import>
-        </div>
-                <div id="btnshow3" style="display: none;">
-             <c:import url="../book-new.jsp"></c:import>
         </div>
         </div>    
     </div></div>

@@ -174,10 +174,25 @@
              <c:import url="../category-add.jsp"></c:import>
         </div>
                 <div id="btnshow1" style="display: none;">
-             <c:import url="../allAdminList.jsp"></c:import>
+             <table class="altrowstable" id="alternatecolor" width="800px">
+            <tr>
+                <th>编号</th><th>分类名</th><th>操作</th>
+            </tr>
+            <tr align="center">
+                <c:forEach  items="${categoryList}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
+                <td>${u.cId}</td>
+                <td>${u.cName}</td>
+                <td>
+                    <a href="categoryUp?id=${u.cId}">修改</a><!--返回id给后端，不一样的修改-->
+                <a href="categoryDelete?id=${u.cId}">删除</a><!--返回id给后端，不一样的修改-->
+                </td>
+                </c:forEach>
+            </tr>
+        </table>
         </div>
         </div>    
     </div></div>
 </div>
+<div class="alert alert-success" role="alert">${msg}</div>
 </body>
 </html>

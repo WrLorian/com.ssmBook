@@ -36,7 +36,6 @@ public class adminController {
     private UserService userService;
 
 
-
     /**
      * 管理员登录
      * 1
@@ -47,7 +46,8 @@ public class adminController {
         if(adminService.checkUser(admin.getAdminName(),admin.getPassWord()))
         {
             request.getSession().setAttribute("admin",admin.getAdminName());
-            return "admin/index";
+            request.setAttribute("id",admin.getAdminid());
+            return "admin/pages/indent-list";
         }
         request.setAttribute("msg","用户密码错误");
         System.out.println("密码错误");
@@ -82,12 +82,12 @@ public class adminController {
     /**
      * 跳转添加管理员页面
      */
-//    @RequestMapping("/adminAd")
-//    public String adminAd()
-//    {
-////        返回到添加管理员页面
-//        return "admin/pages/admin-list";
-//    }
+    @RequestMapping("/adminAd")
+    public String adminAd()
+   {
+      //返回到添加管理员页面
+      return "admin/pages/admin-add";
+   }
 
     /**
      * 添加管理员页面的添加操作
@@ -135,12 +135,12 @@ public class adminController {
     /**
      * 跳转重置管理员密码页面（需获取需要更改的管理员的ID）
      */
-//    @RequestMapping("/adminRe")
-//    public String adminResetPwd(HttpServletRequest request,int adminId)
-//    {
-//        request.setAttribute("admin",adminService.selectAdminById(adminId));
-//        return "admin/admin";
-//    }
+    @RequestMapping("/adminRename")
+    public String adminResetPwd(HttpServletRequest request,int adminId)
+    {
+        request.setAttribute("admin",adminService.selectAdminById(adminId));
+        return "admin/pages/admin-modify";
+    }
 
     /**
      * 重置管理员密码
@@ -150,7 +150,7 @@ public class adminController {
     public String adminResetPwd(admin admin)
     {
         adminService.updateAdmin(admin);
-        return "redirect:admin/pages/admin-list";
+        return "redirect:adminList";
     }
 
     /**
@@ -208,19 +208,19 @@ public class adminController {
     public String bookAdd(book book)
     {
         bookService.bookAdd(book);
-        return "redirect:admin/pages/book-list";
+        return "redirect:bookList";
     }
 
     /**
      * 跳转到图书修改
      */
-//    @RequestMapping("/bookUp")
-//    public String bookUpdate(HttpServletRequest request,int bookId)
-//    {
-//        request.setAttribute("categoryList",categoryService.getCategoryListAll());
-//        request.setAttribute("book",bookService.getBookById(bookId));
-//        return "/admin/book-update";
-//    }
+    @RequestMapping("/bookUp")
+   public String bookUpdate(HttpServletRequest request,int bookId)
+   {
+       request.setAttribute("categoryList",categoryService.getCategoryListAll());
+        request.setAttribute("book",bookService.getBookById(bookId));
+       return "/admin/pages/book-modify";
+    }
 
     /**
      * 图书更新
@@ -230,7 +230,7 @@ public class adminController {
     public String bookUpdate(book book)
     {
         bookService.bookUpdate(book);
-        return "redirect:admin/pages/book-list";
+        return "redirect:bookList";
     }
 
     /**
@@ -241,7 +241,7 @@ public class adminController {
     public String bookDelete(int id)
     {
         bookService.bookDelete(id);
-        return "redirect:admin/pages/book-list";
+        return "redirect:bookList";
     }
 
     /**
@@ -290,21 +290,26 @@ public class adminController {
     /**
      * 跳转类目修改页面
      */
-//    @RequestMapping("/categoryUp")
-//    public String categoryUp(HttpServletRequest request,int id)
-//    {
-//        request.setAttribute("category",categoryService.getCategoryById(id));
-//        return "/admin/category-update";
-//    }
+    @RequestMapping("/categoryUp")
+   public String categoryUp(HttpServletRequest request,int id)
+    {
+        request.setAttribute("category",categoryService.getCategoryById(id));
+       return "/admin/pages/category-modify";
+   }
 
     /**
      * 类目修改
      * OK
      */
     @RequestMapping("/categoryUpdate")
-    public String categoryUpdate(category category)
+    public String categoryUpdate(category category,HttpServletRequest request)
     {
-        categoryService.categoryUpdate(category);
+        try{
+            categoryService.categoryUpdate(category);
+            request.setAttribute("msg","修改成功");
+        }catch (Exception e){
+            request.setAttribute("msg","修改失败");
+        }
         return "redirect:categoryList";
     }
 
@@ -372,7 +377,7 @@ public class adminController {
     public String itemList(int id,HttpServletRequest request)
     {
         request.setAttribute("itemList",indentService.getItemListById(id));
-        return "/admin/item-list";
+        return "/admin/pages/item-list";
     }
 
     /**
@@ -385,17 +390,17 @@ public class adminController {
     {
         request.setAttribute("userList",userService.getList(page,size));
         request.setAttribute("pageTool", PageUtil.getPageToolAdmin(request,userService.getTotal(),page,size));
-        return "/admin/pages/user-modify";
+        return "/admin/pages/user-list";
     }
 
     /**
      * 跳转到用户添加页面
      */
-//    @RequestMapping("/userAd")
-//    public String userAd()
-//    {
-//        return "/admin/user-add";
-//    }
+    @RequestMapping("/userAd")
+    public String userAd()
+   {
+       return "/admin/pages/user-add";
+   }
 
     /**
      *用户添加页面
@@ -435,12 +440,12 @@ public class adminController {
     /**
      * 跳转到用户更新界面
      */
-//    @RequestMapping("/userUp")
-//    public String userUp(int id,HttpServletRequest request)
-//    {
-//        request.setAttribute("user",userService.getById(id));
-//        return "/admin/user-update";
-//    }
+    @RequestMapping("/userUp")
+    public String userUp(int id,HttpServletRequest request)
+  {
+       request.setAttribute("userMo",userService.getById(id));
+        return "/admin/pages/user-modify";
+    }
 
     /**
      * 假如不需要密码加密，该方法可以和上述密码重置合并为一种方法

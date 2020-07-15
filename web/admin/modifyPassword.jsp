@@ -57,13 +57,10 @@
             <h2 style="font-family:'幼圆'" align="center">后台管理系统</h2>
         </div>
         <br>
-        <form action="register" method="post"><!--后续修改-->
+        <form action="/adminModify" method="post"><!--后续修改-->
             <table  align="center" width="300px" height="200px">
                 <tr><td width="150px" align="center">账号</td>
                     <td><input type="text" name="adminid" placeholder="登录时使用账号"></td>
-                </tr>
-                <tr><td width="150px" align="center">原密码</td>
-                    <td><input type="password" name="password" placeholder="请输入原登录密码"></td>
                 </tr>
                 <tr><td width="150px" align="center">新密码</td>
                     <td><input type="password" name="password" placeholder="请输入新登录密码"></td>

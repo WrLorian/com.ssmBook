@@ -150,7 +150,7 @@
                 <li><a href="userList">客户管理</a></li>
                 <li><a href="bookList">商品管理</a></li>
                 <li><a href="categoryList">类别管理</a></li>
-                <li><a href="../modifyPassword.jsp">修改密码</a></li><!--??-->
+                <li><a href="/adminModify">修改密码</a></li><!--??-->
                 <li><a href="logout">退出</a></li>
             </ul>
         </div>
@@ -162,13 +162,25 @@
                 </form></td>
                 </tr>
             </table>
-            <a href="javascript:divShow();" id="btnhref" style="text-decoration:none;color: black;background-color: lightblue">添加管理员</a>
+            <a href="/adminAd" style="text-decoration:none;color: black;background-color: lightblue">添加管理员</a>
             <a href="javascript:divShow1();" id="btnhref1" style="text-decoration:none;color: black;background-color: lightblue">查看所有管理员</a>
-                <div id="btnshow" style=" display: none;">
-             <c:import url="../admin-add.jsp"></c:import>
-        </div>
                 <div id="btnshow1" style="display: none;">
-             <c:import url="../allAdminList.jsp"></c:import>
+            <table class="altrowstable" id="alternatecolor" width="800px">
+                <tr>
+                    <th>账号</th><th>用户名</th><th>密码</th><th>操作</th>
+                </tr>
+                <tr align="center">
+                    <c:forEach  items="${adminList}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
+                    <td>${u.adminId}</td>
+                    <td>${u.adminName}</td>
+                    <td>${u.passWord}</td>
+                    <td>
+                        <a href="adminRename?id=${u.adminId}">修改</a>
+                        <a href="adminDelete?id=${u.adminId}">删除</a>
+                    </td>
+                    </c:forEach>
+                </tr>
+            </table>
         </div>
         </div>    
     </div></div>

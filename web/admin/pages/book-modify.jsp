@@ -1,22 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="ssmBook.service.BookService" %>
-<%@ page import="ssmBook.pojo.book" %>
-<%
-    BookService service=new BookService();
-    book book=service.getBookById((Integer) request.getAttribute("id"));
-    request.setAttribute("id",book.getBookId());
-    request.setAttribute("name",book.getBookName());
-    request.setAttribute("img",book.getImg());
-    request.setAttribute("price",book.getPrice());
-    request.setAttribute("count",book.getCount());
-    request.setAttribute("brief",book.getBrief());
-    request.setAttribute("author",book.getAuthor());
-    request.setAttribute("press",book.getPress());
-    request.setAttribute("time",book.getTime());
-    request.setAttribute("grade",book.getGrade());
-    request.setAttribute("cid",book.getcId());
-%>
 <html>
 <head>
     <title>书籍修改</title>
@@ -144,28 +127,28 @@
             <form method="post" action="/bookUpdate"><%--后续补充--%>
                 <table align="center">
                     <tr>
-                        <td>图书编号</td><td><input type="text" name="bookId" value="${id}"></td>
+                        <td>图书编号</td><td><input type="text" name="bookId" value="${book.bookId}"></td>
                     </tr>
                     <tr>
-                        <td>图书名称</td><td><input type="text" name="bookName" value="${name}"></td>
+                        <td>图书名称</td><td><input type="text" name="bookName" value="${book.bookName}"></td>
                     </tr><tr>
-                    <td>图书图片</td><td><input type="text" name="img" placeholder="请输入图片路径" value="${img}"></td>
+                    <td>图书图片</td><td><input type="text" name="img" placeholder="请输入图片路径" value="${book.img}"></td>
                 </tr><tr>
-                    <td>价格</td><td><input type="text" name="price" value="${price}"></td>
+                    <td>价格</td><td><input type="text" name="price" value="${book.price}"></td>
                 </tr><tr>
-                    <td>库存数量</td><td><input type="text" name="number" value="${count}"></td>
+                    <td>库存数量</td><td><input type="text" name="number" value="${book.count}"></td>
                 </tr><tr>
-                    <td>简介</td><td><input type="text" name="brief" value="${brief}"></td>
+                    <td>简介</td><td><input type="text" name="brief" value="${book.brief}"></td>
                 </tr><tr>
-                    <td>作者</td><td><input type="text" name="author" value="${author}"></td>
+                    <td>作者</td><td><input type="text" name="author" value="${book.author}"></td>
                 </tr><tr>
-                    <td>出版社</td><td><input type="text" name="press" value="${press}"></td>
+                    <td>出版社</td><td><input type="text" name="press" value="${book.press}"></td>
                 </tr><tr>
-                    <td>出版时间</td><td><input type="text" name="time" value="${time}"></td>
+                    <td>出版时间</td><td><input type="text" name="time" value="${book.time}"></td>
                 </tr><tr>
-                    <td>评分</td><td><input type="text" name="grade" value="${grade}"></td>
+                    <td>评分</td><td><input type="text" name="grade" value="${book.grade}"></td>
                 </tr><tr>
-                    <td>分类</td><td><input type="text" name="categoryid" placeholder="请输入分类编号" value="${cid}"></td>
+                    <td>分类</td><td><input type="text" name="cId" placeholder="请输入分类编号" value="${book.cId}"></td>
                 </tr><tr>
                     <td><input type="submit" name="cancel" value="取消"></td><td><input type="submit" name="add" value="提交"></td>
                 </tr>

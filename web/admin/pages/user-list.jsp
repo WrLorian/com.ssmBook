@@ -171,17 +171,37 @@
                     </form></td>
                 </tr>
             </table>
-            <a href="javascript:divShow();" id="btnhref" style="text-decoration:none;color: black;background-color: lightblue">添加客户</a>
+            <a href="/userAd" style="text-decoration:none;color: black;background-color: lightblue">添加客户</a>
             <a href="javascript:divShow1();" id="btnhref1" style="text-decoration:none;color: black;background-color: lightblue">查看所有客户信息</a>
-                <div id="btnshow" style=" display: none;">
-             <c:import url="../user-add.jsp"></c:import>
-        </div>
+            <div class="alert alert-success" role="alert" style="color: #3c763d">${msg}</div>
                 <div id="btnshow1" style="display: none;">
-             <c:import url="../allAdminList.jsp"></c:import>
+            <table class="altrowstable" id="alternatecolor" width="800px">
+                <tr>
+                    <th>账号</th><th>用户名</th><th>密码</th><th>性别</th><th>年龄</th><th>联系电话</th><th>地址</th><th>操作</th>
+                </tr>
+
+                    <c:forEach  items="${userList}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
+                <tr align="center">
+                    <td>${u.userId}</td>
+                    <td>${u.userName}</td>
+                    <td>${u.uPassWord}</td>
+                    <td>${u.uSex}</td>
+                    <td>${u.uAge}</td>
+                    <td>${u.uTel}</td>
+                    <td>${u.uLoc}</td>
+                    <td>
+                        <a href="/userUp?id=${u.userId}">修改</a><!--返回id给后端，不一样的修改-->
+                    <a href="/deleteUser?id=${u.userId}">删除</a><!--返回id给后端，不一样的修改-->
+                    </td>
+                </tr>
+                    </c:forEach>
+
+            </table>
         </div>
         </div>    
     </div></div>
 </div>
+
 </body>
 </html>
 

@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>精品推荐</title>
+    <title>我的订单</title>
     <style>
         /* 响应式布局 - 屏幕尺寸小于 800px 时，两列布局改为上下布局 */
         @media screen and (max-width: 800px) {
@@ -12,7 +12,6 @@
                 padding: 0;
             }
         }
-
         /* 响应式布局 -屏幕尺寸小于 400px 时，导航等布局改为上下布局 */
         @media screen and (max-width: 400px) {
             .topnav a {
@@ -55,8 +54,8 @@
     <a href="order">我的订单</a>
     <a href="login.jsp">登出</a>
     <table><form method="post" action="">
- <tr><td> <input id="input2" type="text" name="search" placeholder="请输入书名、分类等"></td><td> <input id="input1" type="submit" name="search" value="搜索"></td></tr>
-        </form></table>
+        <tr><td> <input id="input2" type="text" name="search" placeholder="请输入书名、分类等"></td><td> <input id="input1" type="submit" name="search" value="搜索"></td></tr>
+    </form></table>
 
 </div>
 
@@ -66,10 +65,10 @@
             <h3>精品推荐</h3>
             <table>
                 <tr>
-                    <c:forEach var="book" items="${specialList}">
+                    <c:forEach var="book" items="${orderList}">
                         <td> <a href="detail?bookId=${book.id}"><img src="../${book.cover}" class="thumb_big"/></a></td>
-                        <td>${book.name}人间失格</td>
-                        <td><a href="detail?bookId=${book.id}" style="text-decoration:none;color: black;background-color: lightblue">图书详情</a></td>
+                        <td>${book.bookName}人间失格</td>
+                        <td>${book.brief}</td>
                         <td>
                             <a href="cart?bookId=${book.id}" style="text-decoration:none;color: black;background-color: lightblue">加入购物车</a></td>
                         </td>

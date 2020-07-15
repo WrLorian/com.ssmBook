@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Yokyi
-  Date: 2020/7/14
-  Time: 12:57
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -37,13 +30,13 @@
     <form action="login" method="post">
         <table  align="center" width="300px" height="200px">
             <tr><td width="150px" align="center">用户</td>
-                <td><input type="text" name="adminid" placeholder="请输入注册账号"></td>
+                <td><input type="text" name="userId" placeholder="请输入注册账号"></td>
             </tr>
             <tr><td width="150px" align="center"  placeholder="请输入注册密码">密码</td>
-                <td><input type="password" name="password"></td>
+                <td><input type="password" name="uPassWord"></td>
             </tr>
             <tr><td align="center"><input type="checkbox" name="cookie" ></td><td height="30px">记住我</td></tr>
-            <tr><td align="right"><input type="submit" value="注册" name="zc"></td><td><input type="submit" value="登录" name="denglu"></td></tr>
+            <tr><td align="right"><input type="submit" value="注册" name="reg"></td><td><input type="submit" value="登录" name="log"></td></tr>
         </table>
     </form>
 </div>
