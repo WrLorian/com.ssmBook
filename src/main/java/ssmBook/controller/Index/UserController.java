@@ -54,7 +54,7 @@ public class UserController {
     @RequestMapping("/reg")
     public String reg()
     {
-        return "/index/register.jsp";
+        return "index/register";
     }
 
     /**
@@ -67,18 +67,18 @@ public class UserController {
         if(user.getUserName().isEmpty()||user.getuPassWord().isEmpty())
         {
             request.setAttribute("msg","用户名或密码不能为空!");
-            return "/index/register.jsp";
+            return "index/register";
         }
         else if(userService.isExist(user.getUserName()))
         {
             request.setAttribute("msg","用户名已存在!");
-            return "/index/register.jsp";
+            return "index/register";
         }
         else
         {
             userService.userAdd(user);
             request.setAttribute("msg","注册成功，请登录！");
-            return "/index/login.jsp";
+            return "redirect:index/log";
         }
     }
 
@@ -88,7 +88,7 @@ public class UserController {
     @RequestMapping("/log")
     public String log()
     {
-        return "/index/login.jsp";
+        return "index/login";
     }
 
     /**
@@ -101,17 +101,17 @@ public class UserController {
         if(userService.checkUser(user.getUserName(), user.getuPassWord()))
         {
             request.getSession().setAttribute("username", user.getUserName());
-            return "index";
+            return "index/index";
         }
         else if(user.getUserName().isEmpty()||user.getuPassWord().isEmpty())
         {
             request.setAttribute("msg", "用户名或密码为空!");
-            return "index";
+            return "index/index";
         }
         else
         {
             request.setAttribute("msg", "用户名或密码错误!");
-            return "/index/login.jsp";
+            return "index/login";
         }
     }
 
@@ -124,7 +124,7 @@ public class UserController {
     {
         request.getSession().removeAttribute("username");
         request.getSession().removeAttribute("indent");
-        return "/index/login.jsp";
+        return "index/login";
     }
 
     /**
@@ -142,7 +142,7 @@ public class UserController {
                 request.setAttribute("indent",indentList.get(0));
             }
         }
-        return "/index/cart.jsp";
+        return "index/shopList";
     }
 
     /**
@@ -172,7 +172,7 @@ public class UserController {
      * 减少数量
      */
     @RequestMapping("/lessen")
-    public String lessen(HttpServletRequest request, int bookId)
+    public @ResponseBody String lessen(HttpServletRequest request, int bookId)
     {
         indent indent = (indent) request.getSession().getAttribute(indentKey);
         if (indent != null) {
@@ -185,7 +185,7 @@ public class UserController {
      * 删除书籍
      */
     @RequestMapping("/delete")
-    public String delete(HttpServletRequest request, int bookId)
+    public @ResponseBody String delete(HttpServletRequest request, int bookId)
     {
         indent indent2 = (indent) request.getSession().getAttribute(indentKey);
         if (indent2 != null) {
@@ -204,7 +204,7 @@ public class UserController {
         //未登录，先跳转到登录页面
         if (username==null || username.toString().isEmpty()) {
             request.setAttribute("msg", "请登录后提交订单!");
-            return "/index/login.jsp";
+            return "index/login";
         }
             indent indentSession = (indent) request.getSession().getAttribute(indentKey);
             user user = userService.getByUsername(username.toString());
@@ -219,7 +219,7 @@ public class UserController {
 
             request.getSession().removeAttribute(indentKey);    // 清除购物车
             request.setAttribute("msg", "提交订单成功!");
-            return "/index/cart.jsp";
+            return "index/shopList";
         }
 
 
@@ -234,12 +234,12 @@ public class UserController {
         if(username==null||username.toString().isEmpty())
         {
             request.setAttribute("msg","请登录后再查看订单！");
-            return "login";
+            return "index/login";
         }
         else
         {
             request.setAttribute("indentList",indentService.getIndentByUser(userService.getByUsername(username.toString()).getUserId()));
-            return "/index/order.jsp";
+            return "index/myorder";
         }
     }
 

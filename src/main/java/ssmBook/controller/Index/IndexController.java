@@ -38,17 +38,10 @@ public class IndexController {
         request.setAttribute("newList", bookService.getListIsNews(1, 2));//新品
         request.setAttribute("specialList", bookService.getListIsSpecial(1, 2));//精品
         request.setAttribute("flag", 1);
-        return "/index/index";
+        return "index/index";
     }
 
-    /**
-     * 书店简介，前端
-     */
-    @RequestMapping("/about")
-    public String about(HttpServletRequest request) {
-        request.setAttribute("flag", 2);
-        return "/index/about";
-    }
+
 
     /**
      * 精品推荐
@@ -59,7 +52,7 @@ public class IndexController {
         request.setAttribute("specialList", bookService.getListIsSpecial(page, 2));
         request.setAttribute("pageTool", PageUtil.getPageTool(request, bookService.getTotalIsSpecial(), page, 3));//精品推荐总数
         request.setAttribute("flag", 3);
-        return "/index/special";
+        return "index/recommend";
     }
 
     /**
@@ -71,8 +64,8 @@ public class IndexController {
                        @RequestParam(required = false, defaultValue = "1") int page) {
         request.setAttribute("newsList", bookService.getListIsNews(page, 3));
         request.setAttribute("pageTool", PageUtil.getPageTool(request, bookService.getTotalIsNews(), page, 3));//获取上新总数
-        request.setAttribute("flag", 4);
-        return "/index/new";
+                request.setAttribute("flag", 4);
+        return "index/new";
     }
 
     /**
@@ -81,7 +74,7 @@ public class IndexController {
     @RequestMapping("/detail")
     public String detail(HttpServletRequest request, int bookId) {
         request.setAttribute("book", bookService.getBookById(bookId));
-        return "/index/detail.jsp";
+        return "index/detail";
     }
 
     /**
@@ -95,7 +88,7 @@ public class IndexController {
             request.setAttribute("bookList", bookService.getListByBookName(searchName, page, 12));
             request.setAttribute("pageTool", PageUtil.getPageTool(request, bookService.getTotal(searchName), page, 12));//一页12项
         }
-        return "/index/search.jsp";
+        return "index/search";
     }
     /**
      * 类目搜索
@@ -106,7 +99,7 @@ public class IndexController {
                            @RequestParam(required=false, defaultValue="1")int page){
         request.setAttribute("bookList", bookService.getListByCategoryId(categoryId, page, 12));
         request.setAttribute("pageTool", PageUtil.getPageTool(request, bookService.getTotalByCategoryId(categoryId), page, 12));
-        return "/index/category.jsp";
+        return "index/search";
     }
 
 
