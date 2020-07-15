@@ -63,17 +63,18 @@
     <div class="leftcolumn">
         <div class="card">
             <h3>我的订单</h3>
-            <table>
-                <th>订单编号</th><th>图书编号</th><th>时间</th><th>数量</th><th>总价</th>
+            <table border="1">
                 <tr>
-                    <c:forEach var="book" items="${indentList}">
-                        <td>${book.iId}</td>
-                        <td>${book.bookId}</td>
-                        <td>${book.time}</td>
-                        <td>${book.amount}</td>
-                        <td>${book.total}</td>
-                    </c:forEach>
+                    <td>订单编号</td><td>书籍总数</td><td>总价</td><td>下单时间</td>
                 </tr>
+                <c:forEach var="indent" items="${indentList}">
+                <tr>
+                        <td>${indent.iId}</td>
+                        <td>${indent.amount}</td>
+                        <td>${indent.total}</td>
+                        <td>${indent.time}</td>
+                </tr>
+                </c:forEach>
             </table>
         </div>
     </div>

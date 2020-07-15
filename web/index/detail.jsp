@@ -70,7 +70,7 @@
                         <td>${u.bookName}</td>
                         <td>${u.brief}</td>
                         <td>
-                            <a href="cart?bookId=${u.bookId}" style="text-decoration:none;color: black;background-color: lightblue">加入购物车</a></td>
+                            <a href="buy?bookId=${u.bookId}" style="text-decoration:none;color: black;background-color: lightblue">加入购物车</a></td>
                         </td>
                         </tr>
                     </c:forEach>

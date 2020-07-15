@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <head>
@@ -128,29 +129,30 @@
     <div class="leftcolumn">
         <div class="card">
             <h3>购物车</h3>
-            <a></a>
             <table class="altrowstable" id="alternatecolor" width="800px">
                 <th></th><th>书名</th><th>单价</th><th>数量</th><th>合计</th><th>操作</th>
+                <c:forEach var="item" items="${sessionScope.indent.itemList}">
                 <tr align="center">
-                    <c:forEach var="book" items="${cartList}">
-                        <td> <a href="detail?bookId=${book.bookId}"><img src="../${book.img}" class="thumb_big"/></a></td>
-                        <td>${book.bookName}</td>
-                        <td>${book.price}</td>
-                        <td>${book.count}</td>
-                        <td>${(book.price)*(book.num)}</td>
+
+                        <td> <a href="detail?bookId=${item.book.bookId}"><img src="../${item.book.img}" class="thumb_big"/></a></td>
+                        <td>${item.book.bookName}</td>
+                        <td>${item.book.price}</td>
+                        <td>${item.book.count}</td>
+                        <td>${(item.book.price)*(book.num)}</td>
                         <td>
-                            <a href="buy?bookId=${book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">添加</a>
-                        <a href="/lessen?bookId=${book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">减少</a>
-                        <a href="/delete?bookId=${book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">删除</a>
+                            <a href="buy?bookId=${item.book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">添加</a>
+                        <a href="/lessen?bookId=${item.book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">减少</a>
+                        <a href="/delete?bookId=${item.book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">删除</a>
                         </td>
-                    </c:forEach>
+
                 </tr>
+                </c:forEach>
             </table>
             <table width="800px">
-                <form method="post" action="/index/save">
-                    <tr><td>收货人姓名：<input type="text" name="name" id="input3"></td>
-                        <td>收货人电话：<input type="text" name="phone" id="input3"></td>
-                        <td>收货人地址：<input type="text" name="address" id="input3"></td>
+                <form method="post" action="save">
+                    <tr><td>收货人姓名：<input type="text" name="name"></td>
+                        <td>收货人电话：<input type="text" name="phone"></td>
+                        <td>收货人地址：<input type="text" name="address"></td>
                     </tr>
                     <tr><td></td><td></td><td><input type="submit" name="confirm" value="提交" id="input4"></td></tr>
                 </form>
