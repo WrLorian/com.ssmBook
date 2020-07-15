@@ -30,7 +30,7 @@ import ssmBook.dao.IndentDao;
  */
 
 @Controller
-@RequestMapping("/index")
+//@RequestMapping("/index")
 public class UserController {
 
     private static final String indentKey = "indent";//购物车
@@ -101,7 +101,7 @@ public class UserController {
         if(userService.checkUser(user.getUserName(), user.getuPassWord()))
         {
             request.getSession().setAttribute("username", user.getUserName());
-            return "index/index";
+            return "redirect:index";//这个redirect:的作用是 重定向到controller对啊我知道
         }
         else if(user.getUserName().isEmpty()||user.getuPassWord().isEmpty())
         {
@@ -119,7 +119,7 @@ public class UserController {
      * 用户注销
      *
      */
-    @RequestMapping("/logout")
+    @RequestMapping("/userLogout")
     public String logout(HttpServletRequest request)
     {
         request.getSession().removeAttribute("username");
@@ -165,7 +165,7 @@ public class UserController {
         {
             request.getSession().setAttribute(indentKey, indentService.ItemAdd(indent, bookService.getBookById(bookId)));//向已有订单里加项目
         }
-        return "ok";
+        return "index/shopList";
     }
 
     /**
@@ -178,7 +178,7 @@ public class UserController {
         if (indent != null) {
             request.getSession().setAttribute(indentKey, indentService.ItemLess(indent, bookService.getBookById(bookId)));
         }
-        return "ok";
+        return "index/shopList";
     }
 
     /**
@@ -191,7 +191,7 @@ public class UserController {
         if (indent2 != null) {
             request.getSession().setAttribute(indentKey, indentService.deleteItem(indent2, bookService.getBookById(bookId)));
         }
-        return "ok";
+        return "index/shopList";
     }
 
     /**
@@ -206,21 +206,21 @@ public class UserController {
             request.setAttribute("msg", "请登录后提交订单!");
             return "index/login";
         }
-            indent indentSession = (indent) request.getSession().getAttribute(indentKey);
-            user user = userService.getByUsername(username.toString());
-            indent.setState(indentSession.STATUS_WAIT);
-            indent.setTime(new Date());
-            indentSession.setUserId(user.getUserId());
-            indentSession.setUserName(indent.getUserName());
-            indentSession.setTel(indent.getTel());
-            indentSession.setLoc(indent.getLoc());
+        indent indentSession = (indent) request.getSession().getAttribute(indentKey);
+        user user = userService.getByUsername(username.toString());
+        indent.setState(indentSession.STATUS_WAIT);
+        indent.setTime(new Date());
+        indentSession.setUserId(user.getUserId());
+        indentSession.setUserName(indent.getUserName());
+        indentSession.setTel(indent.getTel());
+        indentSession.setLoc(indent.getLoc());
 
-            indentDao.insert(indentSession);    // 保存订单
+        indentDao.insert(indentSession);    // 保存订单
 
-            request.getSession().removeAttribute(indentKey);    // 清除购物车
-            request.setAttribute("msg", "提交订单成功!");
-            return "index/shopList";
-        }
+        request.getSession().removeAttribute(indentKey);    // 清除购物车
+        request.setAttribute("msg", "提交订单成功!");
+        return "index/shopList";
+    }
 
 
 

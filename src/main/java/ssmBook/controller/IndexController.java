@@ -65,7 +65,7 @@ public class IndexController {
                        @RequestParam(required = false, defaultValue = "1") int page) {
         request.setAttribute("newsList", bookService.getListIsNews(page, 3));
         request.setAttribute("pageTool", PageUtil.getPageTool(request, bookService.getTotalIsNews(), page, 3));//获取上新总数
-                request.setAttribute("flag", 4);
+        request.setAttribute("flag", 4);
         return "index/new";
     }
 
@@ -74,7 +74,7 @@ public class IndexController {
      */
     @RequestMapping("/detail")
     public String detail(HttpServletRequest request, int bookId) {
-        request.setAttribute("book", bookService.getBookById(bookId));
+        request.setAttribute("detailList", bookService.getBookById(bookId));
         return "index/detail";
     }
 

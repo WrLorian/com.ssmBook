@@ -50,6 +50,7 @@
             <h2 style="font-family:'幼圆'" align="center">后台管理系统</h2>
         </div>
         <br>
+        <div style="color:darkred;">${msg}</div>
         <form action="/adminRegister" method="post"><!--后续修改-->
             <table  align="center" width="300px" height="200px">
                 <tr><td width="150px" align="center">用户名</td>

@@ -59,6 +59,7 @@
         <br>
         <form action="login" method="post">
             <table  align="center" width="300px" height="200px">
+                <div style="color:darkred;">${msg}</div>
                 <tr><td width="150px" align="center">用户</td>
                     <td><input type="text" name="adminName" placeholder="请输入注册账号"></td>
                 </tr>

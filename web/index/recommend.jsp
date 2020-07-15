@@ -90,7 +90,7 @@
         <div class="card">
             <h2>欢迎光临</h2>
             <h2 style="color:#1b6d85;">书店简介</h2>
-            <img src="../index/img/jg.jpg" width="200px">
+            <img src="img/jg.jpg" width="200px">
             <p>本书店由嘉庚学子建设，为了服务大家方便网络订书而设置~</p>
         </div>
         <div class="card">
