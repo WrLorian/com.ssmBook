@@ -53,7 +53,7 @@ public interface IndentDao {
      * 查询一共有多少订单（分是否处理两种情况）
      */
     @Select("select count(*) from indent where state=#{state}")
-    public long selectTotalByStatus(@Param("status")byte status);
+    public long selectTotalByStatus(@Param("state")byte state);
 
     /**
      * 查询所有的订单
@@ -65,7 +65,7 @@ public interface IndentDao {
      * 查询所有的订单（分是否处理两种情况）
      */
     @Select("select * from indent where state=#{state} order by id desc limit #{begin}, #{size}")
-    public List<indent> selectListByStatus(@Param("status")byte status, @Param("begin")int begin, @Param("size")int size);
+    public List<indent> selectListByStatus(@Param("state")byte state, @Param("begin")int begin, @Param("size")int size);
 
     /**
      * 通过用户ID查询名下所有订单

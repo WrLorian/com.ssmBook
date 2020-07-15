@@ -46,7 +46,7 @@ public class adminController {
         if(adminService.checkUser(admin.getAdminName(),admin.getPassWord()))
         {
             request.getSession().setAttribute("admin",admin.getAdminName());
-            request.setAttribute("id",admin.getAdminid());
+            request.setAttribute("id",admin.getAdminId());
             return "admin/pages/indent-list";
         }
         request.setAttribute("msg","用户密码错误");
@@ -102,7 +102,7 @@ public class adminController {
             return "admin/pages/admin-list";
         }
         adminService.adminAdd(admin);
-        return "redirect:admin/pages/admin-list";
+        return "redirect:adminList";
     }
 
     /**
@@ -138,7 +138,7 @@ public class adminController {
     @RequestMapping("/adminRename")
     public String adminResetPwd(HttpServletRequest request,int adminId)
     {
-        request.setAttribute("admin",adminService.selectAdminById(adminId));
+        request.setAttribute("adminMo",adminService.selectAdminById(adminId));
         return "admin/pages/admin-modify";
     }
 
@@ -150,6 +150,9 @@ public class adminController {
     public String adminResetPwd(admin admin)
     {
         adminService.updateAdmin(admin);
+        System.out.println(admin.getPassWord());
+        System.out.println(admin.getAdminName());
+        System.out.println(admin.getAdminId());
         return "redirect:adminList";
     }
 
@@ -161,7 +164,7 @@ public class adminController {
     public String adminDelect(int adminId)
     {
         adminService.deleteAdmin(adminId);
-        return "redirect:admin/pages/admin-list";
+        return "redirect:adminList";
     }
 
     /**
@@ -219,6 +222,7 @@ public class adminController {
    {
        request.setAttribute("categoryList",categoryService.getCategoryListAll());
         request.setAttribute("book",bookService.getBookById(bookId));
+        System.out.println(bookId);
        return "/admin/pages/book-modify";
     }
 
@@ -270,11 +274,11 @@ public class adminController {
     /**
      * 跳转添加分类页面
      */
-//    @RequestMapping("categoryAd")
-//    public String categoryAd()
-//    {
-//        return "/admin/category-add";
-//    }
+    @RequestMapping("categoryAd")
+    public String categoryAd()
+   {
+       return "/admin/category-add";
+   }
 
     /**
      * 添加分类
@@ -284,7 +288,7 @@ public class adminController {
     public String categoryAdd(category category)
     {
         categoryService.categoryAdd(category);
-        return "redirect:admin/pages/category-list";
+        return "redirect:categoryList";
     }
 
     /**
@@ -329,12 +333,12 @@ public class adminController {
      * OK
      */
     @RequestMapping("/indentList")
-    public String indentList(byte status, HttpServletRequest request,
+    public String indentList(byte state, HttpServletRequest request,
                              @RequestParam(required = false,defaultValue = "1")int page)
     {
         request.setAttribute("page",page);
-        request.setAttribute("status",status);
-        request.setAttribute("indentList",indentService.getIndentList(status,page,size));
+        request.setAttribute("status",state);
+        request.setAttribute("indentList",indentService.getIndentList(state,page,size));
         return "/admin/pages/indent-list";
     }
 

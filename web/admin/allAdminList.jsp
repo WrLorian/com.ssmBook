@@ -10,8 +10,7 @@
         <td>${u.adminName}</td>
         <td>${u.passWord}</td>
         <td>
-            <a href="adminModify?id=${u.adminId}">修改</a>
-            <a href="adminDelete?id=${u.adminId}">删除</a>
+
         </td>
         </c:forEach>
     </tr>

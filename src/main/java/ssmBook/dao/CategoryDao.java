@@ -46,12 +46,12 @@ public interface CategoryDao {
     /**
      * 查询所有分类（有行列显示要求的）
      */
-    @Select("select * from category order by id desc limit #{begin}, #{size}")
+    @Select("select * from category order by cId desc limit #{begin}, #{size}")
     public List<category> selectList(@Param("begin")int begin, @Param("size")int size);
 
     /**
      * 查询所有分类（无行列显示要求的）
      */
-    @Select("select * from category order by id desc")
+    @Select("select * from category order by cId desc")
     public List<category> selectListAll();
 }

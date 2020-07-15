@@ -168,26 +168,24 @@
                     </form></td>
                 </tr>
             </table>
-            <a href="javascript:divShow();" id="btnhref" style="text-decoration:none;color: black;background-color: lightblue">添加分类</a>
+            <a href="/categoryAd" id="btnhref" style="text-decoration:none;color: black;background-color: lightblue">添加分类</a>
             <a href="javascript:divShow1();" id="btnhref1" style="text-decoration:none;color: black;background-color: lightblue">查看所有分类</a>
-                <div id="btnshow" style=" display: none;">
-             <c:import url="../category-add.jsp"></c:import>
-        </div>
                 <div id="btnshow1" style="display: none;">
              <table class="altrowstable" id="alternatecolor" width="800px">
             <tr>
                 <th>编号</th><th>分类名</th><th>操作</th>
             </tr>
-            <tr align="center">
                 <c:forEach  items="${categoryList}" var="u"><!-- 这里用到了ModelAndView方法 后端有改变的的话这里也要修改 -->
+            <tr align="center">
                 <td>${u.cId}</td>
                 <td>${u.cName}</td>
                 <td>
                     <a href="categoryUp?id=${u.cId}">修改</a><!--返回id给后端，不一样的修改-->
                 <a href="categoryDelete?id=${u.cId}">删除</a><!--返回id给后端，不一样的修改-->
                 </td>
-                </c:forEach>
             </tr>
+                </c:forEach>
+
         </table>
         </div>
         </div>    

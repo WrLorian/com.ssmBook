@@ -15,7 +15,7 @@ public interface AdminDao {
      * 查询所有Admin
      * @return
      */
-    @Select("select * from admin order by id desc limit #{begin},#{size}")
+    @Select("select * from admin order by adminId desc limit #{begin},#{size}")
     public List<admin> selectAll(@Param("begin")int begin, @Param("size")int size);
 
     /**
@@ -32,10 +32,10 @@ public interface AdminDao {
     public boolean adminInsert(admin admin);
 
     /**
-     * 修改Admin密码
+     * 修改Admin信息
      * @return
      */
-    @Update("update admin set passWord=#{passWord} where adminId=#{adminId}")
+    @Update("update admin set passWord=#{passWord},adminName=#{adminName} where adminId=#{adminId}")
     public boolean adminUpdate(admin admin);
 
     /**
@@ -60,7 +60,7 @@ public interface AdminDao {
      * 由于此处如果查询出多条记录会抛异常, 所以加上limit防止数据引起的错误
      */
     @Select("select * from admin where adminName=#{adminName} and passWord=#{passWord} limit 1")
-    public admin selectByUsernameAndPassword(@Param("adminName")String adminName, @Param("password")String passWord);
+    public admin selectByUsernameAndPassword(@Param("adminName")String adminName, @Param("passWord")String passWord);
 
     /**
      * 获取管理员的总数

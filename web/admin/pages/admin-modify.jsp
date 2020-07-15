@@ -1,14 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="ssmBook.service.AdminService" %>
-<%@ page import="ssmBook.pojo.admin" %>
-<%
-    AdminService service=new AdminService();
-    admin admin=service.selectAdminById((Integer) request.getAttribute("id"));
-    request.setAttribute("id",admin.getAdminid());
-    request.setAttribute("name",admin.getAdminName());
-    request.setAttribute("password",admin.getPassWord());
-%>
 <html>
 <head>
     <title>管理员修改</title>
@@ -136,12 +127,12 @@
             <form method="post" action="/adminModify"><%--后续补充--%>
                 <table align="center">
                     <tr>
-                        <td>账号</td><td><input type="text" name="userId" value="${id}" disabled=＂disabled＂></td>
+                        <td>用户名</td><td><input type="text" name="adminId" value="${adminMo.adminId}" ></td>
                     </tr>
                     <tr>
-                        <td>用户名</td><td><input type="text" name="userName" value="${name}"></td>
+                        <td>用户名</td><td><input type="text" name="adminName" value="${adminMo.adminName}" ></td>
                     </tr><tr>
-                    <td>密码</td><td><input type="password" name="password" value="${password}"></td>
+                    <td>密码</td><td><input type="password" name="passWord" value="${adminMo.passWord}"></td>
                 </tr><tr>
                     <td><input type="submit" name="cancel" value="取消"></td><td><input type="submit" name="add" value="提交"></td>
                 </tr>

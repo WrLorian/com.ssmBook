@@ -29,7 +29,7 @@
     </tr><tr>
         <td>出版社</td><td><input type="text" name="press"></td>
     </tr><tr>
-        <td>出版时间</td><td><input type="text" name="time"></td>
+        <td>出版时间</td><td><input type="datetime-local" name="time"></td>
     </tr><tr>
         <td>评分</td><td><input type="text" name="grade"></td>
     </tr><tr>
