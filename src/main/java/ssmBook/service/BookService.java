@@ -89,6 +89,11 @@ public class BookService {
         return book;
     }
 
+    public List<book> getBookListById(int id)
+    {
+        return bookDao.selectListById(id);
+    }
+
     /**
      * 通过分类搜索图书
      * 该搜索的字段既是该分类的ID

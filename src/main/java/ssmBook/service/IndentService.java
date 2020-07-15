@@ -60,10 +60,10 @@ public class IndentService {
     /**
      * 获取订单列表
      */
-    public List<indent> getIndentList(int page,int size)
+    public List<indent> getIndentList(int state,int page,int size)
     {
 
-        return pack(indentDao.selectListByStatus((page-1)*size, size));
+        return indentDao.selectListByStatus(state,(page-1)*size, size);
     }
 
     /**
