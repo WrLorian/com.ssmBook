@@ -27,16 +27,16 @@
     <h1 style="font-family: 幼圆">书店订购</h1>
 </div>
 <div class="card" style="height: 800px">
-    <form action="login" method="post">
+    <form action="/index/userLogin" method="post">
         <table  align="center" width="300px" height="200px">
             <tr><td width="150px" align="center">用户</td>
-                <td><input type="text" name="userId" placeholder="请输入注册账号"></td>
+                <td><input type="text" name="userName" placeholder="请输入注册账号"></td>
             </tr>
             <tr><td width="150px" align="center"  placeholder="请输入注册密码">密码</td>
                 <td><input type="password" name="uPassWord"></td>
             </tr>
             <tr><td align="center"><input type="checkbox" name="cookie" ></td><td height="30px">记住我</td></tr>
-            <tr><td align="right"><input type="submit" value="注册" name="reg"></td><td><input type="submit" value="登录" name="log"></td></tr>
+            <tr><td align="right"><a href="/index/reg" >没有账号?注册</a></td><td><input type="submit" value="登录" name="log"></td></tr>
         </table>
     </form>
 </div>

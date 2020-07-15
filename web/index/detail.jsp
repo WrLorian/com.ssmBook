@@ -42,19 +42,19 @@
 </head>
 <body>
 
-<div class="header">
-    <h1>书店订购</h1>
+<div class="header" style="background-image: url('img/bg3.jpg')">
+    <h1 style="font-family: 幼圆">书店订购</h1>
 </div>
 
 <div class="topnav">
-    <a href="index.jsp">首页</a>
-    <a href="recommend.jsp">精品推荐</a>
-    <a href="new.jsp">新书上市</a>
-    <a href="shopList.jsp">购物车</a>
-    <a href="order">我的订单</a>
-    <a href="login.jsp">登出</a>
-    <table><form method="post" action="">
-        <tr><td> <input id="input2" type="text" name="search" placeholder="请输入书名、分类等"></td><td> <input id="input1" type="submit" name="search" value="搜索"></td></tr>
+    <a href="/index/index">首页</a>
+    <a href="/index/special">精品推荐</a>
+    <a href="/index/news">新书上市</a>
+    <a href="/index/cart">购物车</a>
+    <a href="/index/order">我的订单</a>
+    <a href="/index/logout">登出</a>
+    <table><form method="post" action="/index/search">
+        <tr><td> <input id="input2" type="text" name="bookName" placeholder="请输入书名"></td><td> <input id="input1" type="submit" name="search" value="搜索"></td></tr>
     </form></table>
 
 </div>

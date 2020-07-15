@@ -108,19 +108,19 @@
 </head>
 <body>
 
-<div class="header">
-    <h1>书店订购</h1>
+<div class="header" style="background-image: url('img/bg3.jpg')">
+    <h1 style="font-family: 幼圆">书店订购</h1>
 </div>
 
 <div class="topnav">
-    <a href="index.jsp">首页</a>
-    <a href="recommend.jsp">精品推荐</a>
-    <a href="new.jsp">新书上市</a>
-    <a href="">购物车</a>
-    <a href="order">我的订单</a>
-    <a href="login.jsp">登出</a>
-    <table><form method="post" action="">
-        <tr><td> <input id="input2" type="text" name="search" placeholder="请输入书名、分类等"></td><td> <input id="input1" type="submit" name="search" value="搜索"></td></tr>
+    <a href="/index/index">首页</a>
+    <a href="/index/special">精品推荐</a>
+    <a href="/index/news">新书上市</a>
+    <a href="/index/cart">购物车</a>
+    <a href="/index/order">我的订单</a>
+    <a href="/index/logout">登出</a>
+    <table><form method="post" action="/index/search">
+        <tr><td> <input id="input2" type="text" name="bookName" placeholder="请输入书名"></td><td> <input id="input1" type="submit" name="search" value="搜索"></td></tr>
     </form></table>
 
 </div>
@@ -134,21 +134,21 @@
                 <th></th><th>书名</th><th>单价</th><th>数量</th><th>合计</th><th>操作</th>
                 <tr align="center">
                     <c:forEach var="book" items="${cartList}">
-                        <td> <a href="detail?bookId=${book.id}"><img src="../${book.cover}" class="thumb_big"/></a></td>
-                        <td>${book.name}人间失格</td>
-                        <td>${book.price}12</td>
-                        <td>${book.num}1</td>
-                        <td>${(book.price)*(book.num)}11</td>
+                        <td> <a href="detail?bookId=${book.bookId}"><img src="../${book.img}" class="thumb_big"/></a></td>
+                        <td>${book.bookName}</td>
+                        <td>${book.price}</td>
+                        <td>${book.count}</td>
+                        <td>${(book.price)*(book.num)}</td>
                         <td>
-                            <a href="detail?bookId=${book.id}" style="text-decoration:none;color: black;background-color: lightblue">添加</a>
-                        <a href="detail?bookId=${book.id}" style="text-decoration:none;color: black;background-color: lightblue">减少</a>
-                        <a href="detail?bookId=${book.id}" style="text-decoration:none;color: black;background-color: lightblue">删除</a>
+                            <a href="detail?bookId=${book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">添加</a>
+                        <a href="detail?bookId=${book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">减少</a>
+                        <a href="detail?bookId=${book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">删除</a>
                         </td>
                     </c:forEach>
                 </tr>
             </table>
             <table width="800px">
-                <form method="post">
+                <form method="post" action="/index/save">
                     <tr><td>收货人姓名：<input type="text" name="name" id="input3"></td>
                         <td>收货人电话：<input type="text" name="phone" id="input3"></td>
                         <td>收货人地址：<input type="text" name="address" id="input3"></td>
@@ -168,7 +168,7 @@
             <h3>图书分类</h3>
             <ul class="list">
                 <c:forEach var="category" items="${categoryList}">
-                    <li><a href="category?categoryId=${category.id}">${category.name}</a></li>
+                    <li><a href="category?categoryId=${category.cId}">${category.cName}</a></li>
                 </c:forEach>
             </ul>
         </div>
