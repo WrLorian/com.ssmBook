@@ -1,4 +1,4 @@
-package ssmBook.controller.Index;
+package ssmBook.controller;
 
 
 import java.util.Date;

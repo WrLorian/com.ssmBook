@@ -1,4 +1,4 @@
-package ssmBook.controller.Admin;
+package ssmBook.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

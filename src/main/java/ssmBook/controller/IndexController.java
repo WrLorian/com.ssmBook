@@ -1,4 +1,4 @@
-package ssmBook.controller.Index;
+package ssmBook.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import ssmBook.util.PageUtil;
  */
 
 @Controller
-@RequestMapping("/index")
+//@RequestMapping("/index")
 public class IndexController {
 
 
@@ -28,14 +28,15 @@ public class IndexController {
      * 该变量的作用为读取后台的书本数据。
      */
 
-    private BookService bookService = new BookService();
+    @Autowired
+    private BookService bookService;
 
     /**
      * 书店首页
      */
     @RequestMapping("/index")
     public String index(HttpServletRequest request) {
-        request.setAttribute("newList", bookService.getListIsNews(1, 2));//新品
+        //request.setAttribute("newList", bookService.getListIsNews(1, 2));//新品
         request.setAttribute("specialList", bookService.getListIsSpecial(1, 2));//精品
         request.setAttribute("flag", 1);
         return "index/index";
