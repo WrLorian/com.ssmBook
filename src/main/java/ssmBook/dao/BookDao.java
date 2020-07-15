@@ -2,6 +2,7 @@ package ssmBook.dao;
 
 
 import org.apache.ibatis.annotations.*;
+import org.springframework.stereotype.Repository;
 import ssmBook.pojo.book;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.List;
  * 书本Dao层接口
  * @GimmciK 2020.7.8
  */
+@Repository
 public interface BookDao {
 
     /**
@@ -66,13 +68,13 @@ public interface BookDao {
     /**
      * 查询上新图书（最近半年）
      */
-    @Select("select * from book where time>")
+    @Select("select * from `book` where date_sub(curdate(),interval 181 day)<=date(time) order by id desc limit #{begin}, #{size}")
     public List<book> selectListIsNew(@Param("begin")int begin, @Param("size")int size);
 
     /**
      * 查询上新图书一共有多少本
      */
-    @Select("select count(*) from book where time>")
+    @Select("select count(*) from book where date_sub(curdate(),interval 181 day)<=date(time)")
     public long selectTotalIsNews();
     /**
      * 显示所有图书
@@ -97,7 +99,7 @@ public interface BookDao {
      * 查询特卖图书(根据星级从高到底排序)
      */
     @Select("select * from book order by grade DESC limit #{begin}, #{size}")
-    public List<book> selectListIsSpecial(int page,int size);
+    public List<book> selectListIsSpecial(@Param("begin")int begin,@Param("size")int size);
 
 
 
