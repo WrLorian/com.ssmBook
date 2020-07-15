@@ -73,15 +73,7 @@
                                 <td>
                                     <a href="/buy?bookId=${book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">加入购物车</a>
                                 </td>
-                            </tr>
-                        </c:forEach>
-                        <tr><td colspan="3">
-                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                <tr>
-                                    <td style="background: #1b6d85">${pageTool}</td>
-                                </tr>
-                            </table>
-                        </td>
+                            </c:forEach>
                         </tr>
                     </table>
                 </div>
@@ -99,7 +91,7 @@
             <h3>图书分类</h3>
             <ul class="list">
                 <c:forEach var="category" items="${categoryList}">
-                    <li><a href="category?cId=${category.cId}">${category.name}</a></li>
+                    <li><a href="category?cId=${category.cId}">${category.cName}</a></li>
                 </c:forEach>
             </ul>
         </div>
