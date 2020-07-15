@@ -6,6 +6,7 @@ import ssmBook.dao.BookDao;
 import ssmBook.pojo.book;
 import ssmBook.util.UploadUtil;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Objects;
 
