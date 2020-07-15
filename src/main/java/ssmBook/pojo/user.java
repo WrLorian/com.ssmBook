@@ -14,7 +14,7 @@ public class user {
     private String uTel;
     private String uLoc;
 
-    public Integer getUserId() {
+    public int getUserId() {
         return userId;
     }
 

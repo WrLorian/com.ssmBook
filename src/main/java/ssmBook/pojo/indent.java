@@ -12,11 +12,11 @@ import java.util.List;
 public class indent {
 
     // 状态 - 未处理
-    public static final byte STATUS_WAIT = 1;
+    public static final int STATUS_WAIT = 1;
     // 状态 - 已处理
-    public static final byte STATUS_DOWN = 2;
+    public static final int STATUS_DOWN = 2;
     // 状态 - 已删除
-    public static final byte STATUS_DELETE = 3;
+    public static final int STATUS_DELETE = 3;
 
     private Integer iId;
     private float total;
