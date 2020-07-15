@@ -117,7 +117,7 @@
     <a href="/news">新书上市</a>
     <a href="/cart">购物车</a>
     <a href="/order">我的订单</a>
-    <a href="/logout">登出</a>
+    <a href="userLogout">登出</a>
     <table><form method="post" action="/search">
         <tr><td> <input id="input2" type="text" name="bookName" placeholder="请输入书名"></td><td> <input id="input1" type="submit" name="search" value="搜索"></td></tr>
     </form></table>
@@ -139,9 +139,9 @@
                         <td>${book.count}</td>
                         <td>${(book.price)*(book.num)}</td>
                         <td>
-                            <a href="detail?bookId=${book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">添加</a>
-                        <a href="detail?bookId=${book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">减少</a>
-                        <a href="detail?bookId=${book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">删除</a>
+                            <a href="buy?bookId=${book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">添加</a>
+                        <a href="/lessen?bookId=${book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">减少</a>
+                        <a href="/delete?bookId=${book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">删除</a>
                         </td>
                     </c:forEach>
                 </tr>
