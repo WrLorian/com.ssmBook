@@ -64,8 +64,8 @@ public interface IndentDao {
     /**
      * 查询所有的订单（分是否处理两种情况）
      */
-    @Select("select * from indent order by iId desc limit #{begin}, #{size}")
-    public List<indent> selectListByStatus(@Param("begin")int begin, @Param("size")int size);
+    @Select("select * from indent where state=#{state} order by iId desc limit #{begin}, #{size}")
+    public List<indent> selectListByStatus(@Param("state")int state,@Param("begin")int begin, @Param("size")int size);
 
     /**
      * 通过用户ID查询名下所有订单
