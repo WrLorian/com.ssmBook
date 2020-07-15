@@ -129,69 +129,60 @@ public class UserController {
 
     /**
      * 查看购物车
+     * @return
      */
-    @RequestMapping("/cart")//判断用户名不为空，set购物车列表
-    public String cart(HttpServletRequest request)
-    {
+    @RequestMapping("/cart")
+    public String cart(HttpServletRequest request) {
         Object username = request.getSession().getAttribute("username");
-        if(!username.toString().isEmpty()&&username!=null)
+        if (username!=null && !username.toString().isEmpty())
         {
-            List<indent> indentList = indentService.getIndentByUser(userService.getByUsername(username.toString()).getUserId());//获取用户所有订单
-            if (indentList!=null && !indentList.isEmpty())
-            {
-                request.setAttribute("indent",indentList.get(0));
+            List<indent> indentList = indentService.getIndentByUser(userService.getByUsername(username.toString()).getUserId());
+            if (indentList!=null && !indentList.isEmpty()) {
+                request.setAttribute("indent", indentList.get(0)); // 最后一次订单信息
             }
         }
-        return "index/shopList";
+        return "/index/shopList";
     }
 
     /**
-     * 购买书籍
-     * 添加进购物车
+     * 购买
+     * @return
      */
     @RequestMapping("/buy")
-    @ResponseBody
-    public String buy(HttpServletRequest request, int bookId)
-    {
-//        Object username = request.getSession().getAttribute("username");
+    public String buy(HttpServletRequest request, int bookId){
         indent indent = (indent) request.getSession().getAttribute(indentKey);
-        if(indent==null)
-        {
-//            不从这里拿用户名
-//            request.getSession().setAttribute(indentKey, indentService.create(bookService.get(bookId),userService.get(username.toString())));//创建订单
-            request.getSession().setAttribute(indentKey,indentService.indentCreat(bookService.getBookById(bookId)));
+        if (indent==null) {
+            request.getSession().setAttribute(indentKey, indentService.indentCreat(bookService.getBookById(bookId)));
+        }else {
+            request.getSession().setAttribute(indentKey, indentService.ItemAdd(indent, bookService.getBookById(bookId)));
         }
-        else
-        {
-            request.getSession().setAttribute(indentKey, indentService.ItemAdd(indent, bookService.getBookById(bookId)));//向已有订单里加项目
-        }
-        return "ok";
+        return "redirect:index";
     }
 
     /**
      * 减少数量
      */
     @RequestMapping("/lessen")
-    public @ResponseBody String lessen(HttpServletRequest request, int bookId)
+    public String lessen(HttpServletRequest request, int bookId)
     {
         indent indent = (indent) request.getSession().getAttribute(indentKey);
         if (indent != null) {
             request.getSession().setAttribute(indentKey, indentService.ItemLess(indent, bookService.getBookById(bookId)));
         }
-        return "ok";
+        return "redirect:cart";
     }
 
     /**
      * 删除书籍
      */
     @RequestMapping("/delete")
-    public @ResponseBody String delete(HttpServletRequest request, int bookId)
+    public String delete(HttpServletRequest request, int bookId)
     {
         indent indent2 = (indent) request.getSession().getAttribute(indentKey);
         if (indent2 != null) {
             request.getSession().setAttribute(indentKey, indentService.deleteItem(indent2, bookService.getBookById(bookId)));
         }
-        return "ok";
+        return "redirect:cart";
     }
 
     /**
@@ -208,14 +199,13 @@ public class UserController {
         }
             indent indentSession = (indent) request.getSession().getAttribute(indentKey);
             user user = userService.getByUsername(username.toString());
-            indent.setState(indentSession.STATUS_WAIT);
-            indent.setTime(new Date());
             indentSession.setUserId(user.getUserId());
             indentSession.setUserName(indent.getUserName());
             indentSession.setTel(indent.getTel());
             indentSession.setLoc(indent.getLoc());
 
-            indentDao.insert(indentSession);    // 保存订单
+
+            indentDao.insert(indentSession);  // 保存订单
 
             request.getSession().removeAttribute(indentKey);    // 清除购物车
             request.setAttribute("msg", "提交订单成功!");
@@ -225,22 +215,18 @@ public class UserController {
 
 
     /**
-     * 查看用户所有订单
+     * 查看订单
+     * @return
      */
     @RequestMapping("/order")
-    public String order(HttpServletRequest request)
-    {
-        Object username=request.getSession().getAttribute("username");
-        if(username==null||username.toString().isEmpty())
-        {
-            request.setAttribute("msg","请登录后再查看订单！");
-            return "index/login";
+    public String order(HttpServletRequest request){
+        Object username = request.getSession().getAttribute("username");
+        if (username==null || username.toString().isEmpty()) {
+            request.setAttribute("msg", "请登录后提交订单!");
+            return "redirect:log";
         }
-        else
-        {
-            request.setAttribute("indentList",indentService.getIndentByUser(userService.getByUsername(username.toString()).getUserId()));
-            return "index/myorder";
-        }
+        request.setAttribute("indentList", indentService.getIndentByUser(userService.getByUsername(username.toString()).getUserId()));
+        return "index/myorder";
     }
 
 }
