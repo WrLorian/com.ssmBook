@@ -2,15 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="ssmBook.service.IndentService" %>
 <%@ page import="ssmBook.pojo.indent" %>
-<%
-    IndentService service=new IndentService();
-    indent result=service.getIndentById((Integer) request.getAttribute("id"));
-    request.setAttribute("id",result.getUserId());
-    request.setAttribute("name",result.getUserName());
-    request.setAttribute("time",result.getTime());
-    request.setAttribute("address",result.getLoc());
-    request.setAttribute("phone",result.getTel());
-%>
 <html>
 <head>
     <title>订单修改</title>
@@ -130,7 +121,6 @@
                 <li><a href="userList">客户管理</a></li>
                 <li><a href="bookList">商品管理</a></li>
                 <li><a href="categoryList">类别管理</a></li>
-                <li><a href="../modifyPassword.jsp">修改密码</a></li><!--??-->
                 <li><a href="logout">退出</a></li>
             </ul>
         </div>

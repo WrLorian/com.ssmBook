@@ -65,7 +65,7 @@
                 <tr><td width="150px" align="center">密码</td>
                     <td><input type="password" name="passWord"></td>
                 </tr>
-                <tr><td align="right"><input type="submit" value="注册" name="zc"></td><td><input type="submit" value="登录" name="denglu"></td></tr>
+                <tr><td align="right"><a href="/adminRe">没有账号?注册</a></td><td><input type="submit" value="登录" name="denglu"></td></tr>
             </table>
         </form>
     </div>

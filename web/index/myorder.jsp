@@ -38,21 +38,21 @@
             border-radius: 4px;
         }
     </style>
-    <link rel="stylesheet" href="css/indexlayout.css">
+    <link rel="stylesheet" href="../index/css/indexlayout.css">
 </head>
 <body>
 
-<div class="header" style="background-image: url('img/bg3.jpg')">
+<div class="header" style="background-image: url('../index/img/bg3.jpg')">
     <h1 style="font-family: 幼圆">书店订购</h1>
 </div>
 
 <div class="topnav">
-    <a href="/index/index">首页</a>
-    <a href="/index/special">精品推荐</a>
-    <a href="/index/news">新书上市</a>
-    <a href="/index/cart">购物车</a>
-    <a href="/index/order">我的订单</a>
-    <a href="/index/logout">登出</a>
+    <a href="/index">首页</a>
+    <a href="/special">精品推荐</a>
+    <a href="/news">新书上市</a>
+    <a href="/cart">购物车</a>
+    <a href="/order">我的订单</a>
+    <a href="/logout">登出</a>
     <table><form method="post" action="/index/search">
         <tr><td> <input id="input2" type="text" name="bookName" placeholder="请输入书名"></td><td> <input id="input1" type="submit" name="search" value="搜索"></td></tr>
     </form></table>
@@ -62,27 +62,28 @@
 <div class="row">
     <div class="leftcolumn">
         <div class="card">
-            <h3>精品推荐</h3>
+            <h3>我的订单</h3>
             <table>
+                <th>订单编号</th><th>图书编号</th><th>时间</th><th>数量</th><th>总价</th>
                 <tr>
-                    <c:forEach var="book" items="${orderList}">
-                        <td> <a href="detail?bookId=${book.iId}"><img src="../${book.cover}" class="thumb_big"/></a></td>
-                        <td>${book.bookName}</td>
-                        <td>${book.brief}</td>
-                        <td>
-                            <a href="cart?bookId=${book.id}" style="text-decoration:none;color: black;background-color: lightblue">加入购物车</a></td>
-                        </td>
+                    <c:forEach var="book" items="${indentList}">
+                        <td>${book.iId}</td>
+                        <td>${book.bookId}</td>
+                        <td>${book.time}</td>
+                        <td>${book.amount}</td>
+                        <td>${book.total}</td>
                     </c:forEach>
                 </tr>
             </table>
         </div>
     </div>
     <div class="rightcolumn">
-        <div class="card">
-            <h2>书店简介</h2>
-            <div class="fakeimg" style="height:100px;">图片</div>
-            <p>本书店由嘉庚学子建设，为了服务大家方便网络订书而设置~</p>
-        </div>
+            <div class="card">
+                <h2>欢迎光临</h2>
+                <h2 style="color:#1b6d85;">书店简介</h2>
+                <img src="../index/img/jg.jpg" width="200px">
+                <p>本书店由嘉庚学子建设，为了服务大家方便网络订书而设置~</p>
+            </div>
         <div class="card">
             <h3>图书分类</h3>
             <ul class="list">

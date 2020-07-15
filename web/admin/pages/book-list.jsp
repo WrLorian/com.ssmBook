@@ -166,27 +166,43 @@
                 <li><a href="userList">客户管理</a></li>
                 <li><a href="bookList">商品管理</a></li>
                 <li><a href="categoryList">类别管理</a></li>
-                <li><a href="../modifyPassword.jsp">修改密码</a></li><!--??-->
                 <li><a href="logout">退出</a></li>
             </ul>
         </div>
         <div class="column1">
-            <table align="center">
-                <tr align="center"><td><form method="post" action="url"><!--传值-->
-                    <input type="input" name="searchByBookname" placeholder="按图书名称查询">&nbsp;<a href="search?bookname=${request.getParameter("searchByBookname")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
-                </form></td>
-                    <td> <form method="post" action="url">
-                        <input type="input" name="searchByBookId" placeholder="按图书编号查询">&nbsp;<a href="search?bookid=${request.getParameter("searchByBookId")}" style="text-decoration:none;color: black;background-color: lightblue">搜索</a>
-                    </form></td>
+            <a href="/bookAd" style="text-decoration:none;color: black;background-color: lightblue">添加图书</a>
+           <br>
+                <div >
+            <table class="altrowstable" id="alternatecolor" width="800px">
+                <tr>
+                    <th>图书编号</th><th>图书名称</th><th>价格</th><th>库存数量</th><th>作者</th><th>出版社</th>
+                    <th>评分</th><th>分类编号</th><th>操作</th>
+                </tr>
+
+                <c:forEach  items="${bookList}" var="u">
+                    <tr align="center">
+                        <td>${u.bookId}</td>
+                        <td>${u.bookName}</td>
+                        <td>${u.price}</td>
+                        <td>${u.count}</td>
+                        <td>${u.author}</td>
+                        <td>${u.press}</td>
+                        <td>${u.grade}</td>
+                        <td>${u.cId}</td>
+                        <td><a href="/bookUp?bookId=${u.bookId}">修改</a>
+                            <a href="/bookDelete?id=${u.bookId}">删除</a>
+                    </tr>
+                </c:forEach>
+                <tr><td colspan="9">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td style="background: #1b6d85">${pageTool}</td>
+                        </tr>
+                    </table>
+                </td>
                 </tr>
             </table>
-            <a href="javascript:divShow();" id="btnhref" style="text-decoration:none;color: black;background-color: lightblue">添加图书</a>
-            <a href="javascript:divShow1();" id="btnhref1" style="text-decoration:none;color: black;background-color: lightblue">查看所有图书信息</a>
-                <div id="btnshow" style=" display: none;">
-             <c:import url="../book-add.jsp"></c:import>
         </div>
-                <div id="btnshow1" style="display: none;">
-             <c:import url="../allBookList.jsp"></c:import>
         </div>
         </div>    
     </div></div>
