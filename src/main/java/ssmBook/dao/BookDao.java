@@ -89,8 +89,8 @@ public interface BookDao {
      * 通过名字查询图书
      * 注意：不止唯一结果
      */
-    @Select("select * from book where bookName like concat('%',#{bookName},'%') order by bookId desc limit #{begin}, #{size}")
-    public List<book> selectListLikeName(@Param("bookName")String bookName, @Param("begin")int begin, @Param("size")int size);
+    @Select("select * from book where bookName like concat('%',#{bookName},'%')")
+    public List<book> selectListLikeName(@Param("bookName")String bookName);
 
     /**
      * 通过分类查询图书

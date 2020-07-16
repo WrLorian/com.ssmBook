@@ -71,9 +71,9 @@ public class BookService {
     /**
      * 通过名称搜索图书
      */
-    public List<book> getListByBookName(String name,int page,int size)
+    public List<book> getListByBookName(String name)
     {
-        return bookDao.selectListLikeName(name,(page-1)*size,size);
+        return bookDao.selectListLikeName(name);
     }
 
     /**

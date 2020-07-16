@@ -87,12 +87,10 @@ public class IndexController {
      * 图书名称搜索
      */
     @RequestMapping("/search")
-    public String search(HttpServletRequest request,
-                         @RequestParam(required = false, defaultValue = "") String searchName,
-                         @RequestParam(required = false, defaultValue = "1") int page) {
-        if (searchName != null && !searchName.trim().isEmpty()) {
-            request.setAttribute("bookList", bookService.getListByBookName(searchName, page, 12));
-            request.setAttribute("pageTool", PageUtil.getPageTool(request, bookService.getTotal(searchName), page, 12));//一页12项
+    public String search(HttpServletRequest request,String bookName)
+    {
+        if (bookName != null && !bookName.trim().isEmpty()) {
+            request.setAttribute("bookList",bookService.getListByBookName(bookName));
         }
         return "index/search";
     }
