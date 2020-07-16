@@ -34,25 +34,22 @@
     <h1 style="font-family: 幼圆">书店订购</h1>
 </div>
 <div class="card" style="height: 800px">
-    <form action="reg" method="post">
+    <form action="/register" method="post">
         <table  align="center" width="300px" height="200px">
-            <tr><td width="150px" align="center">账号</td>
-                <td><input type="text" name="userId" placeholder="请输入下次登录账号" id="input1"></td>
-            </tr>
             <tr><td width="150px" align="center"  >用户名</td>
-                <td><input type="text" name="userName" placeholder="请输入用户名" id="input1"></td>
+                <td><input type="text" name="userName" placeholder="请输入用户名"></td>
             </tr>
             <tr><td width="150px" align="center" >密码</td>
-                <td><input type="password" name="uPassWord" placeholder="请输入注册密码" id="input1"></td>
+                <td><input type="password" name="uPassWord" placeholder="请输入注册密码"></td>
             </tr>
             <tr><td width="150px" align="center"  >性别</td>
-                <td><input type="text" name="uSex" placeholder="输入性别" id="input1"></td>
+                <td><input type="text" name="uSex" placeholder="输入性别"></td>
             </tr>
             <tr><td width="150px" align="center"  >联系电话</td>
-                <td><input type="text" name="uTel" placeholder="输入联系电话" id="input1"></td>
+                <td><input type="text" name="uTel" placeholder="输入联系电话"></td>
             </tr>
             <tr><td width="150px" align="center"  >收货地址</td>
-                <td><input type="text" name="uLoc" placeholder="输入地址" id="input1"></td>
+                <td><input type="text" name="uLoc" placeholder="输入地址"></td>
             </tr>
             <tr><td align="right"><input type="submit" value="取消" name="cancel"></td><td><input type="submit" value="确认" name="confirm"></td></tr>
         </table>

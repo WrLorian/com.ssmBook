@@ -63,7 +63,6 @@ public class UserController {
     @RequestMapping("/register")
     public String register(HttpServletRequest request, user user)
     {
-        request.setAttribute("flag", 7);
         if(user.getUserName().isEmpty()||user.getuPassWord().isEmpty())
         {
             request.setAttribute("msg","用户名或密码不能为空!");
@@ -78,7 +77,7 @@ public class UserController {
         {
             userService.userAdd(user);
             request.setAttribute("msg","注册成功，请登录！");
-            return "redirect:index/log";
+            return "redirect:index";
         }
     }
 
@@ -201,6 +200,9 @@ public class UserController {
             user user = userService.getByUsername(username.toString());
             indentSession.setUserId(user.getUserId());
             indentSession.setUserName(indent.getUserName());
+            indentSession.setAmount(indent.getAmount());
+            indentSession.setTotal(indent.getTotal());
+            indentSession.setTime(indent.getTime());
             indentSession.setTel(indent.getTel());
             indentSession.setLoc(indent.getLoc());
 
