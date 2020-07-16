@@ -138,7 +138,7 @@
                         <td>${item.book.bookName}</td>
                         <td>${item.book.price}</td>
                         <td>${item.book.count}</td>
-                        <td>${(item.book.price)*(book.num)}</td>
+                        <td>${(item.book.price)*(item.bNum)}</td>
                         <td>
                             <a href="buy?bookId=${item.book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">添加</a>
                         <a href="/lessen?bookId=${item.book.bookId}" style="text-decoration:none;color: black;background-color: lightblue">减少</a>
